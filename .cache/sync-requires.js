@@ -8,7 +8,6 @@ exports.components = {
   "component---src-templates-fund-template-js": hot(preferDefault(require("/home/colt/Software/gatsby/MVP/src/templates/fundTemplate.js"))),
   "component---src-templates-fund-manager-template-js": hot(preferDefault(require("/home/colt/Software/gatsby/MVP/src/templates/fundManagerTemplate.js"))),
   "component---src-templates-fund-strategy-template-js": hot(preferDefault(require("/home/colt/Software/gatsby/MVP/src/templates/fundStrategyTemplate.js"))),
-  "component---cache-dev-404-page-js": hot(preferDefault(require("/home/colt/Software/gatsby/MVP/.cache/dev-404-page.js"))),
   "component---src-pages-about-jsx": hot(preferDefault(require("/home/colt/Software/gatsby/MVP/src/pages/about.jsx"))),
   "component---src-pages-contact-jsx": hot(preferDefault(require("/home/colt/Software/gatsby/MVP/src/pages/contact.jsx"))),
   "component---src-pages-fundlistpage-jsx": hot(preferDefault(require("/home/colt/Software/gatsby/MVP/src/pages/fundlistpage.jsx"))),
