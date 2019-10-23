@@ -4,13 +4,8 @@ import Web3 from 'web3-eth'
 var web3;
 
 if(typeof window !=='undefined'){
+
   if(window.web3 !== 'undefined'){
-      const provider = new Web3.providers.HttpProvider(
-      'https://mainnet.infura.io/v3/ec86b2b5c5644c29b07cf35d77d1bd78'
-      );
-      web3 = new Web3(provider);
-      console.log(web3);
-    } else {
         
         web3 = new Web3(window.web3.currentProvider);
     
@@ -41,7 +36,13 @@ if(typeof window !=='undefined'){
               console.log('This is an unknown network.')
           }
        });
-      }
+    } else {
+      const provider = new Web3.providers.HttpProvider(
+        'https://mainnet.infura.io/v3/ec86b2b5c5644c29b07cf35d77d1bd78'
+       );
+      web3 = new Web3(provider);
+      console.log(web3);
+    } 
   } else {
         const provider = new Web3.providers.HttpProvider(
           'https://mainnet.infura.io/v3/ec86b2b5c5644c29b07cf35d77d1bd78'
