@@ -1,19 +1,16 @@
 import React from "react"
 import { Link } from "gatsby"
-import { StaticQuery, graphql } from 'gatsby';
 import Web3Address from "./Web3Address";
 //import { invest, redeem } from "../web3/melonCalls";
 //import web3dialog from "./web3dialog";
-import web3 from "../web3/web3";
+import Form from "./Form";
 
-const account = web3.currentProvider.selectedAddress;
-
-function invest(){
+function investAction(){
     console.log("Click Invest");
     openInvestmentForm();
 }
 
-function redeem(){
+function redeemAction(){
     console.log("Click Redeem");
     openRedeemForm();
 }
@@ -22,33 +19,8 @@ function openInvestmentForm(){
     document.getElementById("InvestForm").style.display = "block";
 }
 
-function closeInvestmentForm(){
-    document.getElementById("InvestForm").style.display = "none";
-}
-
 function openRedeemForm(){
     document.getElementById("RedeemForm").style.display = "block";
-}
-
-function closeRedeemForm(){
-    document.getElementById("RedeemForm").style.display = "none";
-}
-
-function investAmount(ether){
-    alert("Invested");
-    alert(ether);
-    //alert(document.getElementById("ether").value);
-    //alert(document.getElementById("gasI").value);
-    //alert(ether);
-    //alert(gas);
-}
-
-function redeemAmount(){
-    alert("Redeemed");
-    //alert(document.getElementById("shares").value);
-    //alert(document.getElementById("gasR").value);
-   // alert(shares);
-    //alert(gas);
 }
 
 /*function dragElement(elmnt) {
@@ -94,69 +66,25 @@ function redeemAmount(){
 
 export default (props) => (
     
-    <StaticQuery
-        query={graphql`
-            query MyNewQuery {
-                allSitePage(filter: {path: {regex: "/0x.*/"}}, limit: 10) {
-                    edges {
-                        node {
-                            path
-                        }
-                    }
-                }
-             }`
-        }
-        
-        render={data => (
             <div className="Menu DynamicMenu">
                 <Web3Address/>
+                {console.log("Dynamic Menu",props)}
+
                 <div className="InvestRedeemButtons">
-                    <div className="base_button InvestButton" onClick={() => invest(props.fundaddress)}><h3>Invest</h3></div>
-                    <div className="base_button RedeemButton" onClick={() => redeem(props.fundaddress)}><h3>Redeem</h3></div>
+                    <div className="base_button InvestButton" onClick={investAction}><h3>Invest</h3></div>
+                    <div className="base_button RedeemButton" onClick={redeemAction}><h3>Redeem</h3></div>
                 </div>
-                    <div class="form-popup" id="InvestForm">
-                        <form action={investAmount} class="form-container" method="POST">
-                            <h1 display={{color: 'black'}}>Invest in the Fund</h1>
-                            <h6>
-                            Are you sure that you want to invest in the fund {props.fundaddress}?
-                            </h6>
-                            <label for="Crypto"><b>Ether</b></label>
-                            <input type="text" id="ether" placeholder="Enter ETH-Amount" name="ether" required/>
-
-                            <label for="gas"><b>Gasprice</b></label>
-                            <input type="text" id="gas" placeholder="Enter Gasprice" name="gasI" required/>
-
-                            <button type="submit" class="btn" onClick={() => investAmount(document.getElementById("ether").value)}>Invest</button>
-                            <button type="button" class="btn cancel" onClick={closeInvestmentForm}>Close</button>
-                        </form>
-                    </div>
-
-                    <div class="form-popup" id="RedeemForm">
-                        <form action={investAmount} class="form-container">
-                            <h1>Redeem Shares</h1>
-                            <h6>
-                            Are you sure that you want to redeem shares from the fund {props.fundaddress}?
-                            </h6>
-
-                            <label for="shares"><b>Shares</b></label>
-                            <input type="text" id="shares" placeholder="Enter Shares" name="shares" required/>
-
-                            <label for="gas"><b>Gasprice</b></label>
-                            <input type="text" id="gas" placeholder="Enter Gasprice" name="gasR" required/>
-
-                            <button type="submit" class="btn" onClick={() => redeemAmount()}>Redeem</button>
-                            <button type="button" class="btn cancel" onClick={closeRedeemForm}>Close</button>
-                        </form>
-                    </div>
-                
-               
                 <div className="ExploreTheFundsLink">
+                <Form fundAddress={props.fundAddress} participationContractAddress={props.participationContractAddress} allowedAssets={props.allowedAssets}/>
                     <Link to="/fundlistpage" style={{ color: `whitesmoke`,padding: `none`, backgroundImage: `none`, float: `right` }}>
                         <h3 syle={{float: `left`}}>{props.title}</h3> 
                     </Link>
                 </div>
             </div>
-        )}
-    />
-); 
+)     
 
+/*
+
+<button type="submit" class="btn" onClick={() => investAmount(this.getElementById("ether").value)}>Invest</button>
+<option value="bat-address" label="BAT">BAT</option>
+*/

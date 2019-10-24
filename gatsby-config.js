@@ -23,8 +23,8 @@ module.exports = {
       options: {
       typeName: 'MELON',
       fieldName: 'melon',
-      url: `${api_mainnet}`,
-      //url: `${api_kovan}`,
+      //url: `${api_mainnet}`,
+      url: `${api_kovan}`,
       },
     },
     "gatsby-transformer-json",

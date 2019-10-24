@@ -16,7 +16,7 @@ const Site = (props) => {
       <div className="Container">
         <ContainerLeft previous={props.previous}/>
         <Header/>
-        <DynamicMenu fundaddress={props.id} title="Explore the funds"/>
+        <DynamicMenu fundAddress={props.id} participationContractAddress={props.fund.participation.id} allowedAssets={props.fund.participation.allowedAssets} title="Explore the funds"/>
               <Content content={props.content}>
                 <Fund fund={props.fund} id={props.id}/> 
               </Content>

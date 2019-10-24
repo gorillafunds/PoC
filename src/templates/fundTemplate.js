@@ -69,6 +69,13 @@ export const query = graphql`
           identifier
         }
       }
+      participation {
+        id
+        allowedAssets {
+          id
+          symbol
+        }
+      }
     }
   }
 }
