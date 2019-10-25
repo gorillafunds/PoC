@@ -101,13 +101,13 @@ export default (props) => (
                                 YTD
                         </div>
                         <div className="PerformanceButton CenterItem">
-                                1 Year
+                                Year
                         </div>
                         <div className="PerformanceButton CenterItem">
-                                1 Month
+                                Month
                         </div>
                         <div className="PerformanceButton CenterItem">
-                                1 Week
+                                Week
                         </div>
                     </div>
                 </div>

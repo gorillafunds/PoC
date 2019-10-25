@@ -16,7 +16,7 @@ const colors_for_pie = [
   {"color" : "hsl(39, 70%, 50%)"}
 ]
 
-/* Dataformat Victory-Pie*/ 
+// Dataformat Victory-Pie
 
 const data = [
   { x: "Cats", y: 35 },
@@ -24,7 +24,7 @@ const data = [
   { x: "Birds", y: 55 }
 ]
 
-/* Dataformat ResponsivePie */
+// Dataformat ResponsivePie */
 
 /*
 const data = [
@@ -54,9 +54,9 @@ const data = [
         margin={{ top: 20, right: 40, bottom: 10, left: 40 }}
         colors={{ scheme: 'nivo' }}
         />
-)*/
+)
 
-/* Zum Optimieren der 
+ Zum Optimieren der 
 
 let data_array = (value_array) => {
   
@@ -81,10 +81,10 @@ let data_array = (value_array) => {
   console.log("Endergebnis:",new_value_array);
  
   return new_value_array;
- console.log(new_value_array);*/
+  console.log(new_value_array);
   
 
-/*  return data;
+  return data;
 }*/
 
 export default (props) => (

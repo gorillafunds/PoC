@@ -1,11 +1,13 @@
-import React, {Component} from 'react';
-//import ParticipationABI from "../contracts/Participation.abi.json";
+import React from 'react';
+import ParticipationABI from "../../node_modules/@melonproject/protocol/out/Participation.abi.json";
 import web3 from "../web3/web3";
 import InputTextField from "./InputTextField";
 import DropdownSelect from "./DropdownSelect";
+import Bignumber from "bignumber";
 
+const account = web3.currentProvider.selectedAddress;
 
-function closeInvestmentForm(){
+function closeInvestForm(){
     document.getElementById("InvestForm").style.display = "none";
 }
 
@@ -13,11 +15,20 @@ function closeRedeemForm(){
     document.getElementById("RedeemForm").style.display = "none";
 }
 
-function submitForm(props){
+function submitInvestForm(props){
     console.log(props);
-    /*
-    hole Werte aus Formular und kombiniere mit Props um web3-transaction abzuschießen.
-    */
+    const participationContract = new web3.Contract(ParticipationABI, props.participationContractAddress);
+    console.log(participationContract);
+    console.log(props.All)
+    participationContract.methods.requestInvestment(0, 0, props.allowedAssets[0].id).send({from: account}).then(console.log).catch(console.log);
+}
+
+function submitRedeemForm(props){
+    console.log(props);
+    const participationContract = new web3.Contract(ParticipationABI, props.participationContractAddress);
+    console.log(participationContract);
+    console.log(props.All)
+    participationContract.methods.redeemQuantity(0).send({from: account}).then(console.log).catch(console.log);
 }
 
 function handleChange(event){
@@ -93,13 +104,13 @@ let stateRedeem = {
                             }
                         })
                     }
-                    <button type="button" class="btn" onClick={() => submitForm(props)}>Invest</button>
-                    <button type="button" class="btn cancel" onClick={() => closeInvestmentForm()}>Close</button>
+                    <button type="button" class="btn" onClick={() => submitInvestForm(props)}>Invest</button>
+                    <button type="button" class="btn cancel" onClick={() => closeInvestForm()}>Close</button>
                 </form>
             </div>
 
             <div class="form-popup" id="RedeemForm">
-            <form  onSubmit={() => submitForm(props)} class="form-container" method="POST">
+               <form  class="form-container" method="POST">
                 <h1 display={{color: 'black'}}>
                     Redeeming Shares
                 </h1>
@@ -134,7 +145,7 @@ let stateRedeem = {
                             }
                         })
                     }
-                    <button type="button" class="btn" onClick={() => submitForm(props)}>Redeem</button>
+                    <button type="button" class="btn" onClick={() => submitRedeemForm(props)}>Redeem</button>
                     <button type="button" class="btn cancel" onClick={() => closeRedeemForm()}>Close</button>
                 </form>
                 </div>

@@ -1,8 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
 import Web3Address from "./Web3Address";
-//import { invest, redeem } from "../web3/melonCalls";
-//import web3dialog from "./web3dialog";
 import Form from "./Form";
 
 function investAction(){

@@ -29,7 +29,6 @@ let button = (props) => {
     return {__html: ""};
   }
 }
-/*style={{float:'right',bottom:'10px',position:'absolute'}}>*/
    
 const Page = (props) => {
     console.log("fundManagerTemplate.js:",props)

@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/share/yarn/bin/yarn.js add @melonprotocol/protocol
+  /usr/local/bin/node /usr/share/yarn/bin/yarn.js add @melonprotocol/protocol@1.0.10
 
 PATH: 
   /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
@@ -47,6 +47,7 @@ npm manifest:
       "@nivo/line": "^0.59.3",
       "@nivo/pie": "^0.59.1",
       "apollo-client": "^2.6.4",
+      "bignumber": "^1.1.0",
       "core-js": "^3.2.1",
       "eslint-plugin-flowtype": "^2.50.3",
       "fs": "^0.0.1-security",
@@ -66,6 +67,7 @@ npm manifest:
       "graphql-tools": "^4.0.5",
       "react": "^16.9.0",
       "react-dom": "^16.9.0",
+      "react-draggable": "^4.0.3",
       "react-typography": "^0.16.19",
       "typescript": "^3.6.3",
       "typography": "^0.16.19",
@@ -3510,6 +3512,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-4.1.0.tgz#db6f14067c140bd46624815a7916c92d9b6c24b1"
     integrity sha512-eJzYkFYy9L4JzXsbymsFn3p54D+llV27oTQ+ziJG7WFRheJcNZilgVXMG0LoZtlQSKBsJdWtLFqOD0u+U0jZKA==
   
+  bignumber@^1.1.0:
+    version "1.1.0"
+    resolved "https://registry.yarnpkg.com/bignumber/-/bignumber-1.1.0.tgz#e6ab0a743da5f3ea018e5c17597d121f7868c159"
+    integrity sha1-5qsKdD2l8+oBjlwXWX0SH3howVk=
+  
   binary-extensions@^1.0.0:
     version "1.13.1"
     resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.13.1.tgz#598afe54755b2868a5330d2aff9d4ebb53209b65"
@@ -4298,6 +4305,11 @@ Lockfile:
       define-property "^0.2.5"
       isobject "^3.0.0"
       static-extend "^0.1.1"
+  
+  classnames@^2.2.5:
+    version "2.2.6"
+    resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+    integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
   
   clean-css@^4.1.6, clean-css@^4.2.1:
     version "4.2.1"
@@ -12717,7 +12729,7 @@ Lockfile:
       kleur "^3.0.3"
       sisteransi "^1.0.3"
   
-  prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+  prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
     version "15.7.2"
     resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
     integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -13047,6 +13059,14 @@ Lockfile:
       object-assign "^4.1.1"
       prop-types "^15.6.2"
       scheduler "^0.15.0"
+  
+  react-draggable@^4.0.3:
+    version "4.0.3"
+    resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-4.0.3.tgz#6b9f76f66431c47b9070e9b805bbc520df8ca481"
+    integrity sha512-4vD6zms+9QGeZ2RQXzlUBw8PBYUXy+dzYX5r22idjp9YwQKIIvD/EojL0rbjS1GK4C3P0rAJnmKa8gDQYWUDyA==
+    dependencies:
+      classnames "^2.2.5"
+      prop-types "^15.6.0"
   
   react-error-overlay@^3.0.0:
     version "3.0.0"
