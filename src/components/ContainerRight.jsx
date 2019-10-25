@@ -9,7 +9,7 @@ export default (props) => (
     <StaticQuery
            query={graphql`
                 query MyLinkNextQuery {
-                    allSitePage(filter: {path: {regex: "/0x.*/"}}, limit: 10) {
+                    allSitePage(filter: {path: {regex: "/0x.*/"}}, limit: 20) {
                         edges {
                             node {
                                 path

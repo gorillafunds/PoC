@@ -3,7 +3,7 @@
 // data layer is bootstrapped to let plugins create pages from data.
 
 const path = require(`path`)
-let fundcount = 10
+let fundcount = 20
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -17,7 +17,7 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(`
     query loadFundsQuery ($limit: Int!) {
           melon {
-            funds(orderBy: name, first:$limit, skip: 1) {
+            funds(orderBy: name, first:$limit, skip: 1, where: {gav_gt: "0", isShutdown: false, sharePrice_not: "1"}) {
               name
               id
               manager {

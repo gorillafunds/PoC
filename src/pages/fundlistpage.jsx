@@ -7,7 +7,7 @@ import FundList from "../components/FundList";
 
 export const GATSBY_QUERY = graphql`{
     melon {
-      funds(orderBy: name, first:10, skip: 1) {
+      funds(orderBy: name, first:20, skip: 1, where: {gav_gt: "0", isShutdown: false, sharePrice_not: "1"}) {
        name
        id
       }
