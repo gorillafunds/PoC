@@ -738,15 +738,22 @@ a:hover {
         border-color: whitesmoke;
         font-size: small;
         border-radius: 0px;
-        width: 8vh;
-        height: 4vh;
-        min-width: 20%;
-        min-height: 50%;
+        max-width: 20%;
+        min-width: 8vh;
         overflow: auto;
+    }
+
+    .RulesetButton{
+        min-width: 40%;
     }
 
     .base_button:hover {
         background-color: #e66545fb;
+        cursor: pointer;
+    }
+
+    .MoreButton:hover{
+        background-color: black;
         cursor: pointer;
     }
 

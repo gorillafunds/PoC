@@ -25,7 +25,7 @@ export default (props) => (
                 manageraddress={props.fund.manager.id}
                 id={props.id}
                 />
-            <Ruleset/>
+            <Ruleset id={props.id}/>
             <Manager
                 manageraddress={props.fund.manager.id}
                 />

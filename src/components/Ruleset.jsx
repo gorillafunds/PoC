@@ -23,8 +23,8 @@ export default (props) => (
                <div className="RulesetItem"><h5>Price-Tolerance:</h5></div><div className="RulesetIcon"><h5>5%</h5></div>
             </div>
             <div className="Ruleset32">
-               <Link to="/Ruleset"> 
-                  <div className="base_button MoreButton" style={{right: '0', position:'absolute', bottom: '0'}}>
+               <Link to="/Ruleset" state={{fromSite: props.id}}> 
+                  <div className="base_button MoreButton RulesetButton" style={{right: '0', position:'absolute', bottom: '0'}}>
                      <h6>More</h6>
                   </div>
                </Link>
