@@ -11,7 +11,6 @@ let checkPolicies = (props, policy) => {
       switch ( policy ){
          case "UserWhitelist":
             const ident = props.policy.find(element => element.identifier === policy);
-            console.log("ident:",ident);
             if (typeof ident === 'undefined'){
                return "--";
             } else {
@@ -22,7 +21,6 @@ let checkPolicies = (props, policy) => {
 
          case "Max concentration":
                const ident2 = props.policy.find(element => element.identifier === policy);
-               console.log("ident:",ident);
                if (typeof ident2 === 'undefined'){
                   return "--";
                } else {
@@ -32,7 +30,6 @@ let checkPolicies = (props, policy) => {
             
          case "Max positions":
                const ident3 = props.policy.find(element => element.identifier === policy);
-               console.log("ident:",ident);
                if (typeof ident3 === 'undefined'){
                   return "--";
                } else {
@@ -42,7 +39,6 @@ let checkPolicies = (props, policy) => {
 
          case "Position":
                const ident4 = props.policy.find(element => element.identifier === policy);
-               console.log("ident:",ident);
                if (typeof ident4 === 'undefined'){
                   return "--";
                } else {
@@ -52,7 +48,6 @@ let checkPolicies = (props, policy) => {
 
          case "Price tolerance":
                const ident5 = props.policy.find(element => element.identifier === policy);
-               console.log("ident:",ident);
                if (typeof ident5 === 'undefined'){
                   return "--";
                } else {
