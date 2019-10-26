@@ -34,12 +34,11 @@ let button = (props) => {
 const Page = (props) => {
     console.log("fundStrategyTemplate.js:",props)
     return (
-        <div>
+        <div className="WordpressPage">
         <StaticSite title={props.pageContext.id}
         id={props.pageContext.id} 
         manager_id={props.pageContext.manager_id} 
         >
-          <h2>Strategy</h2>
           <h6>Manager-Address:{props.pageContext.manager_id}</h6>
           <div dangerouslySetInnerHTML={content(props)}/>
           <div dangerouslySetInnerHTML={button(props)}/>

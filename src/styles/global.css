@@ -49,6 +49,9 @@ h3,h4,h5,h6{
     image-rendering: auto;
 }
 
+.staticPageContainer{
+    width: 10%;
+}
 /* Centerelemente */
 
 .grid-element-center{
@@ -239,6 +242,11 @@ h3,h4,h5,h6{
 
 .ContentFundList{
     overflow: auto;
+}
+
+.Placeholder{
+    width: 8vh;
+    height: 8vh;
 }
 
 .ManagerStrategyPage{
@@ -558,7 +566,7 @@ h3,h4,h5,h6{
 .FundListItem{
     background-color: #f5faffcb;
     padding: 1%;
-    height: 8vh;
+    height: 12vh;
     border: 1px solid; 
     border-radius: 0.1vh;
 }
@@ -568,8 +576,9 @@ h3,h4,h5,h6{
     padding: 1%;
 }
 
-.AboutPage{
+.WordpressPage{
     color: rgb(66, 66, 59);
+    overflow: hidden;
 }
 
 .WelcomePage{
@@ -766,17 +775,20 @@ a:hover {
     }
 
     .StaticMenu{
+        display: grid;
         grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        font-size: x-small;
     }
     
     .StaticMenuTitle{
-        grid-column: 1 / 2;
+        grid-row: 1 / 2;
         padding: 0px;
+        overflow: hidden;
     }
     
     .ExploreTheFundsLinkStatic{
-        grid-column: 1 / 2;
-        padding: 0px;
+        grid-row: 2 / 3;
     }
     
     /* Dynamic Menu */
@@ -932,5 +944,33 @@ a:hover {
     .Manager{
         grid-column: 1 / 2;
         grid-row: 2 / 3 ;
+    }
+
+    .FundList{
+        /*background-color: whitesmoke;*/
+        padding: 0px;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    
+    .FundListItem{
+        grid-column: 1fr;
+        background-color: #f5faffcb;
+        padding: 1%;
+        height: 16vh;
+        border: 1px solid; 
+        border-radius: 0.1vh;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2fr;
+        overflow: hidden;
+    }
+
+    .FundListItemName{
+        grid-row: 1 / 2;
+    }
+
+    .FundListItemDiagramm{
+        grid-row: 2 / 3;
     }
 }

@@ -20,16 +20,16 @@ export default (props) => (
         render={data => (
           < div className="Menu StaticMenu">
               <div className="StaticMenuTitle">
-                    <h3 syle={{float: `left`}}>
+                    <h5 syle={{float: `left`}}>
                         {props.title}
-                    </h3>
+                    </h5>
               </div>
               <div className="ExploreTheFundsLinkStatic">
-                    <h3>
+                    <h5>
                         <Link to="/fundlistpage" style={{ color: `rgba(255,255,255,0.9)`, textShadow: `none`, backgroundImage: `none`, float: `right` }}>
                             Explore the Funds
                         </Link>
-                    </h3>
+                    </h5>
               </div>
             </div>
         )}

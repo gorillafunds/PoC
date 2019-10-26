@@ -16,7 +16,6 @@ export default (props) => (
 
       render = {data => (
               <div className="WelcomePage"> 
-                  {props.children}
                      <StaticSite title="Welcome">
                        <p>
                          <div dangerouslySetInnerHTML={{__html: data.wordpressPage.content}}/>

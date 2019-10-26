@@ -2,7 +2,6 @@ import React from "react"
 import StaticSite from "../components/StaticSite.jsx"
 import { StaticQuery, graphql } from 'gatsby';
 import { Link } from 'gatsby';
-import { isContext } from "vm";
 
 export default (props) => (
 
@@ -18,12 +17,11 @@ export default (props) => (
 
       render = {data => (
               <div className="RulesetPage"> 
-                  {props.children}
                      <StaticSite title="Ruleset">
                        <p>
                          <div dangerouslySetInnerHTML={{__html: data.wordpressPage.content}}/>
                       </p>
-                      <Link to={props.location.state.fromSite}>
+                      <Link to="/">
                           <div className="base_button MoreButton" style={{float:'left', bottom:'10px', position: 'absolute'}}>
                             <h6>
                               Back

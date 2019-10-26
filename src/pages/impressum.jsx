@@ -15,8 +15,7 @@ export default (props) => (
         `}
 
       render = {data => (
-              <div className="AboutPage"> 
-                  {props.children}
+              <div className="WordpressPage"> 
                      <StaticSite title="Impressum">
                        <p>
                          <div dangerouslySetInnerHTML={{__html: data.wordpressPage.content}}/>

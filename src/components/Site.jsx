@@ -13,7 +13,8 @@ import "../utils/typography";
 const Site = (props) => {
     console.log("Site:",{props})
     return (
-      <div className="Container">
+        <div className="Container">
+        <div className="ContainerLeft grid-element-side"/>
         <ContainerLeft previous={props.previous}/>
         <Header/>
         <DynamicMenu fundAddress={props.id} participationContractAddress={props.fund.participation.id} allowedAssets={props.fund.participation.allowedAssets} title="Explore the funds"/>
@@ -23,6 +24,7 @@ const Site = (props) => {
         <Footer/>
         <div className="Spacer grid-element-center"/>
         <ContainerRight next={props.next}/> 
+        <div className="ContainerRight grid-element-side"/>
       </div>
     )
   }
