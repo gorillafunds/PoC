@@ -39,12 +39,12 @@ export default (props) => (
             <div className="FundRow">
                 <div className="FundRowItemLeft CenterItem">
                     <h6>
-                        {(props.shareprice/EtherInWei*props.totalsupply/EtherInWei).toFixed(2)}
+                        {(props.shareprice/EtherInWei*props.totalsupply/EtherInWei).toFixed(3)}
                     </h6>
                 </div>
                 <div className="FundRowItemRight CenterItem">
                     <h6>
-                        {(props.shareprice/EtherInWei).toFixed(2)}
+                        {(props.shareprice/EtherInWei).toFixed(3)}
                     </h6>
                 </div>
             </div>
