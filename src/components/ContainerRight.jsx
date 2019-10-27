@@ -24,12 +24,12 @@ export default (props) => (
                         {props.children}
                         <TransitionLink 
                             to={data.allSitePage.edges[props.next].node.path}
-                            exit={{
+                            /*exit={{
                                 length: 1
                             }}
                             entry={{
                                 delay: 0.6
-                             }}
+                             }}*/
                             >
                             <img className="SiteImage" src={forward} alt="forward"></img>
                         </TransitionLink>

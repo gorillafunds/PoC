@@ -91,8 +91,11 @@ export default (props) => (
         colorScale={"warm"}
         labelPosition={"centroid"}
         animate ={{
-            duration:"2000"
-        }}
+            duration:1000,
+            onLoad:{
+              duration: 2000
+            }
+          }}
         />
     </div>
 );

@@ -69,12 +69,12 @@ export default (props) => (
             <div className="FundRow">
                 <div className="FundRowItemLeft CenterItem">
                     <h5>
-                        {Number(props.managementfee)/EtherInWei*100}%
+                        {(Number(props.managementfee)/EtherInWei*100).toFixed(1)}%
                     </h5>
                 </div>
                 <div className="FundRowItemRight CenterItem">
                     <h5>
-                        {Number(props.performancefee)/EtherInWei*100}%
+                        {(Number(props.performancefee)/EtherInWei*100).toFixed(1)}%
                     </h5>
                 </div>
             </div>
