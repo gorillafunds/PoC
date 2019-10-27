@@ -1,9 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Site from "../components/Site";
-
-// Template für die Pages. Daten können im Inneren von Site als Children übergeben werden, oder über die Attribute
-// Die gesammelten Daten für den Fund werden über den dataContainer übergeben, der in gatsby-node gebaut wird.
    
 const Page = (props) => {
     console.log("fundTemplate.js:",props)

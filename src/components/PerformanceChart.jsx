@@ -43,5 +43,4 @@ export default (props) => (
         </VictoryChart>
     </div>
 );
-// Zum Optimieren der 
 

@@ -3,9 +3,6 @@ import { StaticQuery, graphql } from 'gatsby';
 import { Link } from "gatsby";
 import gorilla from "../../media/gorilla.svg";
 
-
-// Header für alle Seiten - holt Titel aus gatsby-config
-
 export default () => (
     
     <StaticQuery

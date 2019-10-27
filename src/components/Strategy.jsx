@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from "gatsby";
 import { StaticQuery, graphql } from 'gatsby';
 
-// String für slug verketten
 let concenated_string = (string_list_array) => {
     return string_list_array.join('.');
 }
@@ -85,17 +84,3 @@ export default (props) => (
     />
 ); 
 
-/*export default (props) => (
-    <div className="Strategy content-element">
-        <div className="StrategyTitel"><h5>Strategy</h5></div>
-        <div className="StrategyText">
-            I try to make as much money as possible. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        
-        </div>
-        <div className="StrategyLink">
-            <Link to={concenated_string(["strategy",props.manageraddress,props.id])}>
-                 <div className="base_button MoreButton" style={{float:'right'}}><h6>More</h6></div>
-            </Link>
-        </div> 
-    </div>
-);*/

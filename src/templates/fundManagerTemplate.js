@@ -7,9 +7,6 @@ import web3 from "../web3/web3";
 const account = web3.currentProvider.selectedAddress;
 console.log(account);
 
-// Template für die Pages. Daten können im Inneren von Site als Children übergeben werden, oder über die Attribute
-// Die gesammelten Daten für den Fund werden über den dataContainer übergeben, der in gatsby-node gebaut wird.
-
 let content = (props) => {
   if (typeof props.data.allWordpressPost.edges === 'undefined' || props.data.allWordpressPost.edges.length === 0){
     return {__html: "Fund-Manager: Please insert Content"};

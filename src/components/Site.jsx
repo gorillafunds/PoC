@@ -8,8 +8,6 @@ import Fund from "./Fund";
 import DynamicMenu from "./DynamicMenu";
 import "../utils/typography";
 
-// Grundaufbau der generierten Websites zur Darstellung der Fundinfos.
-
 const Site = (props) => {
     console.log("Site:",{props})
     return (

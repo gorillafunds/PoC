@@ -3,7 +3,7 @@ import ParticipationABI from "../../node_modules/@melonproject/protocol/out/Part
 import web3 from "../web3/web3";
 import InputTextField from "./InputTextField";
 import DropdownSelect from "./DropdownSelect";
-import Bignumber from "bignumber";
+// import Bignumber from "bignumber";
 
 const account = web3.currentProvider.selectedAddress;
 
@@ -32,9 +32,9 @@ function submitRedeemForm(props){
 }
 
 function handleChange(event){
-   // this.setState({
-    //    [event.currentarget.name]: event.currentTarget.value
-    //});
+ //    this.setState({
+ //       [event.currentarget.name]: event.currentTarget.value
+ //   });
 }
 
 export default (props) => {

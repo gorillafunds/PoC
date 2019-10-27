@@ -1,6 +1,3 @@
-//import web3 from 'web3'
-// Implement the Gatsby API “createPages”. This is called once the
-// data layer is bootstrapped to let plugins create pages from data.
 
 const path = require(`path`)
 let fundcount = 20
@@ -10,15 +7,11 @@ exports.createPages = ({ graphql, actions }) => {
   const fundTemplate = path.resolve(`src/templates/fundTemplate.js`);
   const fundManager = path.resolve(`src/templates/fundManagerTemplate.js`);
   const fundStrategy = path.resolve(`src/templates/fundStrategyTemplate.js`);
-  // Query for markdown nodes to use in creating pages.
-  // You can query for whatever data you want to create pages for e.g.
-  // products, portfolio items, landing pages, etc.
-  // Variables can be added as the second function parameter
-  //, where: {gav_gt: "0", isShutdown: false, sharePrice_not: "1"}
+  
   return graphql(`
     query loadFundsQuery ($limit: Int!) {
           melon {
-            funds(orderBy: name, first:$limit, skip: 1, where: {gav_gt: "0", isShutdown: false, sharePrice_not: "1"}) {
+            funds(orderBy: name, first:$limit, skip: 1, where: {gav_gt: "1000000000000000", isShutdown: false, sharePrice_not: "1"}) {
               name
               id
               manager {
@@ -50,8 +43,6 @@ exports.createPages = ({ graphql, actions }) => {
       }
 
       createPage({
-        // Path for this page — required
-        //path: `${__dirname}/src/pages/${id}`,
         
         path: `/${id}`,
         component: fundTemplate,
@@ -63,14 +54,6 @@ exports.createPages = ({ graphql, actions }) => {
             name: `${name}`,
             manager_id: `${manager.id}`
           
-          // Add optional context data to be inserted
-          // as props into the page component..
-          //
-          // The context data can also be used as
-          // arguments to the page GraphQL query.
-          //
-          // The page "path" is always available as a GraphQL
-          // argument.
         },
       })
       if ( i<fundcount ){
@@ -82,8 +65,6 @@ exports.createPages = ({ graphql, actions }) => {
     result.data.melon.funds.forEach(({manager, id}) => {
 
         createPage({
-            // Path for this page — required
-            //path: `${__dirname}/src/pages/${id}`,
             
             path: `/manager.${manager.id}`,
             component: fundManager,
@@ -97,8 +78,6 @@ exports.createPages = ({ graphql, actions }) => {
     result.data.melon.funds.forEach(({manager, id}) => {
 
         createPage({
-            // Path for this page — required
-            //path: `${__dirname}/src/pages/${id}`,
             
             path: `/strategy.${manager.id}.${id}`,
             component: fundStrategy,

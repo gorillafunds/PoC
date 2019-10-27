@@ -2,8 +2,6 @@ import React from 'react';
 
 const EtherInWei = 1E18;
 
-// Zum Optimieren der 
-
 export default (props) => (
     <div className="Factsheet content-element">
 

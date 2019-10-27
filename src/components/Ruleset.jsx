@@ -91,6 +91,4 @@ export default (props) => (
                </Link>
             </div>
          </div>
-
-         
 );

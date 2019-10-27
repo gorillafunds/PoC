@@ -3,8 +3,6 @@ import { StaticQuery, graphql } from 'gatsby';
 import { Link } from "gatsby";
 import melonImage from "../../media/melonklein.png";
 
-// Footer für alle Seiten - holt Links aus gatsby-config
-
 export default () => (
     <StaticQuery
         
