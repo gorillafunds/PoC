@@ -18,11 +18,11 @@ const colors_for_pie = [
 
 // Dataformat Victory-Pie
 
-const data = [
+/*const data = [
   { x: "Cats", y: 35 },
   { x: "Dogs", y: 40 },
   { x: "Birds", y: 55 }
-]
+]*/
 
 // Dataformat ResponsivePie */
 
@@ -55,8 +55,7 @@ const data = [
         colors={{ scheme: 'nivo' }}
         />
 )
-
- Zum Optimieren der 
+*/
 
 let data_array = (value_array) => {
   
@@ -64,8 +63,8 @@ let data_array = (value_array) => {
   
   value_array = value_array.filter((element, index) => {
     
-    let amount = Math.floor(Number(element.fundHoldingsHistory[0].amount/1E18));
-    if ( amount > 0 ){
+    let amount = Math.floor(Number(element.fundHoldingsHistory[0].amount/1E16));
+    if ( amount > 0){
       return true;
     } else {
       return false;
@@ -74,34 +73,31 @@ let data_array = (value_array) => {
 
   value_array.map((element, index) => {
       console.log("Element", element, "index", index);
-      let amount = Math.floor(Number(element.fundHoldingsHistory[0].amount/1E18));
-      new_value_array[index] = {"id": element.symbol, "label":element.symbol ,"value": amount, "color": colors_for_pie[index].color};
+      let amount = Math.floor(Number(element.fundHoldingsHistory[0].amount/1E16));
+      new_value_array[index] = {"x": element.symbol, "y": amount};
   });
+//      new_value_array[index] = {"id": element.symbol, "label":element.symbol ,"value": amount, "color": colors_for_pie[index].color};
 
   console.log("Endergebnis:",new_value_array);
  
   return new_value_array;
-  console.log(new_value_array);
-  
-
-  return data;
-}*/
+}
 
 export default (props) => (
     <div className="FundStructure content-element">
         <h5>Fund-Structure</h5>
         <VictoryPie 
-        data={data}
-        colorScale={["tomato", "orange", "gold", "cyan", "navy" ]}
+        data={data_array(props.fundstructure)}
+        colorScale={"warm"}
+        labelPosition={"centroid"}
         animate ={{
-            duration:"2000",
-            onLoad: { duration: 1000 }
+            duration:"2000"
         }}
         />
     </div>
 );
-/*
 
+/*
 <ResponsivePie
         //data={data_array(props.fundstructure)}
         data={data}

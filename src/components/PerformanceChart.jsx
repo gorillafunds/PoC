@@ -22,7 +22,7 @@ let data_array = (value_array) => {
 export default (props) => (
     <div className="PerformanceChart content-element">
         
-        <h5>Performance-Chart</h5>
+        <h5>Performance-Chart (%) Since Inception</h5>
         <VictoryChart 
             theme={VictoryTheme.material}
             containerComponent={

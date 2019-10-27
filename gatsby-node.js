@@ -1,6 +1,6 @@
 
 const path = require(`path`)
-let fundcount = 20
+let fundcount = 100
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
