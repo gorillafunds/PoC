@@ -1,15 +1,18 @@
 import React from "react"
 import { Link } from "gatsby"
 import Web3Address from "./Web3Address";
-import Form from "./Form";
+import InvestForm from "./InvestForm";
+import RedeemForm from "./RedeemForm";
+import Shares from "./Shares";
+import Request from "./Request";
 
 function investAction(){
-    console.log("Click Invest");
+    //console.log("Click Invest");
     openInvestmentForm();
 }
 
 function redeemAction(){
-    console.log("Click Redeem");
+    //console.log("Click Redeem");
     openRedeemForm();
 }
 
@@ -66,19 +69,24 @@ export default (props) => (
     
             <div className="Menu DynamicMenu">
                 <Web3Address/>
-                {console.log("Dynamic Menu",props)}
-
                 <div className="InvestRedeemButtons">
-                    <div className="base_button InvestButton" onClick={investAction}><h3>Invest</h3></div>
-                    <div className="base_button RedeemButton" onClick={redeemAction}><h3>Redeem</h3></div>
+                    <div className="BaseButton InvestButton" onClick={investAction}><h3>Invest</h3></div>
+                    <div className="BaseButton RedeemButton" onClick={redeemAction}><h3>Redeem</h3></div>
+                </div>
+                <div className="RequestBox">
+                <Request participationContractAddress={props.participationContractAddress}/>
                 </div>
                 <div className="ExploreTheFundsLink">
-                <Form fundAddress={props.fundAddress} participationContractAddress={props.participationContractAddress} allowedAssets={props.allowedAssets}/>
                     <Link to="/fundlistpage" style={{ color: `whitesmoke`,padding: `none`, backgroundImage: `none`, float: `right` }}>
-                        <h3 syle={{float: `left`}}>{props.title}</h3> 
+                        <h3 syle={{float: `left`}}>
+                          {props.title}
+                        </h3> 
                     </Link>
                 </div>
-            </div>
+                <InvestForm investments={props.investments} fundAddress={props.fundAddress} participationContractAddress={props.participationContractAddress} allowedAssets={props.allowedAssets}/>
+                <RedeemForm investments={props.investments} fundAddress={props.fundAddress} participationContractAddress={props.participationContractAddress} allowedAssets={props.allowedAssets}/>
+                </div>
+           
 )     
 
 /*

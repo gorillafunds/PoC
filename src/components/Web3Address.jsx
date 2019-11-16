@@ -1,14 +1,57 @@
 import React from 'react';
-import { StaticQuery, graphql } from 'gatsby';
-import web3 from "../web3/web3";
+import env from '../web3/melonweb3';
 
-const account = web3.currentProvider.selectedAddress;
+const account = env.client.givenProvider.selectedAddress;
 
-export default () => (
+export default (props) => (
     <div className="Web3Address">
-        <span><h6>Your Address: {account}</h6></span>
+        <h6>Your Address:</h6>
+        <h6> {account}</h6>
     </div>
 )
+
+/*export default class Web3Address extends React.Component{
+
+        constructor(){
+            this.getWeb3Address();
+        }
+
+        state = {
+            ready: false,
+            accountAddress: "",
+        }
+
+        getWeb3Address(){
+            this.componentDidMount();
+           }
+
+        async componentDidMount(){
+
+            this.setState({
+                ready: true,
+                accountAddress: account
+            })
+        }
+
+        render(){
+            
+            //console.log("Web3Address-State:", this.state);
+
+            if(!this.state.ready){
+                return null;
+            }
+
+            return(
+                <div className="Web3Address">
+                    <span><h6>Your Address: {this.state.accountAddress}</h6></span>
+                </div>
+            )
+        }
+}*/
+
+
+
+
 
 
     

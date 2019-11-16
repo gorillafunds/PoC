@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from "./Header";
+import StaticHeader from "./StaticHeader";
 import StaticMenu from "./StaticMenu";
 import Footer from "./Footer";
 
@@ -7,7 +7,7 @@ const StaticSite = (props) => {
     return (
     <div className="Container">
       <div className="ContainerLeft grid-element-side"/>
-      <Header/>
+      <StaticHeader/>
       <StaticMenu title={props.title}/>
           <div className="Content ContentFundList ManagerStrategyPage"> 
               {props.children}

@@ -1,6 +1,6 @@
 import React from "react";
 
-const DropdownSelect = ({name, placeholder, required, assets, handleChange}) => (
+const DropdownSelect = ({name,required, assets, handleChange}) => (
     
     <div>
         <select name={name} required={required} onChange={handleChange}>

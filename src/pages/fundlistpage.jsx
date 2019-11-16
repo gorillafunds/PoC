@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql } from 'gatsby';
-import { Link } from 'gatsby';
 import StaticSite from "../components/StaticSite";
 import FundListItem from "../components/FundListItem";
 import FundList from "../components/FundList";
@@ -17,7 +16,7 @@ export const GATSBY_QUERY = graphql`{
   }`
 
 export default ({ data })  => {
-  console.log(data)
+  //console.log(data)
   
   return(
       <StaticSite title="Funds on the Melon-Network">

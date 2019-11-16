@@ -1,8 +1,8 @@
 var plugins = [{
-      plugin: require('/home/colt/Software/gatsby/MVP/node_modules/gatsby-plugin-transition-link/gatsby-ssr'),
+      plugin: require('/home/colt/Software/GorillaFunds/PoC/node_modules/gatsby-plugin-transition-link/gatsby-ssr'),
       options: {"plugins":[]},
     },{
-      plugin: require('/home/colt/Software/gatsby/MVP/node_modules/gatsby-plugin-typography/gatsby-ssr'),
+      plugin: require('/home/colt/Software/GorillaFunds/PoC/node_modules/gatsby-plugin-typography/gatsby-ssr'),
       options: {"plugins":[],"pathToConfigModule":"src/utils/typography"},
     }]
 // During bootstrap, we write requires at top of this file which looks like:

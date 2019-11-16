@@ -42,6 +42,7 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+    `gatsby-plugin-typescript`,
     {
       resolve: 'gatsby-transformer-remark',
       options: {

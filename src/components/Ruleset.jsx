@@ -3,8 +3,8 @@ import { Link } from "gatsby";
 
 let checkPolicies = (props, policy) => {
    const factor = 1E18;
-   console.log("props",props);
-   console.log("policy",policy);
+   //console.log("props",props);
+   //console.log("policy",policy);
    if( props.policy.length === 0 ){
       return "--"; 
    } else {
@@ -85,7 +85,7 @@ export default (props) => (
             </div>
             <div className="Ruleset32">
                <Link to="/Ruleset" state={{fromSite: props.id}}> 
-                  <div className="base_button MoreButton RulesetButton" style={{right: '0', position:'absolute', bottom: '0'}}>
+                  <div className="BaseButton MoreButton RulesetButton" style={{right: '0', position:'absolute', bottom: '0'}}>
                      <h6>More</h6>
                   </div>
                </Link>

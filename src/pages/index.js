@@ -1,6 +1,7 @@
-import React from "react"
-import StaticSite from "../components/StaticSite.jsx"
+import React from "react";
+import StaticSite from "../components/StaticSite.jsx";
 import { StaticQuery, graphql } from 'gatsby';
+import melonweb3 from "../web3/melonweb3.js";
 
 export default (props) => (
 

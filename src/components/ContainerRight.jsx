@@ -22,7 +22,7 @@ export default (props) => (
         render = {data => (
                     <div className="ContainerRight grid-element-side">
                         {props.children}
-                        <TransitionLink 
+                        <TransitionLink
                             to={data.allSitePage.edges[props.next].node.path}
                             /*exit={{
                                 length: 1

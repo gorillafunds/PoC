@@ -22,7 +22,7 @@ export default (props) => (
                          <div dangerouslySetInnerHTML={{__html: data.wordpressPage.content}}/>
                       </p>
                       <Link to="/">
-                          <div className="base_button MoreButton" style={{float:'left', bottom:'10px', position: 'absolute'}}>
+                          <div className="BaseButton MoreButton" style={{float:'left', bottom:'10px', position: 'absolute'}}>
                             <h6>
                               Back
                             </h6>

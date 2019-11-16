@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import Site from "../components/Site";
    
 const Page = (props) => {
-    console.log("fundTemplate.js:",props)
+    //console.log("fundTemplate.js:",props)
     return (
     <div>
       <Site 
@@ -33,7 +33,8 @@ export const query = graphql`
       totalSupply
       gav
       calculationsHistory {
-        gav
+        sharePrice
+        timestamp
       }
       accounting {
         ownedAssets {
@@ -72,6 +73,13 @@ export const query = graphql`
           id
           symbol
         }
+      }
+      investments{
+        owner{
+          id
+          }
+        shares
+        sharePrice
       }
     }
   }

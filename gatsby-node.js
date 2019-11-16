@@ -58,7 +58,7 @@ exports.createPages = ({ graphql, actions }) => {
       })
       if ( i<fundcount ){
       i = i + 1;
-      console.log(i);
+      //console.log(i);
       }
     })
 
@@ -66,7 +66,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         createPage({
             
-            path: `/manager.${manager.id}`,
+            path: `/manager-${manager.id}`,
             component: fundManager,
             context: {
                id: `${id}`,
@@ -79,7 +79,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         createPage({
             
-            path: `/strategy.${manager.id}.${id}`,
+            path: `/strategy-${manager.id}-${id}`,
             component: fundStrategy,
             context: {
                 id: `${id}`,

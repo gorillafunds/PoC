@@ -8,4 +8,4 @@ const typography = new Typography(irvingTheme)
 export const { scale, rhythm, options } = typography
 export default typography
 
-//console.log("Typography:",typography.toString());
+////console.log("Typography:",typography.toString());

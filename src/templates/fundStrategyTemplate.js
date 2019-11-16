@@ -5,7 +5,7 @@ import { Link } from "gatsby";
 import web3 from "../web3/web3";
 
 const account = web3.currentProvider.selectedAddress;
-console.log(account);
+//console.log(account);
 
 let content = (props) => {
   if (typeof props.data.allWordpressPost.edges === 'undefined' || props.data.allWordpressPost.edges.length === 0){
@@ -29,7 +29,7 @@ let button = (props) => {
             }
 
 const Page = (props) => {
-    console.log("fundStrategyTemplate.js:",props)
+    //console.log("fundStrategyTemplate.js:",props)
     return (
         <div className="WordpressPage">
         <StaticSite title={props.pageContext.id}
@@ -40,7 +40,7 @@ const Page = (props) => {
           <div dangerouslySetInnerHTML={content(props)}/>
           <div dangerouslySetInnerHTML={button(props)}/>
           <Link to={props.pageContext.id}>
-                 <div className="base_button MoreButton" style={{float:'left', bottom:'10px', position: 'absolute'}}>
+                 <div className="BaseButton MoreButton" style={{float:'left', bottom:'10px', position: 'absolute'}}>
                     <h6>
                         Back
                     </h6>

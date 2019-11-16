@@ -1,12 +1,19 @@
 import Web3 from 'web3-eth'
+import { Environment } from '@melonproject/melonjs';
 
 var web3;
+var env;
+//console.log("Hallo", env);
 
 if(typeof window !=='undefined'){
 
   if(window.web3 !== 'undefined'){
         
         web3 = new Web3(window.web3.currentProvider);
+        env = new Environment(web3);
+        //console.log("Hier",env);
+        ////console.log(getEnvironment());
+        ////console.log("Environment:",env);
     
         if (typeof web3 !== 'undefined' && web3.currentProvider.enable() !== undefined && web3.currentProvider.selectedAddress !== undefined){
           //console.log("MetaMask found");
@@ -42,6 +49,7 @@ if(typeof window !=='undefined'){
         'https://mainnet.infura.io/v3/ec86b2b5c5644c29b07cf35d77d1bd78'
        );
       web3 = new Web3(provider);
+      env = new Environment(web3);
       //console.log(web3);
     } 
   } else {
@@ -49,7 +57,8 @@ if(typeof window !=='undefined'){
           'https://mainnet.infura.io/v3/ec86b2b5c5644c29b07cf35d77d1bd78'
         );
         web3 = new Web3(provider);
+        env = new Environment(web3);
   }
 
-  export default web3;
+  export default env;
 

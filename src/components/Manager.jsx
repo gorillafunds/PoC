@@ -3,23 +3,23 @@ import { Link } from "gatsby";
 import { StaticQuery, graphql } from 'gatsby';
 
 let concenated_string = (string_list_array) => {
-    return string_list_array.join('.');
+    return string_list_array.join('-');
 }
 
 let content = (data, props) => {
     
-    console.log("Hier:",data);
-    console.log("props",props);
+    //console.log("Hier:",data);
+    //console.log("props",props);
 
     if (typeof data.allWordpressPost.edges === 'undefined' || data.allWordpressPost.edges.length === 0){
-        console.log("1");
+        //console.log("1");
         return {__html: "Fund-Manager: Please insert Content"}
     }
     else {
             let ManagerContent = data.allWordpressPost.edges.filter((element) => {
-                    console.log(element);
+                    //console.log(element);
                    let author_name = element.node.author.name;
-                   console.log(author_name);
+                   //console.log(author_name);
                     if (author_name === props.manageraddress){
                         return true;
                     } else {
@@ -27,17 +27,17 @@ let content = (data, props) => {
                     }
                 }
             )
-            console.log("ManagerContent", ManagerContent)
+            //console.log("ManagerContent", ManagerContent)
 
             if ( ManagerContent.length !== 0 ){
                 if ( typeof ManagerContent[0].node.content !== 'undefined'){
-                        console.log(2);
+                        //console.log(2);
                         return { 
                             __html: ManagerContent[0].node.content
                             }
                         }
                     } else {
-                        console.log(3);
+                        //console.log(3);
                         return {
                             __html: "Fund-Manager: Please insert Content, rapidly!"
                         }
@@ -72,7 +72,7 @@ export default (props) => (
         </div>
         <div className="ManagerLink">
             <Link to={concenated_string(["manager", props.manageraddress])}>
-                 <div className="base_button MoreButton" style={{float:'right'}}>
+                 <div className="BaseButton MoreButton" style={{float:'right'}}>
                     <h6>
                         More
                     </h6>
