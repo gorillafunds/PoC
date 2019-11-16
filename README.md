@@ -4,14 +4,14 @@
 
 1.  **To build the Site**
 
-    Run yarn build
-    Run gatsby serve
-    Go to `http://localhost:9000`
+    Run yarn build  
+    Run gatsby serve  
+    Go to `http://localhost:9000`  
 
 2.  ** To experiment with**
 
-    Run yarn && gatsby develop 
-    Result at `localhost://8000`
+    Run yarn && gatsby develop   
+    Result at `localhost://8000`  
 
 ## 🧐 What's inside? (from gatsby)
 
