@@ -22,7 +22,7 @@ const Site = (props) => {
             investments={props.fund.investments}
             title="Explore the funds"/>
               <Content content={props.content}>
-                <Fund fund={props.fund} id={props.id}/> 
+                <Fund fund={props.fund} id={props.id} /> 
               </Content>
         <Footer/>
         <div className="Spacer grid-element-center"/>

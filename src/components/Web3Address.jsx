@@ -1,14 +1,51 @@
 import React from 'react';
-import env from '../web3/melonweb3';
+import {getAccount} from '../web3/melonweb3';
 
-const account = env.client.givenProvider.selectedAddress;
+export default class Web3Address extends React.Component{
 
-export default (props) => (
-    <div className="Web3Address">
-        <h6>Your Address:</h6>
-        <h6> {account}</h6>
-    </div>
-)
+    constructor(props){
+        super(props);
+       
+        this.state = {
+            ready: false,
+            accountAddress: getAccount()
+        }
+    }
+
+    async componentDidMount(){
+        const account = await getAccount();
+        this.setState({
+            ready: true,
+            accountAddress: account
+        });
+        try{
+            window.ethereum.on('accountsChanged', async()=>{
+                this.setState({accountAddress: getAccount()})
+            })}catch{
+              console.log("No Metamask");
+          }
+    }
+
+
+    state = {
+        ready: false,
+        accountAddress: getAccount(),
+    }
+
+    render(){
+
+        if(!this.state.ready){
+            return null;
+        }
+
+        return(
+        <div className="Web3Address">
+            <h6>Your Address:</h6>
+            <h6>{this.state.accountAddress}</h6>
+        </div>
+        )
+    }
+}
 
 /*export default class Web3Address extends React.Component{
 

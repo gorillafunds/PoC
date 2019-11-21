@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import { Link } from "gatsby";
 import gorilla from "../../media/gorilla.svg";
 
-export default (props) => (
+export default () => (
     
     <StaticQuery
         

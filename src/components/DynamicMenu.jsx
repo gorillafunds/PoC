@@ -3,7 +3,6 @@ import { Link } from "gatsby"
 import Web3Address from "./Web3Address";
 import InvestForm from "./InvestForm";
 import RedeemForm from "./RedeemForm";
-import Shares from "./Shares";
 import Request from "./Request";
 
 function investAction(){
@@ -89,8 +88,4 @@ export default (props) => (
            
 )     
 
-/*
 
-<button type="submit" class="btn" onClick={() => investAmount(this.getElementById("ether").value)}>Invest</button>
-<option value="bat-address" label="BAT">BAT</option>
-*/

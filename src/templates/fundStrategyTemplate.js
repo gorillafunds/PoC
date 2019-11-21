@@ -2,56 +2,79 @@ import React from "react";
 import { graphql } from "gatsby";
 import StaticSite from "../components/StaticSite";
 import { Link } from "gatsby";
-import web3 from "../web3/web3";
+import {getAccount} from "../web3/melonweb3";
 
-const account = web3.currentProvider.selectedAddress;
-//console.log(account);
 
-let content = (props) => {
-  if (typeof props.data.allWordpressPost.edges === 'undefined' || props.data.allWordpressPost.edges.length === 0){
-    return {__html: "Fund-Manager: Please insert Content"};
+export default class Page extends React.Component{
+
+  constructor(props){
+    super(props);
+   
+    this.state = {
+        ready: false,
+    }
   }
-  else {
-    return {__html: props.data.allWordpressPost.edges[0].node.content};
+
+  async componentDidMount(){
+    const account = await getAccount();
+    this.setState({
+        ready: true,
+        accountAddress: account
+    });
+    try{
+      window.ethereum.on('accountsChanged', async()=>{
+          this.setState({accountAddress: getAccount()})
+      })}catch{
+        console.log("No Metamask");
+    }
   }
-}
 
-let button = (props) => {
-  if ( account === props.pageContext.manager_id ){
-    return {__html: "<a href='http://managinggorillafundscom.local/wp-login.php'>\
-                      <h4>\
-                        Edit Page\
-                      </h4>\
-                     </a>"}
-            } else {
-                return {__html: ""};
-              }
-            }
+  content = () => {
+    if (typeof this.props.data.allWordpressPost.edges === 'undefined' || this.props.data.allWordpressPost.edges.length === 0){
+      return {__html: "Fund-Manager: Please insert Content"};
+    }
+    else {
+      return {__html: this.props.data.allWordpressPost.edges[0].node.content};
+    }
+  }
 
-const Page = (props) => {
-    //console.log("fundStrategyTemplate.js:",props)
-    return (
-        <div className="WordpressPage">
-        <StaticSite title={props.pageContext.id}
-        id={props.pageContext.id} 
-        manager_id={props.pageContext.manager_id} 
-        >
-          <h6>Manager-Address:{props.pageContext.manager_id}</h6>
-          <div dangerouslySetInnerHTML={content(props)}/>
-          <div dangerouslySetInnerHTML={button(props)}/>
-          <Link to={props.pageContext.id}>
-                 <div className="BaseButton MoreButton" style={{float:'left', bottom:'10px', position: 'absolute'}}>
-                    <h6>
-                        Back
-                    </h6>
-                </div>
-            </Link>
-        </StaticSite>
-      </div>
+  button = () => {
+    if ( this.state.accountAddress === this.props.pageContext.manager_id ){
+      return {__html: "<a href='http://managinggorillafundscom.local/wp-login.php'>\
+                            <h4>\
+                              Edit Page\
+                            </h4>\
+                          </a>"}
+    } else {
+      return {__html: ""};
+    }
+  }
+
+  render(){
+
+  //console.log("fundManagerTemplate.js:",props)
+  return (
+      <div className="WordpressSite">
+      <StaticSite title={this.props.pageContext.manager_id}
+      id={this.props.pageContext.id} 
+      manager_id={this.props.pageContext.manager_id}
+      >
+        <h6>Fund-Manager</h6>
+        <h6>Manager-Address:{this.props.pageContext.manager_id}</h6>
+        <div dangerouslySetInnerHTML={this.content(this.props)}/>
+        <div dangerouslySetInnerHTML={this.button(this.props)}/>
+          <Link to={this.props.pageContext.id}>
+               <div className="BaseButton MoreButton" style={{float:'left', bottom:'10px', position: 'absolute'}}>
+                  <h6>
+                      Back
+                  </h6>
+              </div>
+          </Link>
+      </StaticSite>
+    </div>
     )
   }
-
-export default Page
+}
 
 export const query = graphql`
  query MyWordPressStrategyQuery ($manager_id: String!){

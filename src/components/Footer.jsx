@@ -23,7 +23,7 @@ export default () => (
                 <div className="Footer grid-element-center">
                     <ul style={{margin:`0px`, float: `left`}}>
                         <li style={{margin:`0px`, display: `inline-block`, float: `left`}}>
-                            <img src={melonImage} style={{imageRendering:`auto` }}/>
+                            <img src={melonImage} alt="melon_logo" style={{imageRendering:`auto` }}/>
                         </li>
                         <li style={{margin:`10px`, display: `inline-block`, float: `left`}}> 
                             Powered by Melonprotocol 

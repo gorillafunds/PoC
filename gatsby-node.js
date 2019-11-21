@@ -14,6 +14,7 @@ exports.createPages = ({ graphql, actions }) => {
             funds(orderBy: name, first:$limit, skip: 1, where: {gav_gt: "1000000000000000", isShutdown: false, sharePrice_not: "1"}) {
               name
               id
+              createdAt
               manager {
                   id
               }  
@@ -29,7 +30,7 @@ exports.createPages = ({ graphql, actions }) => {
     let prev = 0;
     let next = 0;
 
-    result.data.melon.funds.forEach(({id, name, manager}) => {
+    result.data.melon.funds.forEach(({id, name, manager,createdAt}) => {
       
       if( i != 0 ){
         prev = i-1;
@@ -52,8 +53,8 @@ exports.createPages = ({ graphql, actions }) => {
             previous: `${prev}`,
             next: `${next}`,
             name: `${name}`,
-            manager_id: `${manager.id}`
-          
+            manager_id: `${manager.id}`,
+            createdAt: `${createdAt}`
         },
       })
       if ( i<fundcount ){

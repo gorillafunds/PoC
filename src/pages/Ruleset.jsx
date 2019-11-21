@@ -3,7 +3,7 @@ import StaticSite from "../components/StaticSite.jsx"
 import { StaticQuery, graphql } from 'gatsby';
 import { Link } from 'gatsby';
 
-export default (props) => (
+export default () => (
 
   <StaticQuery
          query={graphql`

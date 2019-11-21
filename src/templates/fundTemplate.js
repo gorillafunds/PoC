@@ -1,31 +1,39 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Site from "../components/Site";
-   
-const Page = (props) => {
+
+
+export default class Page extends React.Component{
+
+  constructor(props) {
+      super(props); 
+  }
+
+  render(){
     //console.log("fundTemplate.js:",props)
     return (
     <div>
       <Site 
-      name={props.pageContext.name} 
-      index={props.pageContext.index} 
-      next={props.pageContext.next} 
-      id={props.pageContext.id}
-      previous={props.pageContext.previous}
-      fund = {props.data.melon.fund}
+      name={this.props.pageContext.name} 
+      index={this.props.pageContext.index} 
+      next={this.props.pageContext.next} 
+      id={this.props.pageContext.id}
+      previous={this.props.pageContext.previous}
+      fund = {this.props.data.melon.fund}
+      createdAt = {this.props.pageContext.createdAt}
       >
       </Site>
     </div>
     )
   }
-
-export default Page
+}
 
 export const query = graphql`
-  query MyFundHoldingsQuery ($id: ID!) {
+  query MyFundHoldingsQuery ($id: ID!, $createdAt:MELON_BigInt!) {
     melon{
       fund(id: $id) {
       name
+      createdAt
       holdingsHistory {
         amount
       }
@@ -42,7 +50,8 @@ export const query = graphql`
           name
           lastPrice
           symbol
-          fundHoldingsHistory{
+          decimals
+          fundHoldingsHistory(where: {timestamp_gte: $createdAt}){
             amount
           }
         }

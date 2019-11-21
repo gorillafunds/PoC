@@ -1,5 +1,4 @@
 import React from 'react';
-//import { Link } from "gatsby";
 import TransitionLink from "gatsby-plugin-transition-link";
 import { StaticQuery, graphql } from 'gatsby';
 import forward from "../../media/ios-arrow-forward50.svg";

@@ -14,12 +14,13 @@ export default (props) => (
                 totalsupply={props.fund.totalSupply}
                 performancefee={props.fund.feeManager.performanceFee.performanceFeeRate} 
                 managementfee={props.fund.feeManager.managementFee.managementFeeRate}
+                calculationshistory={props.fund.calculationsHistory}
                 />
            <PerformanceChart 
                 calculationshistory={props.fund.calculationsHistory}
                 />
             <FundStructure 
-                fundstructure={props.fund.accounting.ownedAssets}
+                accounting={props.fund.accounting}
                 />
             <Strategy  
                 manageraddress={props.fund.manager.id}

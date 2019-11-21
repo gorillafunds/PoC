@@ -7,7 +7,7 @@ export default (props) => (
     <StaticQuery
         query={graphql`
             query StaticMenuQuery {
-                allSitePage(filter: {path: {regex: "/0x.*/"}}, limit: 20) {
+                allSitePage(filter: {path: {regex: "/0x.*/"}}) {
                     edges {
                         node {
                             path

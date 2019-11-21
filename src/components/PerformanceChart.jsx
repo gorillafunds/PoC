@@ -13,25 +13,23 @@ export default class PerformanceChart extends React.Component{
         this.state = {
             data: this.dataArray,
             domain: {x:[this.props.calculationshistory[0].index, this.props.calculationshistory[this.props.calculationshistory.length-1].index]},
+            ticks: [],
+            format: []
             }
-        //console.log(this.state);
-        this.getXTicks(this.state.domain);
     }
 
-    //this.getXTicks(domain);
-
-    state = {
-        data: this.props.calculationshistory,
-        domain: this.zoomDomain,
-        ticks: [],
-        format: []
+    async componentDidMount(){
+        await this.getXTicks(this.state.domain);
+        this.setState({
+            ready: true,
+            format: await this.getTicksFormat()
+            });
     }
-
-    ////console.log("Start", this.state.domain);
     
     handleZoom(domain){
-        this.setState({ zoomDomain: domain });
-        //console.log("Domain",domain);
+        this.setState({ 
+            zoomDomain: domain 
+        });
         this.ticks = this.getXTicks(domain);
     }
 
@@ -49,7 +47,7 @@ export default class PerformanceChart extends React.Component{
         return (this.getRange(domain)/8).toFixed(0);
     }
 
-    getXTicks(domain){
+    async getXTicks(domain){
         let ticks = [];
         let div = this.getIncrement(domain);
         let xStart = this.getXStartValue(domain);
@@ -59,14 +57,18 @@ export default class PerformanceChart extends React.Component{
             }
         } 
         //console.log(ticks);
-        this.state.ticks = ticks;
-        this.getTicksFormat();
+        //this.state.ticks = ticks;
+        this.setState({
+            ticks: ticks
+            });
+        await this.getTicksFormat();
     }
 
-    getTicksFormat(){
-        const ticksFormat = this.state.ticks.map(x => this.state.data[x].x);
+    async getTicksFormat(){
         //console.log(ticksFormat);
-        this.state.format = ticksFormat;
+        this.setState({
+            format: this.state.ticks.map(x => this.state.data[x].x)
+            });
     }
 
     data_array(value_array){
@@ -89,6 +91,10 @@ export default class PerformanceChart extends React.Component{
 
     render(){
         
+        if(!this.state.ready){
+            return null;
+        }
+
         return(
             <div className="PerformanceChart content-element">
                 <h5>Performance since Inception in %</h5>

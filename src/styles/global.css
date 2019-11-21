@@ -698,6 +698,10 @@ a:hover {
 /* Popup-Form*/
 /* The popup form - hidden by default */
 
+.dragBox{
+    /*z-index: +51;*/
+}
+
 .form-popup {
     /*color: black;*/
     color: whitesmoke;
@@ -708,7 +712,7 @@ a:hover {
     border: 3px solid rgba(247, 244, 244, 0.315);
     box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.5);
     border-radius: 5px;
-    z-index: 9;
+    z-index: 100;
   }
   
   /* Add styles to the form container */

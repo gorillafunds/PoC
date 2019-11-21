@@ -16,7 +16,6 @@ let checkPolicies = (props, policy) => {
             } else {
                return "Yes";
             };
-            break;
             
 
          case "Max concentration":
@@ -26,7 +25,6 @@ let checkPolicies = (props, policy) => {
                } else {
                   return (ident2.maxConcentration/factor*100).toFixed(0)+"%";
                };
-               break;
             
          case "Max positions":
                const ident3 = props.policy.find(element => element.identifier === policy);
@@ -35,7 +33,6 @@ let checkPolicies = (props, policy) => {
                } else {
                   return ident3.maxPositions;
                };
-               break;
 
          case "Position":
                const ident4 = props.policy.find(element => element.identifier === policy);
@@ -44,7 +41,6 @@ let checkPolicies = (props, policy) => {
                } else {
                   return ident.Position;
                };
-               break;
 
          case "Price tolerance":
                const ident5 = props.policy.find(element => element.identifier === policy);
@@ -53,7 +49,6 @@ let checkPolicies = (props, policy) => {
                } else {
                   return (ident5.priceTolerance/factor*100).toFixed(0)+"%";
                };
-               break;
                
          default:
             return "--";

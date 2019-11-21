@@ -1,9 +1,9 @@
 import React from 'react';
-import env from "../web3/melonweb3";
+import env, {getAccount} from "../web3/melonweb3";
 import InputTextField from "./InputTextField";
 import DropdownSelect from "./DropdownSelect";
+import DraggableForm from "./DraggableForm";
 import { Participation } from "@melonproject/melonjs/contracts/fund/participation/Participation";
-import BigNumber from "bignumber.js";
 import { toBigNumber } from '@melonproject/melonjs/utils/toBigNumber';
 import { CanonicalPriceFeed, StandardToken } from '@melonproject/melonjs';
 var ApprovalTransaction;
@@ -14,7 +14,7 @@ export default class Form extends React.Component{
 
     constructor(props) {
         super(props); 
-        this.account = env.client.givenProvider.selectedAddress;
+       
         this.FundParticipation = new Participation(env, this.props.participationContractAddress);
         this.PriceFeed = new CanonicalPriceFeed(env, "0x4559ddd9e0a567bd8ab071ac106c1bc2d0c0b6ef");     
         this.Token = null;
@@ -23,6 +23,9 @@ export default class Form extends React.Component{
         this.investmentAmount = 0;
 
         this.state = {
+            ready: false,
+            accountAddress: getAccount(),
+            investmentAsset: "",
             fields: [
                 {
                     name: "investmentAsset",
@@ -41,7 +44,20 @@ export default class Form extends React.Component{
         this.handleChange = this.handleChange.bind(this);
       }
 
-    
+      async componentDidMount(){
+        const account = await getAccount();
+        this.setState({
+            ready: true,
+            accountAddress: account,
+            investmentAsset: ""
+        });
+        try{
+            window.ethereum.on('accountsChanged', async()=>{
+                this.setState({accountAddress: getAccount()})
+            })}catch{
+              console.log("No Metamask");
+          }
+    }
     
     closeInvestForm(){
         document.getElementById("InvestForm").style.display = "none";
@@ -52,77 +68,63 @@ export default class Form extends React.Component{
     }
 
     submitInvestForm(){
-        //console.log(this.PriceFeed);
-        //console.log("Anfangprops:", this.props);
-        //console.log("Participation:", this.FundParticipation);
-        //console.log("State",this.state);
+        console.log(this.PriceFeed);
+        console.log("Anfangprops:", this.props);
+        console.log("Participation:", this.FundParticipation);
+        console.log("State",this.state);
         this.investmentAmount = (toBigNumber(this.state.amount * 1e18)).toFixed(0);
-        //console.log("InvestmentAmount", this.investmentAmount);
-
+        console.log("InvestmentAmount", this.investmentAmount);
         this.makeTransaction();
-       
-        
-    
     }
-
-    /*checkAmount(){
-
-    }
-
-    checkAddress(){
-        
-    }*/
 
     async makeTransaction(){
-        //console.log("Make Transaction");
+        console.log("Make Transaction");
         await this.prepareTransaction().catch((err) => {console.log(err)});
         const requestedShares = this.requestedShares.toString();
-        const investmentAmountBigNumber = await this.Token.getAllowance(this.props.participationContractAddress, this.state.investmentAsset);
-        //console.log("requestedShares:",typeof requestedShares);
-        //console.log("investmentAmount:", typeof investmentAmountBigNumber);
-        //console.log(investmentAmountBigNumber);
+        const investmentAmountBigNumber = await this.Token.getAllowance(this.state.accountAddress,this.props.participationContractAddress);
+        console.log("requestedShares:",typeof requestedShares);
+        console.log("investmentAmount:", typeof investmentAmountBigNumber);
+        console.log(investmentAmountBigNumber);
         const investmentAmount = investmentAmountBigNumber.toFixed();
-        RequestInvestmentTransaction = this.FundParticipation.createTransaction('requestInvestment', this.account, [requestedShares, investmentAmount, this.state.investmentAsset]);
-        //console.log(RequestInvestmentTransaction);
-        //console.log("Account", this.account);
+        //RequestInvestmentTransaction = this.FundParticipation.createTransaction('requestInvestment', this.state.accountAddress, [requestedShares, investmentAmount, this.state.investmentAsset]);
+        console.log(RequestInvestmentTransaction);
+        console.log("Account", this.account);
         //RequestInvestmentTransaction.send();
     }
 
     async prepareTransaction(){
         await this.calculateShares().catch((err) => {console.log(err)});;
         this.Token = new StandardToken(env, this.state.investmentAsset);
-        //console.log(this.Token);
+        console.log(this.Token);
         const investmentAmount = this.investmentAmount.toString();
-        //console.log(investmentAmount);        
-        //ApprovalTransaction = this.Token.getAllowance(this.account, this.investmentAsset);
-        //console.log("Participation-Address",this.props.participationContractAddress);
-        //console.log("Token-Addresse", this.state.investmentAsset);
-        //console.log(investmentAmount);
-        const investmentAmountBigNumber = await this.Token.getAllowance(this.props.participationContractAddress, this.state.investmentAsset);
+        console.log(investmentAmount);        
+        console.log("Contract-address",this.props.participationContractAddress);
+        console.log("investmentAsset-Check", this.state.investmentAsset);
+        const investmentAmountBigNumber = await this.Token.getAllowance(this.state.accountAddress,this.props.participationContractAddress);
         if(investmentAmountBigNumber.gte(investmentAmount)){
-            //console.log("So viel darf ausgegeben werden an Token", investmentAmountBigNumber);
+            console.log("Allowance ist ausriechend - nämlich:", investmentAmountBigNumber);
             return;
         } else {
-        ApprovalTransaction = this.Token.createTransaction('approve',this.account,[this.props.participationContractAddress, investmentAmount]);
-        //console.log(ApprovalTransaction);
-        //await ApprovalTransaction.send();
+            ApprovalTransaction = this.Token.approve(this.state.accountAddress, this.props.participationContractAddress, investmentAmountBigNumber);
+            console.log(ApprovalTransaction);
+            //await ApprovalTransaction.send();
         }
     }
 
     async calculateShares(){
-        //console.log("Shares berechnen");
+        console.log("Shares berechnen");
         await this.getAssetPrice().catch((err) => {console.log(err)});;
         const assetPrice = this.assetPriceInEther;
-        //console.log("Resultat1:", assetPrice.toExponential());
+        console.log("Resultat1:", assetPrice.toExponential());
         const requestedShares = this.investmentAmount*assetPrice.toFixed(0)/'1e18';///this.props.investments.sharePrice;
-        //console.log("Requested Shares", requestedShares/1e18);
+        console.log("Requested Shares", requestedShares/1e18);
         this.requestedShares = requestedShares.toFixed(0);
     }
 
     async getAssetPrice(){
-        //console.log("investmentAsset-Address:",this.state.investmentAsset);
+        console.log("investmentAsset-Address:",this.state.investmentAsset);
         const assetPrice = await this.PriceFeed.getPrice(this.state.investmentAsset).catch((err) => {console.log(err)});
-        //console.log("getAssetPrice:",assetPrice);
+        console.log("getAssetPrice:",assetPrice);
         this.assetPriceInEther = assetPrice.price;
     }
 
@@ -157,8 +159,9 @@ export default class Form extends React.Component{
         return (
 
             <div>
-            <div class="form-popup" id="InvestForm">
-                <form  class="form-container" method="POST">
+            
+            <div className="form-popup" id="InvestForm">
+                <form  className="form-container" method="POST">
                     <h1 display={{color: 'black'}}>
                         Invest in the Fund
                     </h1>
@@ -191,6 +194,7 @@ export default class Form extends React.Component{
                         <button type="button" className="btn cancel" onClick={() => this.closeInvestForm()}>Close</button>
                     </form>
                 </div>
+               
                 </div>
                 );
             }

@@ -1,52 +1,78 @@
 import React from 'react';
-import * as V from 'victory';
+import { toBigNumber } from '@melonproject/melonjs/utils/toBigNumber';
 import { VictoryPie } from 'victory-pie';
-import { ResponsivePie } from '@nivo/pie';
+import { VictoryTooltip } from 'victory-tooltip';
+import {BigNumber } from '@melonproject/melonjs';
 
 
-const colors_for_pie = [
-  { "color" : "hsl(1, 70%, 50%)"},
-  {"color" : "hsl(253, 70%, 50%)"},
-  {"color" : "hsl(49, 70%, 50%)"},
-  {"color" : "hsl(69, 70%, 50%)"},
-  {"color" : "hsl(129, 70%, 50%)"},
-  {"color" : "hsl(29, 70%, 50%)"},
-  {"color" : "hsl(149, 70%, 50%)"},
-  {"color" : "hsl(179, 70%, 50%)"},
-  {"color" : "hsl(39, 70%, 50%)"}
-]
+export default class FundStructure extends React.Component{
 
-let data_array = (value_array) => {
-  
-  const new_value_array = [];
-  
-  value_array = value_array.filter((element, index) => {
-    
-    let amount = Math.floor(Number(element.fundHoldingsHistory[0].amount/1E16));
-    if ( amount > 0){
-      return true;
-    } else {
-      return false;
+  constructor(props) {
+      super(props); 
+      this.state = {
+          ready: false,
+          valueArray: []
+      }
+      this.valueArray = [];
     }
-  })
 
-  value_array.map((element, index) => {
-      //console.log("Element", element, "index", index);
-      let amount = Math.floor(Number(element.fundHoldingsHistory[0].amount/1E16));
-      new_value_array[index] = {"x": element.symbol, "y": amount};
-  });
-//      new_value_array[index] = {"id": element.symbol, "label":element.symbol ,"value": amount, "color": colors_for_pie[index].color};
+  async componentDidMount(){
+      console.log(this.props);
+      await this.data_array(this.props.accounting);
+      this.setState({
+        ready: true,
+        valueArray: this.valueArray
+        });
+  }
 
-  //console.log("Endergebnis:",new_value_array);
- 
-  return new_value_array;
-}
+  async data_array(value_array){
+    
+    value_array = value_array.ownedAssets.filter((element) => {
+        console.log(element.decimals);
+        console.log((element.fundHoldingsHistory[element.fundHoldingsHistory.length -1].amount));
+        let amountBN = toBigNumber(element.fundHoldingsHistory[element.fundHoldingsHistory.length -1].amount);
+        let decimalsBN = toBigNumber(10^(element.decimals-2));
+        let ethInWeiBN = toBigNumber('1e18');
+        let resultBN = amountBN.div(decimalsBN).multipliedBy(element.lastPrice).div(ethInWeiBN);
+        //let decr = ethInWeiBN.minus(decimalsBN);
+        console.log("BN", resultBN.toString(10));
+        let amount = amountBN.comparedTo(decimalsBN);
+        
+        if ( amount > 0){
+          console.log(element.name, "größer");
+          return true;
+        } else {
+          console.log(element.name, "kleiner");
+          return false;
+        }
+    });
+  
+     value_array.map((element, index) => {
+       
+        let dec = 18-element.decimals;
+        console.log("Element", element, "index", index);
 
-export default (props) => (
+        let amount = toBigNumber(element.fundHoldingsHistory[element.fundHoldingsHistory.length -1].amount).dividedBy(toBigNumber(toBigNumber(String(Math.pow(10,dec))))).multipliedBy(toBigNumber(element.lastPrice).dividedBy(toBigNumber("1E18")));
+        console.log("Amount:",amount.toString());
+        this.valueArray[index] = {"symbol": element.symbol, "value": amount.toString(), "label": element.symbol};
+    });
+  }
+  
+  render(){
+    
+    if(!this.state.ready){
+      return null;
+    }
+   
+    return (
     <div className="FundStructure content-element">
         <h5>Fund-Structure</h5>
         <VictoryPie 
-        data={data_array(props.fundstructure)}
+        //labelComponent={<VictoryTooltip/>}
+        data={this.state.valueArray}
+        x="symbol"
+        y="value"
+        labelRadius={170}
         colorScale={"warm"}
         labelPosition={"centroid"}
         animate ={{
@@ -57,23 +83,6 @@ export default (props) => (
           }}
         />
     </div>
-);
-
-/*
-<ResponsivePie
-        //data={data_array(props.fundstructure)}
-        data={data}
-        margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-        colors={{ scheme: 'category10' }}
-        />
-
-
-<VictoryPie 
-        data={data}
-        colorScale={["tomato", "orange", "gold", "cyan", "navy" ]}
-        animate ={{
-            duration:"2000",
-            onLoad: { duration: 1000 }
-        }}
-        />
-*/
+    )
+  }
+}

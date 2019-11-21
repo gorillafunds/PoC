@@ -1,21 +1,21 @@
 import React from 'react';
-import env from "../web3/melonweb3";
+import env,{getAccount} from "../web3/melonweb3";
 import InputTextField from "./InputTextField";
 import DropdownSelect from "./DropdownSelect";
+import DraggableForm from "./DraggableForm";
 import { Participation } from "../../node_modules/@melonproject/melonjs/contracts/fund/participation/Participation";
-import BigNumber from "bignumber.js";
 import { toBigNumber } from '@melonproject/melonjs/utils/toBigNumber';
 var Transaction;
  
 
 export default class Form extends React.Component{
 
-    constructor(props) {
-        super(props); 
-        this.account = env.client.givenProvider.selectedAddress;
-        this.FundParticipation = new Participation(env, this.props.participationContractAddress);
-
+    constructor(props){
+        super(props);
+       
         this.state = {
+            ready: false,
+            accountAddress: getAccount(),
             fields: [
                 {
                     placeholder: "Shares",
@@ -25,11 +25,24 @@ export default class Form extends React.Component{
                 }
             ]
         }
-
+        this.FundParticipation = new Participation(env, this.props.participationContractAddress);
+        console.log(this.FundParticipation);
         this.handleChange = this.handleChange.bind(this);
-      }
+    }
 
-    
+    async componentDidMount(){
+        const account = await getAccount();
+        this.setState({
+            ready: true,
+            accountAddress: account
+        });
+        try{
+            window.ethereum.on('accountsChanged', async()=>{
+                this.setState({accountAddress: getAccount()})
+            })}catch{
+              console.log("No Metamask");
+          }
+    }  
     
     closeInvestForm(){
         document.getElementById("InvestForm").style.display = "none";
@@ -39,31 +52,19 @@ export default class Form extends React.Component{
         document.getElementById("RedeemForm").style.display = "none";
     }
 
-    /*checkAmount(){
-
-    }
-
-    checkAddress(){
-        
-    }*/
-
     submitRedeemForm(){
         //console.log(this.props);
         //console.log("state:",this.state);
         let shares = toBigNumber(this.state.shares*1e18);
         shares = shares.toFixed(0);
         //console.log(shares);
-        Transaction = this.FundParticipation.createTransaction('redeemQuantity', this.account, [shares]);
-        //console.log("RedeemTransaction", Transaction);
-        //console.log("Account", this.account);
+        //Transaction = this.FundParticipation.createTransaction('redeemQuantity', this.state.accountAddress, [shares]);
+        console.log("RedeemTransaction", Transaction);
+        console.log("Account", this.account);
         //Transaction.send();
     }
 
     handleChange(event){
-        //console.log(event.target);
-        //console.log(event.target.value);
-        //console.log(event.target.name);
-        //console.log(this.state);
 
         if(event.target.name === "shares"){
             const target = event.target;
@@ -81,9 +82,9 @@ export default class Form extends React.Component{
         return (
 
             <div>
-            
-                <div class="form-popup" id="RedeemForm">
-                <form  class="form-container" method="POST">
+                
+                <div className="form-popup" id="RedeemForm">
+                <form  className="form-container" method="POST">
                     <h1 display={{color: 'black'}}>
                         Redeeming Shares
                     </h1>
@@ -120,10 +121,11 @@ export default class Form extends React.Component{
                                 }
                             })
                         }
-                        <button type="button" class="btn" onClick={() => this.submitRedeemForm()}>Redeem</button>
-                        <button type="button" class="btn cancel" onClick={() => this.closeRedeemForm()}>Close</button>
+                        <button type="button" className="btn" onClick={() => this.submitRedeemForm()}>Redeem</button>
+                        <button type="button" className="btn cancel" onClick={() => this.closeRedeemForm()}>Close</button>
                     </form>
                     </div>
+                    
                     </div>
                 );
             }
