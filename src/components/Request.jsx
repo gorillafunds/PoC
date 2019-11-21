@@ -59,7 +59,7 @@ export default class Request extends React.Component{
                         window.ethereum.on('accountsChanged', async()=>{
                             this.setState({accountAddress: getAccount()})
                         })}catch{
-                          console.log("No Metamask");
+                          //console.log("No Metamask");
                       }
                 }
 
@@ -77,7 +77,7 @@ export default class Request extends React.Component{
                         case 5:
                             return <CancelRequestButton  participationContractAddress={this.props.participationContractAddress}/>;
                         case 7: 
-                            console.log("Request-Status: 7 - Error");
+                            //console.log("Request-Status: 7 - Error");
                             break;
                         default: 
                             requestInfo = "No Requests at the moment"
@@ -88,7 +88,7 @@ export default class Request extends React.Component{
         
         async hasRequestQuery(){
             const account = await this.state.accountAddress;
-            console.log("Account", account);
+            //console.log("Account", account);
             const hasRequest = await this.FundParticipation.hasRequest(account).catch((err) => {console.log(err, "address", this.state.accountAddress)});
             return hasRequest;
         };

@@ -16,18 +16,18 @@ export default class Factsheet extends React.Component{
     }
 
     componentDidMount(){
-        console.log(this.props);
+        //console.log(this.props);
         this.setState({
             ready: true
         });
     }
 
     caculateValue(dateString){
-        console.log("Vergleich", dateString);
+        //console.log("Vergleich", dateString);
             const shareP = this.props.calculationshistory.filter(element => {    
                 return element.x === dateString;
             });
-        console.log("shareP:",shareP);
+        //console.log("shareP:",shareP);
         if(shareP.length !== 0){
             return (((toBigNumber(this.props.shareprice).dividedBy(toBigNumber(shareP[0].sharePrice)) - 1)*100-1).toFixed(1) + "%");
         } else {
@@ -37,7 +37,7 @@ export default class Factsheet extends React.Component{
 
     caclulatePerformance(time){
 
-        console.log(this.props);
+        //console.log(this.props);
         let today = new Date();
         let day = today.toLocaleDateString();
         
@@ -53,9 +53,9 @@ export default class Factsheet extends React.Component{
         let dayMinusYTD = new Date(new Date().getFullYear(), 0, 1);
         let dayYTD = dayMinusYTD.toLocaleDateString();
         
-        console.log(day, dayWeek, dayMonth, dayYear, dayYTD);
-        console.log("shareprice", this.props.shareprice);
-        console.log("shareprice", this.props.calculationshistory[0].sharePrice);
+        //console.log(day, dayWeek, dayMonth, dayYear, dayYTD);
+        //console.log("shareprice", this.props.shareprice);
+        //console.log("shareprice", this.props.calculationshistory[0].sharePrice);
 
 
         switch(time){

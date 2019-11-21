@@ -21,7 +21,7 @@ export async function getAccount(){
         return account;
     } else {
         const account = "0xee98fe37ede0f727aa73b42ea5f79a4789917937";
-        console.log("Hier !!!!!!!!!!!!!!!!!!!!");
+        //console.log("Hier !!!!!!!!!!!!!!!!!!!!");
         return account;
    }
 }
@@ -32,33 +32,33 @@ if(typeof window !=='undefined'){
         
         web3 = new Web3(window.web3.currentProvider);
         env = new Environment(web3);
-        console.log("Env: 1",env);
+        //console.log("Env: 1",env);
     
         if (typeof web3 !== 'undefined' && web3.currentProvider.enable() !== undefined && web3.currentProvider.selectedAddress !== undefined){
-          console.log("MetaMask found");
+          //console.log("MetaMask found");
         } else {
-          console.log("No Metamask found");
+          //console.log("No Metamask found");
         }
 
         window.web3.version.getNetwork((netId) => {
           switch (netId) {
             case "1":
-              console.log('This is mainnet')
+              //console.log('This is mainnet')
               break
             case "2":
-              console.log('This is the deprecated Morden test network.')
+              //console.log('This is the deprecated Morden test network.')
               break
             case "3":
-              console.log('This is the ropsten test network.')
+              //console.log('This is the ropsten test network.')
               break
             case "4":
-              console.log('This is the Rinkeby test network.')
+              //console.log('This is the Rinkeby test network.')
               break
             case "42":
-              console.log('This is the Kovan test network.')
+              //console.log('This is the Kovan test network.')
               break
             default:
-              console.log('This is an unknown network.')
+              //console.log('This is an unknown network.')
           }
        });
     } 
@@ -71,7 +71,7 @@ if(typeof window !=='undefined'){
       env = new Environment(web3);
       env.defaultAccount = "0xEE98FE37EDE0F727aa73b42ea5f79A4789917937";
       //env.client.currentProvider.selectedAddress = "0xEE98FE37EDE0F727aa73b42ea5f79A4789917937";
-      console.log("Env 2",env);
+      //console.log("Env 2",env);
     } 
   } else {
         const provider = new Web3(new Web3.providers.HttpProvider(
@@ -83,7 +83,7 @@ if(typeof window !=='undefined'){
         env = new Environment(web3);
         env.defaultAccount = "0xEE98FE37EDE0F727aa73b42ea5f79A4789917937";
         //env.client.currentProvider.selectedAddress = "0xEE98FE37EDE0F727aa73b42ea5f79A4789917937";
-        console.log("Env 3",env);
+        //console.log("Env 3",env);
   }
 
   export default env;

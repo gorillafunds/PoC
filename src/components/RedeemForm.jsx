@@ -26,7 +26,7 @@ export default class Form extends React.Component{
             ]
         }
         this.FundParticipation = new Participation(env, this.props.participationContractAddress);
-        console.log(this.FundParticipation);
+        //console.log(this.FundParticipation);
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -40,7 +40,7 @@ export default class Form extends React.Component{
             window.ethereum.on('accountsChanged', async()=>{
                 this.setState({accountAddress: getAccount()})
             })}catch{
-              console.log("No Metamask");
+              //console.log("No Metamask");
           }
     }  
     
@@ -53,14 +53,14 @@ export default class Form extends React.Component{
     }
 
     submitRedeemForm(){
-        //console.log(this.props);
-        //console.log("state:",this.state);
+        ////console.log(this.props);
+        ////console.log("state:",this.state);
         let shares = toBigNumber(this.state.shares*1e18);
         shares = shares.toFixed(0);
-        //console.log(shares);
+        ////console.log(shares);
         //Transaction = this.FundParticipation.createTransaction('redeemQuantity', this.state.accountAddress, [shares]);
-        console.log("RedeemTransaction", Transaction);
-        console.log("Account", this.account);
+        //console.log("RedeemTransaction", Transaction);
+        //console.log("Account", this.account);
         //Transaction.send();
     }
 
