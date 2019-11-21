@@ -1,6 +1,5 @@
 
 const path = require(`path`)
-let fundcount = 100
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -9,9 +8,9 @@ exports.createPages = ({ graphql, actions }) => {
   const fundStrategy = path.resolve(`src/templates/fundStrategyTemplate.js`);
   
   return graphql(`
-    query loadFundsQuery ($limit: Int!) {
+    query loadFundsQuery{
           melon {
-            funds(orderBy: name, first:$limit, skip: 1, where: {gav_gt: "1000000000000000", isShutdown: false, sharePrice_not: "1"}) {
+            funds(orderBy: name, skip: 1, where: {gav_gt: "1000000000000000", isShutdown: false, sharePrice_not: "1"}) {
               name
               id
               createdAt
@@ -21,7 +20,7 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }`
-  , { limit: fundcount }).then(result => {
+  ).then(result => {
     if (result.errors) {
       throw result.errors
     }
@@ -29,6 +28,9 @@ exports.createPages = ({ graphql, actions }) => {
     let i = 0;
     let prev = 0;
     let next = 0;
+    console.log(result.data.melon.funds.length);
+    var fundcount = result.data.melon.funds.length;
+    console.log("Fundcount:",fundcount);
 
     result.data.melon.funds.forEach(({id, name, manager,createdAt}) => {
       
@@ -59,7 +61,6 @@ exports.createPages = ({ graphql, actions }) => {
       })
       if ( i<fundcount ){
       i = i + 1;
-      //console.log(i);
       }
     })
 

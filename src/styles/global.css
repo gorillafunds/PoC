@@ -15,6 +15,9 @@ h3,h4,h5,h6{
     margin: 2px; 
 }
 
+/* Columns: ContainerLeft | Content | ContainerRight*/
+/* Rows: Header | Menu | Content | Footer | Spacer */
+
 .Container {
     height: 100vh;
     width: 100vw;
@@ -35,8 +38,8 @@ h3,h4,h5,h6{
 }
 
 .ContainerRight{
-    grid-column: 3 / 4;
-    grid-row: 1 / 5;
+    grid-column: 3/4;
+    grid-row: 1/5;
 }
 
 .SiteImage{
@@ -58,8 +61,11 @@ h3,h4,h5,h6{
     grid-column: 2 / 3;
 }
 
+/* Rows - First element*/
+
+/* Header-Grid-Definition for Dynamic Sites */
+
 .Header{
-    /*Style*/
     text-align: center;
     color: rgba(255,255,255,0.9);
     display: grid;
@@ -67,8 +73,9 @@ h3,h4,h5,h6{
     align-content: center;
 }
 
+/* Header-Grid-Definition for Static Sites */
+
 .StaticHeader{
-    /*Style*/
     text-align: center;
     color: rgba(255,255,255,0.9);
     display: grid;
@@ -77,6 +84,8 @@ h3,h4,h5,h6{
     grid-template-rows: 1fr .3fr;
     align-content: center;
 }
+
+/* Gorilla Logo */
 
 .LogoImage{
     grid-column: 1 / 2;
@@ -93,6 +102,8 @@ h3,h4,h5,h6{
     image-rendering: scale-down;
 }
 
+/* Title for Dynamic Pages */
+
 .Title{
     grid-row: 1;
     grid-column: 2 / 3;
@@ -103,6 +114,8 @@ h3,h4,h5,h6{
     justify-content: center;
     align-content: center;
 }
+
+/* Title for Static Sites */
 
 .StaticTitle{
     padding-top: 1vh;
@@ -141,9 +154,12 @@ h3,h4,h5,h6{
     align-content: center;
 }
 
+/* Row - Second element */
+
+/* Dynamic Menu */
+
 .Menu {
     grid-row: 2 / 3;
-    /*Style*/
     background-color:  rgba(27,31,66);
     padding: 1vh;
     color: rgba(255,255,255,0.9);
@@ -159,6 +175,8 @@ h3,h4,h5,h6{
     grid-template-columns: 1fr 1fr;
 }
 
+/* Parts of Static Menu */
+
 .StaticMenuTitle{
     grid-column: 1 / 2;
     padding: 0px;
@@ -168,9 +186,7 @@ h3,h4,h5,h6{
     padding: 0px;
 }
 
-/*******************  Dynamic Menu ***********************************/
-/*       enthält Web3Address, InvestRedeemButtons, MenuRight         */
-/*********************************************************************/
+/*  Dynamic Menu */
 
 .DynamicMenu{
     grid-template-columns: 2fr 2fr 1fr 1fr;
@@ -211,7 +227,7 @@ h3,h4,h5,h6{
     align-items: center;
 }
 
-/********************** **/
+/* - ButtonDefinitions - for Dynamic Menu */
 
 .BaseButton{
     font-size: medium;
@@ -238,6 +254,19 @@ h3,h4,h5,h6{
 
 .ExecuteRequestButton{
     background-color: #e66545fb;
+    height: 4vh;
+    width: 20vh;
+    padding: auto;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.CancelRequestButton{
+    background-color: #e66545fb;
+    height: 4vh;
+    width: 20vh;
     padding: auto;
     cursor: pointer;
     display: flex;
@@ -262,6 +291,8 @@ h3,h4,h5,h6{
     justify-content: center;
     align-items: center;
 }
+
+/* Button-Definition for More-Button */
 
 .MoreButton{
     background-color: rgb(17, 17, 105);
@@ -291,11 +322,9 @@ h3,h4,h5,h6{
     cursor: pointer;
 }
 
-/* Im Content-Container */
+/* Row - Third element */
 
-/*.ContentContainer{
-    background-color: white;
-}*/
+/* Style for content-elements */
 
 .content-element{
     background-color: rgba(244, 249, 255,0.6);
@@ -321,6 +350,8 @@ h3,h4,h5,h6{
     color: whitesmoke;
 }
 
+/* background for the content-container grid-position */
+
 .Content{
     background-image: linear-gradient( to bottom, rgb(250, 222, 166), rgba(212,220,242,0.8));
     grid-row: 3 / 4;
@@ -328,14 +359,20 @@ h3,h4,h5,h6{
     padding: 10px;
 }
 
+/* for the fundlistpage */
+
 .ContentFundList{
     overflow: auto;
 }
+
+/* for the Placeholder-Image for the performance graphs */
 
 .Placeholder{
     width: 8vh;
     height: 8vh;
 }
+
+/* content-elements on the fund-pages*/
 
 .ManagerStrategyPage{
     position: relative;
@@ -347,6 +384,8 @@ h3,h4,h5,h6{
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr auto; 
 }
+
+/* Factsheet */
 
 .Factsheet{
     grid-column: 1 / 2;
@@ -461,15 +500,21 @@ h3,h4,h5,h6{
     cursor: pointer;
 }
 
+/* Performance-Chart */
+
 .PerformanceChart{
     grid-column: 2 / 3;
     grid-row: 1 / 2;
 }
 
+/* Fund-Structure */
+
 .FundStructure{
     grid-column: 3 / 4;
     grid-row: 1 / 2;
 }
+
+/* Manager */
 
 .Manager{
     grid-column: 3 / 4;
@@ -503,6 +548,8 @@ h3,h4,h5,h6{
     grid-row: 3 / 4;
 }
 
+/* Strategy */
+
 .Strategy{
     grid-column: 2 / 3;
     grid-row: 2 / 3;
@@ -512,8 +559,6 @@ h3,h4,h5,h6{
     grid-auto-rows: minmax(60px, 12vh);
     grid-gap: 2px;
 }
-
-/* In Strategy */
 
 .StrategyTitel{
     grid-column: 1 / 2;
@@ -613,6 +658,8 @@ h3,h4,h5,h6{
     grid-row: 3 / 4;
 }
 
+/* Row - Fourth element */
+
 .Footer{
     grid-row: 4 / 5;
     /*Style*/
@@ -640,6 +687,7 @@ h3,h4,h5,h6{
     padding-right: 2vh;
 }
 
+/* Row - Fifth element */
 
 .Spacer{
     grid-row: 5 / 6;
@@ -698,12 +746,12 @@ a:hover {
 /* Popup-Form*/
 /* The popup form - hidden by default */
 
-.dragBox{
-    /*z-index: +51;*/
-}
+/* if draggable */
+/*.dragBox{
+    z-index: +51;
+}*/
 
 .form-popup {
-    /*color: black;*/
     color: whitesmoke;
     display: none;
     position: fixed;
@@ -715,7 +763,8 @@ a:hover {
     z-index: 100;
   }
   
-  /* Add styles to the form container */
+  /* Styles form container */
+
   .form-container {
     max-width: 220px;
     padding: 10px;
@@ -741,6 +790,7 @@ a:hover {
   }
 
   /* Full-width input fields */
+
   .form-container input[type=text], .form-container input[type=text] {
     width: 100%;
     padding: 15px;
@@ -751,12 +801,14 @@ a:hover {
   }
   
   /* When the inputs get focus, do something */
+
   .form-container input[type=text]:focus, .form-container input[type=text]:focus {
     background-color: #ddd;
     outline: none;
   }
   
   /* Set a style for the submit/login button */
+
   .form-container .btn {
     background-color: #4CAF50;
     color: white;
@@ -769,17 +821,22 @@ a:hover {
   }
   
   /* Add a red background color to the cancel button */
+
   .form-container .cancel {
     background-color: red;
   }
   
   /* Add some hover effects to buttons */
+
   .form-container .btn:hover, .open-button:hover {
     opacity: 1;
   }
 
 
-/* Mobile-Devices */
+/***************************** Mobile-Devices ***********************************************/
+/*                                                                                          */
+/********************************************************************************************/
+
 
 @media only screen and (max-width: 780px){
 

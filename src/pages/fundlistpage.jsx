@@ -3,7 +3,8 @@ import { graphql } from 'gatsby';
 import StaticSite from "../components/StaticSite";
 import FundListItem from "../components/FundListItem";
 import FundList from "../components/FundList";
-import TransitionLink from "gatsby-plugin-transition-link";
+//import TransitionLink from "gatsby-plugin-transition-link";
+import { Link } from "gatsby";
 
 
 export const GATSBY_QUERY = graphql`{
@@ -23,12 +24,12 @@ export default ({ data })  => {
         <FundList>
         {data.melon.funds.map(({name,id}) => (
             <div key={id}>
-              <TransitionLink to={id}> 
+              <Link to={id}> 
                 <div className="FundList">
                   <FundListItem id={id} name={name}/>
                   <br/>
                 </div>
-              </TransitionLink>
+              </Link>
             </div>
             ))
         }

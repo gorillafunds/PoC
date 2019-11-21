@@ -29,17 +29,17 @@ export default class ExecuteRequestButton extends React.Component{
     }
 
     executeRequest(){
-        let ExcecuteRequestTransaction = this.FundParticipation.createTransaction('executeRequestFor',this.state.accountAddress,[this.account]);
+        let ExcecuteRequestTransaction = this.FundParticipation.createTransaction('executeRequestFor',this.state.accountAddress,[this.state.accountAddress]);
         console.log(ExcecuteRequestTransaction);
-        console.log("Account", this.account);
-        //ExcecuteRequestTransaction.send();
+        console.log("Account", this.state.accountAddress);
+        ExcecuteRequestTransaction.send();
     }
 
     render(){
         return (
         <div>
-            <div className="BaseButton" onClick={() => this.executeRequest()}>
-                Excecute Request
+            <div className="BaseButton ExecuteRequestButton" onClick={() => this.executeRequest()}>
+                <h3>Excecute Request</h3>
             </div>
         </div>
         )

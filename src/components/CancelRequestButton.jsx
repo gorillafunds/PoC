@@ -38,8 +38,8 @@ export default class CancelRequestButton extends React.Component{
     render(){
         return (
         <div>
-            <div className="BaseButton" onClick={() => this.cancelRequest()}>
-                Cancel Request
+            <div className="BaseButton CancelRequestButton" onClick={() => this.cancelRequest()}>
+                <h3>Cancel Request</h3>
             </div>
         </div>
         )
