@@ -83,7 +83,6 @@ export default class Web3Address extends React.Component{
 
         return(
         <div className="Web3Address">
-            <h6>Account:</h6>
             <h6>{this.state.accountAddress}</h6>
         </div>
         )

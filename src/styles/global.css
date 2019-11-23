@@ -23,7 +23,7 @@ h3,h4,h5,h6{
     width: 100vw;
     display: grid;
     grid-template-columns: 1fr 6fr 1fr;
-    grid-template-rows: 3fr 1fr 12fr 1fr 1fr;
+    grid-template-rows: 3fr 1fr auto 12fr 1fr 1fr;
 }
 
 /* Seitenelemente */
@@ -373,7 +373,7 @@ h3,h4,h5,h6{
 
 .Content{
     background-image: linear-gradient( to bottom, rgb(250, 222, 166), rgba(212,220,242,0.8));
-    grid-row: 3 / 4;
+    grid-row: 4 / 5;
     grid-column: 2 / 3;
     padding: 10px;
 }
@@ -680,7 +680,7 @@ h3,h4,h5,h6{
 /* Row - Fourth element */
 
 .Footer{
-    grid-row: 4 / 5;
+    grid-row: 5 / 6;
     /*Style*/
     background-color: rgba(27,31,66);
     color: rgb(233, 230, 230);
@@ -709,7 +709,7 @@ h3,h4,h5,h6{
 /* Row - Fifth element */
 
 .Spacer{
-    grid-row: 5 / 6;
+    grid-row: 6 / 7;
 }
 /* FundListLayout */
 
@@ -851,7 +851,48 @@ a:hover {
     opacity: 1;
   }
 
+  /* Slider*/
 
+  .react-slidedown.my-dropdown-slidedown {
+    background-color:  rgba(250, 222, 166,0.6);
+    padding: 10px;
+    grid: 3 / 4;
+    grid-column: 2 / 3;
+    transition-duration: 1.2s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1.1);
+    /*transition-timing-function: ease-in-out;*/
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+ .slider-background{
+    height: auto;
+    background-color:  rgba(250, 222, 166,0.6);
+    /*grid: 3 / 4;
+    grid-column: 2 / 3;*/
+ }
+
+.News{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ .SliderButton{
+     background-color: green;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .SliderButton:hover{
+    background-color: rgb(94, 182, 94);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /***************************** Mobile-Devices ***********************************************/
 /*                                                                                          */
 /********************************************************************************************/

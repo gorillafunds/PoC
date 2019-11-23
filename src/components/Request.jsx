@@ -13,14 +13,14 @@ export default class Request extends React.Component{
             ready: false,
             requestStatus: 0
           }
-        this.requestStatus = 0;
     }
         
         async componentDidMount(){
             this.env = await getWeb3();
             this.setState({
-                accountAddress: getAccount()
+                accountAddress: await getAccount()
             });
+            console.log(this.state.accountAddress);
             this.FundParticipation = new Participation(this.env, this.props.participationContractAddress);
                     const sum1 = await this.hasRequestQuery().then(function(result){
                         if(result){
