@@ -1,5 +1,5 @@
 import React from 'react';
-import env,{getAccount} from "../web3/melonweb3";
+import {getAccount, getWeb3} from "../web3/melonweb3";
 import InputTextField from "./InputTextField";
 import DropdownSelect from "./DropdownSelect";
 import DraggableForm from "./DraggableForm";
@@ -12,10 +12,8 @@ export default class Form extends React.Component{
 
     constructor(props){
         super(props);
-       
         this.state = {
             ready: false,
-            accountAddress: getAccount(),
             fields: [
                 {
                     placeholder: "Shares",
@@ -25,20 +23,23 @@ export default class Form extends React.Component{
                 }
             ]
         }
-        this.FundParticipation = new Participation(env, this.props.participationContractAddress);
+       
         //console.log(this.FundParticipation);
         this.handleChange = this.handleChange.bind(this);
     }
 
     async componentDidMount(){
-        const account = await getAccount();
+        this.env = await getWeb3();
+        this.FundParticipation = new Participation(this.env, this.props.participationContractAddress);
         this.setState({
             ready: true,
-            accountAddress: account
+            accountAddress: await getAccount()
         });
         try{
             window.ethereum.on('accountsChanged', async()=>{
-                this.setState({accountAddress: getAccount()})
+                this.setState({
+                    accountAddress: await getAccount()
+                })
             })}catch{
               //console.log("No Metamask");
           }

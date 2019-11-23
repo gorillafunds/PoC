@@ -1,31 +1,67 @@
 import React from 'react';
-import {getAccount} from '../web3/melonweb3';
+import {getAccount, getWeb3} from '../web3/melonweb3';
 
 export default class Web3Address extends React.Component{
 
     constructor(props){
         super(props);
-       
         this.state = {
             ready: false,
-            accountAddress: getAccount()
+            web3: true
         }
+        this.handleClick = this.handleClick.bind(this);
     }
 
     async componentDidMount(){
-        const account = await getAccount();
+        
+        this.env = await getWeb3();
         this.setState({
             ready: true,
-            accountAddress: account
+            accountAddress: await getAccount(),
+            web3: true
         });
         try{
             window.ethereum.on('accountsChanged', async()=>{
-                this.setState({accountAddress: getAccount()})
-            })}catch{
+                this.setState({
+                    accountAddress: await getAccount()
+                })
+            })
+        }catch{
               console.log("No Metamask");
-          }
+              this.setState({
+                  accountAddress: "Please activate Metamask",
+              })
+        }
+        if(this.env.client.currentProvider.selectedAddress === null){
+            this.setState({
+                web3: false
+            })
+        }
     }
 
+    async handleClick(){
+        try{
+            await window.ethereum.enable();
+            this.setState({
+                accountAddress: await getAccount(),
+                ready: true,
+                web3: true
+            });
+        } catch{
+            console.log("Funktioniert nicht");
+        }
+        try{
+            await window.web3.enable();
+            this.setState({
+                accountAddress: await getAccount(),
+                ready: true,
+                web3: true
+            });
+        } catch{
+            console.log("Funktioniert nicht");
+        }
+        this.render();
+    }
 
     state = {
         ready: false,
@@ -34,57 +70,26 @@ export default class Web3Address extends React.Component{
 
     render(){
 
+
         if(!this.state.ready){
             return null;
+        } 
+
+        if(this.env.client.currentProvider.selectedAddress === null && this.state.web3 === false){
+            return (
+                <div className="BaseButton ConnectButton" onClick={this.handleClick}><h3>Connect</h3></div>
+            )
         }
 
         return(
         <div className="Web3Address">
-            <h6>Your Address:</h6>
+            <h6>Account:</h6>
             <h6>{this.state.accountAddress}</h6>
         </div>
         )
     }
 }
 
-/*export default class Web3Address extends React.Component{
-
-        constructor(){
-            this.getWeb3Address();
-        }
-
-        state = {
-            ready: false,
-            accountAddress: "",
-        }
-
-        getWeb3Address(){
-            this.componentDidMount();
-           }
-
-        async componentDidMount(){
-
-            this.setState({
-                ready: true,
-                accountAddress: account
-            })
-        }
-
-        render(){
-            
-            //console.log("Web3Address-State:", this.state);
-
-            if(!this.state.ready){
-                return null;
-            }
-
-            return(
-                <div className="Web3Address">
-                    <span><h6>Your Address: {this.state.accountAddress}</h6></span>
-                </div>
-            )
-        }
-}*/
 
 
 

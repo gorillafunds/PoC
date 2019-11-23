@@ -1,5 +1,5 @@
 import React from "react"
-import env,{getAccount} from "../web3/melonweb3";
+import {getAccount, getWeb3} from "../web3/melonweb3";
 import { Participation } from "@melonproject/melonjs";
 import ExcecuteRequestButton from "./ExcecuteRequestButton";
 import CancelRequestButton from "./CancelRequestButton";
@@ -9,18 +9,19 @@ export default class Request extends React.Component{
 
     constructor(props){
         super(props);
-        
         this.state = {
             ready: false,
-            requestStatus: 0,
-            accountAddress: getAccount()
+            requestStatus: 0
           }
-        this.FundParticipation = new Participation(env, this.props.participationContractAddress);
         this.requestStatus = 0;
     }
         
         async componentDidMount(){
-
+            this.env = await getWeb3();
+            this.setState({
+                accountAddress: getAccount()
+            });
+            this.FundParticipation = new Participation(this.env, this.props.participationContractAddress);
                     const sum1 = await this.hasRequestQuery().then(function(result){
                         if(result){
                             return 1;
@@ -87,21 +88,18 @@ export default class Request extends React.Component{
             
         
         async hasRequestQuery(){
-            const account = await this.state.accountAddress;
             //console.log("Account", account);
-            const hasRequest = await this.FundParticipation.hasRequest(account).catch((err) => {console.log(err, "address", this.state.accountAddress)});
+            const hasRequest = await this.FundParticipation.hasRequest(this.state.accountAddress).catch((err) => {console.log(err, "address", this.state.accountAddress)});
             return hasRequest;
         };
         
         async hasValidRequestQuery(){
-            const account = await this.state.accountAddress;
-            const hasValidRequest = await this.FundParticipation.hasValidRequest(account).catch((err) => {console.log(err)});
+            const hasValidRequest = await this.FundParticipation.hasValidRequest(this.state.accountAddress).catch((err) => {console.log(err)});
             return hasValidRequest;
         };
         
         async hasExpiredRequestQuery(){
-            const account = await this.state.accountAddress;
-            const hasExpiredRequest = await this.FundParticipation.hasExpiredRequest(account).catch((err) => {console.log(err)});
+            const hasExpiredRequest = await this.FundParticipation.hasExpiredRequest(this.state.accountAddress).catch((err) => {console.log(err)});
             return hasExpiredRequest;
         };    
            

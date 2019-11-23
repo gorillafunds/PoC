@@ -1,5 +1,5 @@
 import React from "react"
-import { getAccount } from "../web3/melonweb3";
+import { getAccount, getWeb3 } from "../web3/melonweb3";
 import SharesBox from "./SharesBox";
 
 
@@ -9,21 +9,22 @@ export default class Shares extends React.Component{
         super(props);
        
         this.state = {
-            ready: false,
-            accountAddress: getAccount()
+            ready: false
         }
     
     }
 
     async componentDidMount(){
-        const account = await getAccount();
+       
         this.setState({
             ready: true,
-            accountAddress: account
+            accountAddress: await getAccount()
         });
         try{
             window.ethereum.on('accountsChanged', async()=>{
-                this.setState({accountAddress: getAccount()})
+                this.setState({
+                    accountAddress: await getAccount()
+                })
             })}catch{
               //console.log("No Metamask");
           }

@@ -3,6 +3,7 @@ import { toBigNumber } from '@melonproject/melonjs/utils/toBigNumber';
 import { VictoryPie } from 'victory-pie';
 import { VictoryTooltip } from 'victory-tooltip';
 import {BigNumber } from '@melonproject/melonjs';
+import { getWeb3 } from '../web3/melonweb3';
 
 
 export default class FundStructure extends React.Component{

@@ -1,46 +1,86 @@
-import Web3 from '../../node_modules/web3-eth';
+import  Web3 from 'web3-eth';
 import { Environment } from '@melonproject/melonjs';
 var web3;
 var env;
+env = getWeb3();
 
-export function getWeb3(){
-  if (!web3){
-    web3 = new Web3(Web3.givenProvider);
+export async function getWeb3(){
+
+  if (window.ethereum){
+    try{
+        web3 = new Web3(window.ethereum);
+        env = new Environment(web3);
+        await env.enable(); 
+    } catch(error){
+      console.log("No access to user accounts");
+    }
+
+  return env;
+  
+} else if (window.web3){ 
+    try{
+        web3 =  new Web3(window.web3.currentProvider);
+        env = new Environment(web3);
+        await env.enable(); 
+    } catch (error){
+      console.log("No access to user accounts");
+    }
+    return env;
+  } else {
+    try{
+      console.log("I am hier");
+    //web3 = new Web3("wss://mainnet.infura.io/ws/v3/ec86b2b5c5644c29b07cf35d77d1bd78");
+    //env = new Environment(web3);
+    console.log(env);
+    const provider = new Web3(new Web3.providers.HttpProvider(
+      'https://mainnet.infura.io/v3/ec86b2b5c5644c29b07cf35d77d1bd78'
+    ));
+    web3 = new Web3(provider);
     env = new Environment(web3);
+    } catch {
+      console.log("Problem with Infura");
+    }
+    return env;
   }
 }
 
 export function hasProvider(){
-  return !!env.givenProvider;
+  return !!env.currentProvider;
 }
 
 export async function getAccount(){
-     
-    if(typeof window !== 'undefined'){
-        const account = env.client.givenProvider.selectedAddress;
+  env = await getWeb3();
+  console.log(env);
+  console.log("0");
+     if(env !== 'undefined'){
+      console.log("1");
+      if(env.client.currentProvider !== null){
+        console.log("2");
+          const account = env.client.currentProvider.selectedAddress;
+          return account;
+        }
+      } else {
+        const account = "Please activate Metamask";
+        console.log("3");
         return account;
-    } else {
-        const account = "0xee98fe37ede0f727aa73b42ea5f79a4789917937";
-        //console.log("Hier !!!!!!!!!!!!!!!!!!!!");
-        return account;
+       }
    }
-}
 
-if(typeof window !=='undefined'){
+/*if(typeof window !=='undefined'){
 
-  if(window.web3 !== 'undefined'){
+  //if(window.web3 !== 'undefined'){
+  if(window.web3){
         
         web3 = new Web3(window.web3.currentProvider);
         env = new Environment(web3);
-        //console.log("Env: 1",env);
     
-        if (typeof web3 !== 'undefined' && web3.currentProvider.enable() !== undefined && web3.currentProvider.selectedAddress !== undefined){
-          //console.log("MetaMask found");
+        //if (typeof web3 !== 'undefined' && web3.currentProvider.enable() !== undefined && web3.currentProvider.selectedAddress !== undefined){
+        if (typeof web3 !== 'undefined'  && web3.currentProvider.selectedAddress !== undefined){
         } else {
-          //console.log("No Metamask found");
+          console.log("No Metamask found");
         }
 
-        window.web3.version.getNetwork((netId) => {
+        /*window.web3.version.getNetwork((netId) => {
           switch (netId) {
             case "1":
               //console.log('This is mainnet')
@@ -60,31 +100,27 @@ if(typeof window !=='undefined'){
             default:
               //console.log('This is an unknown network.')
           }
-       });
-    } 
-    
-    else {
+       }
+       );
+    } else {
       const provider = new Web3(new Web3.providers.HttpProvider(
         'https://mainnet.infura.io/v3/ec86b2b5c5644c29b07cf35d77d1bd78'
        ));
       web3 = new Web3(provider);
       env = new Environment(web3);
       env.defaultAccount = "0xEE98FE37EDE0F727aa73b42ea5f79A4789917937";
-      //env.client.currentProvider.selectedAddress = "0xEE98FE37EDE0F727aa73b42ea5f79A4789917937";
-      //console.log("Env 2",env);
     } 
   } else {
-        const provider = new Web3(new Web3.providers.HttpProvider(
-          'https://mainnet.infura.io/v3/ec86b2b5c5644c29b07cf35d77d1bd78'
-        ));
-        //const provider = new Web3(new Web3("wss://mainnet.infura.io/v3/ec86b2b5c5644c29b07cf35d77d1bd78"));
-        web3 = new Web3(provider);
-        //web3 = new Web3(new Web3("wss://mainnet.infura.io/v3/ec86b2b5c5644c29b07cf35d77d1bd78"));
-        env = new Environment(web3);
-        env.defaultAccount = "0xEE98FE37EDE0F727aa73b42ea5f79A4789917937";
-        //env.client.currentProvider.selectedAddress = "0xEE98FE37EDE0F727aa73b42ea5f79A4789917937";
-        //console.log("Env 3",env);
+    const provider = new Web3(new Web3.providers.HttpProvider(
+        'https://mainnet.infura.io/v3/ec86b2b5c5644c29b07cf35d77d1bd78'
+    ));
+    web3 = new Web3(provider);
+    env = new Environment(web3);
+    env.defaultAccount = "0xEE98FE37EDE0F727aa73b42ea5f79A4789917937";
   }
 
-  export default env;
+  //env = getWeb3();
+  */
+
+  //export default env;
 

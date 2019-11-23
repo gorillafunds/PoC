@@ -20,10 +20,9 @@ export default class DraggableForm extends React.Component {
       };
 
       async componentDidMount(){
-        const account = await getAccount();
         this.setState({
             ready: true,
-            accountAddress: account,
+            accountAddress: await getAccount(),
             investmentAsset: ""
         });
      }

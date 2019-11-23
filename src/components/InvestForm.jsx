@@ -1,8 +1,8 @@
 import React from 'react';
-import env, {getAccount} from "../web3/melonweb3";
+import {getAccount, getWeb3} from "../web3/melonweb3";
 import InputTextField from "./InputTextField";
 import DropdownSelect from "./DropdownSelect";
-import DraggableForm from "./DraggableForm";
+//import DraggableForm from "./DraggableForm";
 import { Participation } from "@melonproject/melonjs/contracts/fund/participation/Participation";
 import { toBigNumber } from '@melonproject/melonjs/utils/toBigNumber';
 import { CanonicalPriceFeed, StandardToken } from '@melonproject/melonjs';
@@ -14,9 +14,7 @@ export default class Form extends React.Component{
 
     constructor(props) {
         super(props); 
-       
-        this.FundParticipation = new Participation(env, this.props.participationContractAddress);
-        this.PriceFeed = new CanonicalPriceFeed(env, "0x4559ddd9e0a567bd8ab071ac106c1bc2d0c0b6ef");     
+        
         this.Token = null;
         this.assetPriceInEther = 0;   
         this.requesteShares = 0;
@@ -24,7 +22,6 @@ export default class Form extends React.Component{
 
         this.state = {
             ready: false,
-            accountAddress: getAccount(),
             investmentAsset: "",
             fields: [
                 {
@@ -45,15 +42,19 @@ export default class Form extends React.Component{
       }
 
       async componentDidMount(){
-        const account = await getAccount();
+        this.env = await getWeb3();
+        this.FundParticipation = new Participation(this.env, this.props.participationContractAddress);
+        this.PriceFeed = new CanonicalPriceFeed(this.env, "0x4559ddd9e0a567bd8ab071ac106c1bc2d0c0b6ef");     
         this.setState({
             ready: true,
-            accountAddress: account,
+            accountAddress: await getAccount(),
             investmentAsset: ""
         });
         try{
             window.ethereum.on('accountsChanged', async()=>{
-                this.setState({accountAddress: getAccount()})
+                this.setState({
+                    accountAddress: await getAccount()
+                })
             })}catch{
               console.log("No Metamask");
           }
@@ -81,12 +82,12 @@ export default class Form extends React.Component{
         console.log("Make Transaction");
         await this.prepareTransaction().catch((err) => {console.log(err)});
         const requestedShares = this.requestedShares.toString();
-        const investmentAmountBigNumber = await this.Token.getAllowance(this.state.accountAddress,this.props.participationContractAddress);
+        const investmentAmountBN = await this.Token.getAllowance(this.state.accountAddress,this.props.participationContractAddress);
         console.log("requestedShares:",typeof requestedShares);
-        console.log("investmentAmount:", typeof investmentAmountBigNumber);
-        console.log(investmentAmountBigNumber);
-        const investmentAmount = investmentAmountBigNumber.toFixed();
-        //RequestInvestmentTransaction = this.FundParticipation.createTransaction('requestInvestment', this.state.accountAddress, [requestedShares, investmentAmount, this.state.investmentAsset]);
+        console.log("investmentAmount:", typeof investmentAmountBN);
+        console.log(investmentAmountBN);
+        const investmentAmount = investmentAmountBN.toString();
+        //RequestInvestmentTransaction = this.FundParticipation.requestInvestment(this.state.accountAddress, requestedSharesBN, investmentAmountBN, this.state.investmentAsset)
         console.log(RequestInvestmentTransaction);
         console.log("Account", this.account);
         //RequestInvestmentTransaction.send();
@@ -94,7 +95,7 @@ export default class Form extends React.Component{
 
     async prepareTransaction(){
         await this.calculateShares().catch((err) => {console.log(err)});;
-        this.Token = new StandardToken(env, this.state.investmentAsset);
+        this.Token = new StandardToken(this.env, this.state.investmentAsset);
         console.log(this.Token);
         const investmentAmount = this.investmentAmount.toString();
         console.log(investmentAmount);        

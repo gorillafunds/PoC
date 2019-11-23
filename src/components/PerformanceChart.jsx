@@ -4,6 +4,7 @@ import {VictoryChart } from 'victory-chart';
 import { VictoryTheme } from 'victory';
 import { VictoryZoomContainer } from 'victory-zoom-container';
 import { VictoryAxis } from 'victory-axis';
+import { getWeb3 } from '../web3/melonweb3';
 
 export default class PerformanceChart extends React.Component{
 
@@ -19,6 +20,7 @@ export default class PerformanceChart extends React.Component{
     }
 
     async componentDidMount(){
+        await getWeb3();
         await this.getXTicks(this.state.domain);
         this.setState({
             ready: true,

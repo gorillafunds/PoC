@@ -1,37 +1,37 @@
 import React from "react";
-import env,{getAccount} from "../web3/melonweb3";
+import {getAccount, getWeb3} from "../web3/melonweb3";
 import { Participation } from "@melonproject/melonjs/contracts/fund/participation/Participation";
 
 export default class CancelRequestButton extends React.Component{
 
     constructor(props){
         super(props);
-       
         this.state = {
-            ready: false,
-            accountAddress: getAccount()
+            ready: false
         }
-        this.FundParticipation = new Participation(env, this.props.participationContractAddress);
     }
 
     async componentDidMount(){
-        const account = await getAccount();
+        this.env = await getWeb3();
+        this.FundParticipation = new Participation(this.env, this.props.participationContractAddress);
         this.setState({
             ready: true,
-            accountAddress: account
+            accountAddress: await getAccount()
         });
         try{
             window.ethereum.on('accountsChanged', async()=>{
-                this.setState({accountAddress: getAccount()})
+                this.setState({
+                    accountAddress: await getAccount()
+                })
             })}catch{
               console.log("No Metamask");
           }
     }
 
     cancelRequest(){
-        let CancelRequestTransaction = this.FundParticipation.createTransaction('cancelRequest',this.state.accountAddress,[]);
-        console.log(CancelRequestTransaction);
-        console.log("Account", this.account);
+        //let CancelRequestTransaction = this.FundParticipation.createTransaction('cancelRequest',this.state.accountAddress,[]);
+        //console.log(CancelRequestTransaction);
+        console.log("Account", this.state.accountAddress);
         //CancelRequestTransaction.send();
     }
 
