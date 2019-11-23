@@ -1,6 +1,6 @@
 import React from "react";
-import { hasProvider, getWeb3, getAccount } from '../web3/melonweb3';
-import Web3Address from '../components/Web3Address';
+import { getAccount } from '../web3/melonweb3';
+//import Web3Address from '../components/Web3Address';
 import SlideBox from '../components/SlideBox';
 
 export default class NewsBox extends React.Component{
@@ -39,8 +39,9 @@ export default class NewsBox extends React.Component{
         console.log(this.state);
         }
 
-    getContent(){
-        if(false){
+     getContent(){
+       
+        if(this.state.accountAddress !== "Please activate Metamask"){
             return(<div></div>)
         } else {
                 console.log("hier");
