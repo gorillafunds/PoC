@@ -1,7 +1,20 @@
 {
   "stages": {
     "develop": {
-      "plugins": [],
+      "plugins": [
+        {
+          "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
+          "options": {}
+        },
+        {
+          "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/plugin-proposal-nullish-coalescing-operator/lib/index.js",
+          "options": {}
+        },
+        {
+          "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
+          "options": {}
+        }
+      ],
       "presets": [
         {
           "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/preset-typescript/lib/index.js",
@@ -16,7 +29,20 @@
       }
     },
     "develop-html": {
-      "plugins": [],
+      "plugins": [
+        {
+          "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
+          "options": {}
+        },
+        {
+          "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/plugin-proposal-nullish-coalescing-operator/lib/index.js",
+          "options": {}
+        },
+        {
+          "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
+          "options": {}
+        }
+      ],
       "presets": [
         {
           "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/preset-typescript/lib/index.js",
@@ -31,7 +57,20 @@
       }
     },
     "build-html": {
-      "plugins": [],
+      "plugins": [
+        {
+          "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
+          "options": {}
+        },
+        {
+          "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/plugin-proposal-nullish-coalescing-operator/lib/index.js",
+          "options": {}
+        },
+        {
+          "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
+          "options": {}
+        }
+      ],
       "presets": [
         {
           "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/preset-typescript/lib/index.js",
@@ -46,7 +85,20 @@
       }
     },
     "build-javascript": {
-      "plugins": [],
+      "plugins": [
+        {
+          "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js",
+          "options": {}
+        },
+        {
+          "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/plugin-proposal-nullish-coalescing-operator/lib/index.js",
+          "options": {}
+        },
+        {
+          "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/plugin-proposal-numeric-separator/lib/index.js",
+          "options": {}
+        }
+      ],
       "presets": [
         {
           "name": "/home/colt/Software/GorillaFunds/PoC/node_modules/@babel/preset-typescript/lib/index.js",

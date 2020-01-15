@@ -1,14 +1,9 @@
 import React from 'react';
-import {getAccount, getWeb3} from "../web3/melonweb3";
+import { getAccount, getWeb3 } from "../web3/melonweb3";
 import InputTextField from "./InputTextField";
 import DropdownSelect from "./DropdownSelect";
-//import DraggableForm from "./DraggableForm";
-import { Participation } from "@melonproject/melonjs/contracts/fund/participation/Participation";
+import { Participation, Accounting, KyberPriceFeed, StandardToken } from "@melonproject/melonjs";
 import { toBigNumber } from '@melonproject/melonjs/utils/toBigNumber';
-import { CanonicalPriceFeed, StandardToken } from '@melonproject/melonjs';
-var ApprovalTransaction;
-var RequestInvestmentTransaction;
- 
 
 export default class Form extends React.Component{
 
@@ -16,189 +11,341 @@ export default class Form extends React.Component{
         super(props); 
         
         this.Token = null;
-        this.assetPriceInEther = 0;   
-        this.requesteShares = 0;
+        this.requestedShares = 0;
         this.investmentAmount = 0;
+    
+        // prepare state
 
         this.state = {
-            ready: false,
+            accountAddress: "",
+            amount: "",
+            shares: "",
+            shareCostInAsset: "",
             investmentAsset: "",
-            fields: [
-                {
-                    name: "investmentAsset",
-                    input_type: "dropdown",
-                    required: true, 
-                    assets: this.props.allowedAssets,
-                },
-                {   
-                    placeholder: "Amount",   
-                    name: "amount",
-                    input_type: "text",
-                    required: true
-                },
-            ],
+            factorAToS: 0,
+            factorSToA: 0,
+            sharePrice: 0,
+            ready: false,
+            tokenDecimals: 18,
+            buttonState: 'Invest',
         }
+
+        // bind 
+
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
       }
 
-      async componentDidMount(){
+    // prepare 
+
+    async componentDidMount(){
+        
         this.env = await getWeb3();
         this.FundParticipation = new Participation(this.env, this.props.participationContractAddress);
-        this.PriceFeed = new CanonicalPriceFeed(this.env, "0x4559ddd9e0a567bd8ab071ac106c1bc2d0c0b6ef");     
+        this.Accounting = new Accounting(this.env, this.props.accountingContractAddress);
+        const priceSource = await this.Accounting.getPriceSource();
+        this.PriceFeed = new KyberPriceFeed(this.env, priceSource); 
+        const account = await getAccount();
+        const sharePrice = await this.getSharePrice();
+
+        console.log("Investform:");
+        console.table({
+                "PriceSource" : priceSource,
+                "Share-Price" : sharePrice.toExponential(),
+                "accountAddress" : account,
+            })
+       
         this.setState({
+            accountAddress: account,
+            investmentAsset: "", 
+            sharePrice: sharePrice,
             ready: true,
-            accountAddress: await getAccount(),
-            investmentAsset: ""
         });
+
         try{
             window.ethereum.on('accountsChanged', async()=>{
                 this.setState({
                     accountAddress: await getAccount()
-                })
-            })}catch{
-              console.log("No Metamask");
-          }
+                }) 
+        })}catch{
+            console.log("No Metamask");
+        }
     }
+
+    // handle Input
+
+    handleSubmit(event) {
+        event.preventDefault();
+    }
+
+    // handle change
+
+    async handleChange(event){
+        
+        // dropdown
+
+        if(event.target.name === "investmentAsset"){
+
+            const target = event.target;
+            const value = target.value;
+            //this.Token = new StandardToken(this.env, value);
+            //const tokenDecimals = this.Token.getDecimals();
+            //console.log(this.Token);
+
+            console.log("value:", value);
+
+            let tokenDecimals = 18;
+            if (value === "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"){
+                tokenDecimals = 6;
+            } else if (value === "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"){
+                tokenDecimals = 8;
+            } else if (value === "0x4f3afec4e5a3f2a6a1a411def7d7dfe50ee057bf"){
+                tokenDecimals = 9;
+            } else {
+                tokenDecimals = 18;
+            }
+            console.log("tokendecimals:", tokenDecimals);
+
+            this.setState({
+               investmentAsset : value,
+               amount : "",
+               shares : "",
+               tokenDecimals: tokenDecimals
+            })
+            
+            if(value !== ""){
+                this.getCalculationFactors(value, tokenDecimals);
+                console.log(this.state);
+            }
+        } 
+       
+        // inputtextfield shares
+
+        if(event.target.name === "shares"){
+            const target = event.target;
+            const sharesValue =  target.value;
+            console.log("sharesValue:", sharesValue);
+            if (this.state.investmentAsset !== ""){
+                this.setState({
+                    shares : sharesValue,
+                    amount : toBigNumber(sharesValue).multipliedBy(this.state.factorAToS)
+                })
+            console.log(this.state);
+            } else {
+                this.setState({
+                    shares: "Choose your asset first",
+                })
+            }
+        }
+
+        // inputtextfield amount
+
+        if(event.target.name === "amount"){
+            const target = event.target;
+            const amount = target.value;
+            if (this.state.investmentAsset !== ""){
+                this.setState({
+                    amount : amount,
+                    shares : amount*this.state.factorSToA
+                })
+            console.log(this.state);
+            } else {
+                this.setState({
+                    amount : "Choose your asset first", 
+                })
+            }
+        }
+    }
+
+    // Calculations
     
+    // get Share Price for the fund 
+
+    async getSharePrice(){
+       const calcResults = await this.Accounting.getCalculationResults();
+       return calcResults.sharePrice;
+    }
+
+    // calculate Factors
+
+    async getCalculationFactors(asset_address, token_decimals){
+       
+        let factor = toBigNumber(10).exponentiatedBy(18);
+        console.log("Faktor:", factor);
+
+        const shareCostInAsset = await this.Accounting.getShareCostInAsset(factor, asset_address);
+        console.log("shareCostInAsset:", shareCostInAsset.toExponential());
+        if(token_decimals !== 18){
+            const factor = toBigNumber(10).exponentiatedBy(token_decimals); 
+            this.setState({
+                factorSToA : factor.dividedBy(shareCostInAsset),
+                factorAToS : shareCostInAsset.dividedBy(factor)
+            })} else {
+            this.setState({
+                factorSToA : factor.dividedBy(shareCostInAsset),
+                factorAToS : shareCostInAsset.dividedBy(factor)
+                })
+            }
+        
+        console.log(this.state.factorSToA.toExponential());
+        console.log(this.state.factorAToS.toExponential());
+    } 
+
+    // input validation
+    
+    checkInput(amountOrShares){
+        if(isNaN(amountOrShares) || amountOrShares <= 0 ){
+            this.setState({
+                amount: "Please insert valid Numbers",
+                shares: "Please insert valid Numbers"
+            })
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //  web3 activated?
+
+    checkWeb3(address){
+        if(address === "" || address === `undefined` || address === null){
+            this.setState({
+                amount: "Activate Metamask and reload",
+                shares: "Activate Metamask and reload"
+            })
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    // close InvestForm
+
     closeInvestForm(){
         document.getElementById("InvestForm").style.display = "none";
+        this.setState({buttonState:'Invest'});
     }
 
-    closeRedeemForm(){
-        document.getElementById("RedeemForm").style.display = "none";
+    // Submit InvestForm and validate input
+
+    async submitInvestForm(){
+
+        console.table({
+            "requestedShares:": this.requestedShares,
+            "investmentAmount:": this.investmentAmount,
+        });
+
+        if(this.checkInput(this.state.amount) && this.checkInput(this.state.shares) && this.checkWeb3(this.state.accountAddress)){
+            await this.makeTransaction().catch((err) => {console.log(err)});
+        }
     }
 
-    submitInvestForm(){
-        console.log(this.PriceFeed);
-        console.log("Anfangprops:", this.props);
-        console.log("Participation:", this.FundParticipation);
-        console.log("State",this.state);
-        this.investmentAmount = (toBigNumber(this.state.amount * 1e18)).toFixed(0);
-        console.log("InvestmentAmount", this.investmentAmount);
-        this.makeTransaction();
-    }
+    // Transaction - Logics
 
     async makeTransaction(){
-        console.log("Make Transaction");
+        this.Token = new StandardToken(this.env, this.state.investmentAsset);
+        const investmentDecimals = this.state.tokenDecimals; //await this.Token.getDecimals();
+        this.requestedShares = toBigNumber(this.state.shares).multipliedBy(toBigNumber(1E18));
+        this.investmentAmount = (toBigNumber(this.state.amount).times(toBigNumber(10).exponentiatedBy(investmentDecimals))).toFixed(0);
+        this.investmentAmount = toBigNumber(this.investmentAmount);
+
+        // Logging
+        console.log("makeTransaction()");
+        console.table({
+            "RequestedShares": this.requestedShares,
+            "InvestmentAmount:": this.investmentAmount
+        })
+
+        // prepare Transaction 
         await this.prepareTransaction().catch((err) => {console.log(err)});
-        const requestedShares = this.requestedShares.toString();
-        const investmentAmountBN = await this.Token.getAllowance(this.state.accountAddress,this.props.participationContractAddress);
-        console.log("requestedShares:",typeof requestedShares);
-        console.log("investmentAmount:", typeof investmentAmountBN);
-        console.log(investmentAmountBN);
-        const investmentAmount = investmentAmountBN.toString();
-        //RequestInvestmentTransaction = this.FundParticipation.requestInvestment(this.state.accountAddress, requestedSharesBN, investmentAmountBN, this.state.investmentAsset)
-        console.log(RequestInvestmentTransaction);
-        console.log("Account", this.account);
-        //RequestInvestmentTransaction.send();
+        const RequestInvestmentTransaction = this.FundParticipation.requestInvestment(this.state.accountAddress, this.requestedShares, this.investmentAmount, this.state.investmentAsset);
+        const TransactionReceipt = await RequestInvestmentTransaction.prepare();
+        const TransactionResult = RequestInvestmentTransaction.send(TransactionReceipt);
+
+        const receipt = await new Promise((resolve) => {
+            TransactionResult.once('transactionHash', hash => console.log('Transaction Hash:', hash));
+            TransactionResult.once('receipt', receipt => {
+                resolve(receipt)
+                this.setState({buttonState:'Success'});
+            });
+          });
+          console.log('Receipt:', JSON.stringify(receipt, undefined, 4));
+          this.setState({buttonState:'Invest'});
     }
 
     async prepareTransaction(){
-        await this.calculateShares().catch((err) => {console.log(err)});;
-        this.Token = new StandardToken(this.env, this.state.investmentAsset);
-        console.log(this.Token);
-        const investmentAmount = this.investmentAmount.toString();
-        console.log(investmentAmount);        
-        console.log("Contract-address",this.props.participationContractAddress);
-        console.log("investmentAsset-Check", this.state.investmentAsset);
-        const investmentAmountBigNumber = await this.Token.getAllowance(this.state.accountAddress,this.props.participationContractAddress);
-        if(investmentAmountBigNumber.gte(investmentAmount)){
-            console.log("Allowance ist ausriechend - nämlich:", investmentAmountBigNumber);
+        
+        //const investmentAmount = toBigNumber(this.investmentAmount);
+        console.log("investmentAmount:", this.investmentAmount);
+
+        // Logging
+        console.log("prepareTransaction()");
+        console.table({
+            "investmentAmount:" : this.investmentAmount.toString(),        
+             "Contract-address" : this.props.participationContractAddress,
+            "InvestmentAsset-Check:" : this.state.investmentAsset
+        })
+
+        const investmentAmountAllowance = await this.Token.getAllowance(this.state.accountAddress,this.props.participationContractAddress);
+        // if amount gt allowance go on else approve
+        if(investmentAmountAllowance.gte(this.investmentAmount)){
             return;
         } else {
-            ApprovalTransaction = this.Token.approve(this.state.accountAddress, this.props.participationContractAddress, investmentAmountBigNumber);
-            console.log(ApprovalTransaction);
-            //await ApprovalTransaction.send();
+            // approve Token-Transfer
+            console.table({"account:" : this.state.accountAddress, "participationContract" : this.props.participationContractAddress, "investmentAmount:" : this.investmentAmount});
+            const ApprovalTransaction = this.Token.approve(this.state.accountAddress, this.props.participationContractAddress, this.investmentAmount);
+            const TransactionReceipt = await ApprovalTransaction.prepare();
+            const TransactionResult = await ApprovalTransaction.send(TransactionReceipt);
+            const receipt = await new Promise((resolve) => {
+                TransactionResult.once('transactionHash', hash => console.log('Transaction Hash:', hash));
+                TransactionResult.once('receipt', receipt => resolve(receipt));
+              });
+              console.log('Receipt:', JSON.stringify(receipt, undefined, 4));
         }
-    }
+    }    
 
-    async calculateShares(){
-        console.log("Shares berechnen");
-        await this.getAssetPrice().catch((err) => {console.log(err)});;
-        const assetPrice = this.assetPriceInEther;
-        console.log("Resultat1:", assetPrice.toExponential());
-        const requestedShares = this.investmentAmount*assetPrice.toFixed(0)/'1e18';///this.props.investments.sharePrice;
-        console.log("Requested Shares", requestedShares/1e18);
-        this.requestedShares = requestedShares.toFixed(0);
-    }
-
-    async getAssetPrice(){
-        console.log("investmentAsset-Address:",this.state.investmentAsset);
-        const assetPrice = await this.PriceFeed.getPrice(this.state.investmentAsset).catch((err) => {console.log(err)});
-        console.log("getAssetPrice:",assetPrice);
-        this.assetPriceInEther = assetPrice.price;
-    }
-
-    handleChange(event){
-        //console.log(event.target);
-        //console.log(event.target.value);
-        //console.log(event.target.name);
-        //console.log(this.state);
-
-        if(event.target.name === "investmentAsset"){
-            const target = event.target;
-            const addressValue = target.value;
-            const name = target.name;
-            this.setState({
-               [name]:addressValue
-            })
-            //console.log(this.state);
-        } 
-        if(event.target.name === "amount"){
-            const target = event.target;
-            const amountValue = target.value;
-            const name = target.name;
-            this.setState({
-                [name]:amountValue
-            })
-        }
-       
-    }
+    // Render Form
 
     render() {
         
         return (
 
-            <div>
-            
             <div className="form-popup" id="InvestForm">
-                <form  className="form-container" method="POST">
+                <form  className="form-container" onSubmit={this.handleSubmit}>
                     <h1 display={{color: 'black'}}>
                         Invest in the Fund
                     </h1>
-                    {
-                        this.state.fields.map(form => {
-                        if (form.input_type === "text"){
-                            return(
-                                <InputTextField 
-                                    name={form.name} 
-                                    required={form.required} 
-                                    placeholder={form.placeholder} 
-                                    handleChange={this.handleChange}
-                                    />
-                                );
-                            }
-
-                        if (form.input_type === "dropdown"){
-                            return (
-                                <DropdownSelect
-                                    name={form.name}
-                                    required={form.required}
-                                    assets={form.assets}
-                                    handleChange={this.handleChange}
-                                    />
-                                    );
-                                }
-                            })
-                        }
-                        <button type="button" className="btn" onClick={() => this.submitInvestForm(this.props)}>Invest</button>
+                    
+                    <DropdownSelect
+                        name = "investmentAsset"
+                        input_tpye = "dropdown"
+                        required  = {true}
+                        assets = {this.props.allowedAssets}
+                        handleChange = {this.handleChange}
+                        />
+                        Shares:
+                      <InputTextField 
+                        name = "shares"
+                        placeholder = "Shares"
+                        required = {true} 
+                        handleChange = {this.handleChange}
+                        value = {this.state.shares}
+                        />
+                        Investment:
+                        <InputTextField 
+                         name = "amount"
+                         placeholder = "Amount"
+                         required = {true} 
+                         handleChange = {this.handleChange}
+                         value = {this.state.amount}
+                         />
+                        <br/>
+                        <button type="button" className="btn" onClick={() => this.submitInvestForm(this.props)}>{this.state.buttonState}</button>
                         <button type="button" className="btn cancel" onClick={() => this.closeInvestForm()}>Close</button>
                     </form>
                 </div>
-               
-                </div>
-                );
-            }
+            );
+        }
 }
 
 

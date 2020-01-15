@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import { StaticQuery, graphql } from 'gatsby';
 
 let concenated_string = (string_list_array) => {
-    return string_list_array.join('-');
+    return string_list_array.join('');
 }
 
 let content = (data, props) => {
@@ -71,7 +71,7 @@ export default (props) => (
         <div dangerouslySetInnerHTML={content(data, props)}/>
         </div>
         <div className="ManagerLink">
-            <Link to={concenated_string(["manager", props.manageraddress])}>
+            <Link to={concenated_string(["/manager", props.manageraddress])}>
                  <div className="BaseButton MoreButton" style={{float:'right'}}>
                     <h6>
                         More

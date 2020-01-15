@@ -63,7 +63,8 @@ async componentDidMount(){
           <h6>Manager-Address:{this.props.pageContext.manager_id}</h6>
           <div dangerouslySetInnerHTML={this.content(this.props)}/>
           <div dangerouslySetInnerHTML={this.button(this.props)}/>
-            <Link to={this.props.pageContext.id}>
+           {console.log("Problem:", this.props.pageContext.id)}
+            <Link to={`/${this.props.pageContext.id}`}>
                  <div className="BaseButton MoreButton" style={{float:'left', bottom:'10px', position: 'absolute'}}>
                     <h6>
                         Back

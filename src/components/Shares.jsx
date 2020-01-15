@@ -1,6 +1,7 @@
 import React from "react"
 import { getAccount, getWeb3 } from "../web3/melonweb3";
 import SharesBox from "./SharesBox";
+import { Accounting } from "@melonproject/melonjs";
 
 
 export default class Shares extends React.Component{
@@ -9,46 +10,58 @@ export default class Shares extends React.Component{
         super(props);
        
         this.state = {
-            ready: false
+            ready: false,
+            shares: "0"
         }
-    
     }
 
     async componentDidMount(){
-       
+        
+        this.env = await getWeb3();
+        this.Accounting = new Accounting(this.env, this.props.accounting);
+        const account = await getAccount().catch(console.log("getAccount()"));
+        this.setState({
+                accountAddress: account
+        })
+
+        //const shares = await this.getSharesFromBlockchain().catch(console.log("getSharesFromBlockchain()"));
+        const shares = this.getSharesFromApi();
+
         this.setState({
             ready: true,
-            accountAddress: await getAccount()
-        });
+            shares: shares
+        })
+        
         try{
             window.ethereum.on('accountsChanged', async()=>{
                 this.setState({
                     accountAddress: await getAccount()
                 })
             })}catch{
-              //console.log("No Metamask");
+              console.log("No Metamask");
           }
     }
 
-    getOwner(element, address){
-        //console.log("element",element);
-        return element.owner.id === address;
+
+    async getSharesFromBlockchain(){
+        if (this.state.shares){
+        const calcResults = await this.Accounting.getCalculationResults();
+        return calcResults.sharePrice;
+        }
     }
 
-    getShares(){
+    getSharesFromApi(){
         
-        //console.log("getShares",this.state);
         const account = this.state.accountAddress;
         const owner = this.props.investments.filter((element) => {
             return element.owner.id === account;
         });
-        //console.log(owner);
-
-        if(typeof owner !== 'undefined' && owner.length !== 0){ 
-            //console.log("owner", owner);
-            return  <SharesBox shares={owner[0].shares/1e18}/>
+        if(typeof owner !== 'undefined' && owner.length !== 0){
+            console.log("Shares", owner[0].shares);
+            return owner[0].shares/1e18
         } else {
-            return <SharesBox shares={"0"}/>;
+            console.log("shares hier");
+            return "0"
         }
     }
 
@@ -60,7 +73,7 @@ export default class Shares extends React.Component{
 
         return (
             <div className="Shares">
-            {this.getShares()}
+                <SharesBox shares={this.state.shares}/>
         </div>
         )
     }

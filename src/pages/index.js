@@ -1,5 +1,5 @@
 import React from "react";
-import StaticSite from "../components/StaticSite.jsx";
+import StaticSiteSlideDown from "../components/StaticSiteSlideDown";
 import { StaticQuery, graphql } from 'gatsby';
 
 export default () => (
@@ -16,9 +16,9 @@ export default () => (
 
       render = {data => (
               <div className="WelcomePage"> 
-                     <StaticSite title="Welcome">
+                     <StaticSiteSlideDown title="Welcome">
                          <div dangerouslySetInnerHTML={{__html: data.wordpressPage.content}}/>
-                    </StaticSite>
+                    </StaticSiteSlideDown>
               </div>
       )}
   />

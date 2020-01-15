@@ -11,9 +11,9 @@ export async function getWeb3(){
     try{
         web3 = new Web3(window.ethereum);
         env = new Environment(web3);
-        await env.enable(); 
+        await env.enable; 
     } catch(error){
-      console.log("No access to user accounts - Legacy Browser");
+      console.log(error, "No access to user accounts - Legacy Browser");
     }
 
   return env;
@@ -22,9 +22,9 @@ export async function getWeb3(){
     try{
         web3 =  new Web3(window.web3.currentProvider);
         env = new Environment(web3);
-        await env.enable(); 
+        await env.enable; 
     } catch (error){
-      console.log("No access to user accounts - Metamask");
+      console.log(error, "No access to user accounts - Metamask");
     }
     return env;
   } else {

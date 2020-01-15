@@ -11,6 +11,9 @@ export default class Page extends React.Component{
 
   render(){
     //console.log("fundTemplate.js:",props)
+
+    console.log()
+
     return (
     <div>
       <Site 
@@ -21,6 +24,7 @@ export default class Page extends React.Component{
       previous={this.props.pageContext.previous}
       fund = {this.props.data.melon.fund}
       createdAt = {this.props.pageContext.createdAt}
+      assets = {this.props.data.melon.assets}
       >
       </Site>
     </div>
@@ -28,33 +32,64 @@ export default class Page extends React.Component{
   }
 }
 
+
 export const query = graphql`
-  query MyFundHoldingsQuery ($id: ID!, $createdAt:MELON_BigInt!) {
+  query MyFundHoldingsQuery ($id: ID!) {
     melon{
       fund(id: $id) {
       name
       createdAt
-      holdingsHistory {
-        amount
-      }
       sharePrice
       totalSupply
       gav
-      calculationsHistory {
+      calculationsHistory (first: 100){
+          sharePrice
+          timestamp
+          }
+      c1: calculationsHistory (first: 100){
         sharePrice
         timestamp
-      }
+        }
+      c2: calculationsHistory (skip: 100){
+        sharePrice
+        timestamp
+        }
+      c3: calculationsHistory (skip: 200){
+        sharePrice
+        timestamp
+        }
+      c4:  calculationsHistory (skip: 300){
+        sharePrice
+        timestamp
+        }
+      c5: calculationsHistory (skip: 400){
+        sharePrice
+        timestamp
+        }
       accounting {
+        id
         ownedAssets {
           id
           name
           lastPrice
           symbol
           decimals
-          fundHoldingsHistory(where: {timestamp_gte: $createdAt}){
+          fundHoldingsHistory (orderDirection: desc, orderBy: timestamp, first:1){
             amount
+            timestamp
           }
         }
+      }
+      holdingsHistory(orderBy: timestamp, orderDirection: desc, first: 12) {
+        amount
+        asset {
+          id
+          name
+          symbol
+          decimals
+        }
+        assetGav
+        timestamp
       }
       feeManager {
         managementFee {
@@ -91,6 +126,10 @@ export const query = graphql`
         sharePrice
       }
     }
-  }
+    assets {
+        id
+        symbol
+      }
+    } 
 }
 `;

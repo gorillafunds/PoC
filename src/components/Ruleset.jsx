@@ -3,8 +3,9 @@ import { Link } from "gatsby";
 
 let checkPolicies = (props, policy) => {
    const factor = 1E18;
-   //console.log("props",props);
-   //console.log("policy",policy);
+   console.log("Ruleset");
+   console.log("props",props);
+   console.log("policy",policy);
    if( props.policy.length === 0 ){
       return "--"; 
    } else {
@@ -58,7 +59,7 @@ let checkPolicies = (props, policy) => {
 }
 
 export default (props) => (
-
+      
          <div className="Ruleset content-element">
             <div className="RulesetTitle">
                <div><h5>Ruleset:</h5></div>
@@ -72,9 +73,6 @@ export default (props) => (
             <div className="RulesetRow Ruleset21">
                <div className="RulesetItem"><h5>Max Positions:</h5></div><div className="RulesetIcon"><h5>{checkPolicies(props,"Max positions")}</h5></div>
             </div>
-            <div className="RulesetRow Ruleset22">
-               <div className="RulesetItem"><h5>Actual Positions:</h5></div><div className="RulesetIcon"><h5>{checkPolicies(props,"Position")}</h5></div>
-            </div>
             <div className="RulesetRow Ruleset31">
                <div className="RulesetItem"><h5>Price-Tolerance:</h5></div><div className="RulesetIcon"><h5>{checkPolicies(props,"Price tolerance")}</h5></div>
             </div>
@@ -87,3 +85,6 @@ export default (props) => (
             </div>
          </div>
 );
+/*<div className="RulesetRow Ruleset22">
+<div className="RulesetItem"><h5>Actual Positions:</h5></div><div className="RulesetIcon"><h5>{checkPolicies(props,"Position")}</h5></div>
+</div>*/

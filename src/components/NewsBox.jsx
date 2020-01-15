@@ -1,5 +1,5 @@
 import React from "react";
-import { getAccount } from '../web3/melonweb3';
+import { getAccount, getWeb3 } from '../web3/melonweb3';
 //import Web3Address from '../components/Web3Address';
 import SlideBox from '../components/SlideBox';
 
@@ -17,7 +17,7 @@ export default class NewsBox extends React.Component{
 
     async componentDidMount(){
         console.log(this.props);
-        //this.env = await getWeb3();
+        this.env = await getWeb3();
         this.setState({
             accountAddress: await getAccount()
         });
@@ -40,8 +40,9 @@ export default class NewsBox extends React.Component{
         }
 
      getContent(){
-       
-        if(this.state.accountAddress !== "Please activate Metamask"){
+        console.log("accountAddress", this.state.accountAddress);
+        console.log("state", this.state);
+        if(this.state.accountAddress !== null){
             return(<div></div>)
         } else {
                 console.log("hier");

@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from 'gatsby';
-import StaticSite from "../components/StaticSite";
+import StaticSite from "../components/StaticSite"
 import FundListItem from "../components/FundListItem";
 import FundList from "../components/FundList";
 //import TransitionLink from "gatsby-plugin-transition-link";
@@ -24,7 +24,7 @@ export default ({ data })  => {
         <FundList>
         {data.melon.funds.map(({name,id}) => (
             <div key={id}>
-              <Link to={id}> 
+              <Link to={`/${id}`}> 
                 <div className="FundList">
                   <FundListItem id={id} name={name}/>
                   <br/>

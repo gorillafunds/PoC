@@ -1,6 +1,6 @@
 import React from 'react';
 import { toBigNumber } from '@melonproject/melonjs/utils/toBigNumber';
-
+import FactSheetItem from "./FactSheetItem";
 
 const EtherInWei = 1E18;
 
@@ -9,18 +9,9 @@ export default class Factsheet extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            ready: false,
-            value: this.caclulatePerformance('alltime')
+            value: this.caclulatePerformance('alltime'),
         }
         this.handleClick = this.handleClick.bind(this);
-    }
-
-    componentDidMount(){
-       
-        //console.log(this.props);
-        this.setState({
-            ready: true
-        });
     }
 
     caculateValue(dateString){
@@ -40,7 +31,7 @@ export default class Factsheet extends React.Component{
 
         //console.log(this.props);
         let today = new Date();
-        let day = today.toLocaleDateString();
+        //let day = today.toLocaleDateString();
         
         let dayMinusWeek = new Date(today.setDate(today.getDate() - 7));
         let dayWeek = dayMinusWeek.toLocaleDateString();
@@ -53,10 +44,6 @@ export default class Factsheet extends React.Component{
         
         let dayMinusYTD = new Date(new Date().getFullYear(), 0, 1);
         let dayYTD = dayMinusYTD.toLocaleDateString();
-        
-        //console.log(day, dayWeek, dayMonth, dayYear, dayYTD);
-        //console.log("shareprice", this.props.shareprice);
-        //console.log("shareprice", this.props.calculationshistory[0].sharePrice);
 
 
         switch(time){
@@ -101,10 +88,6 @@ export default class Factsheet extends React.Component{
 
     render(){
 
-        if(!this.state.ready){
-            return null;
-        }
-
         return (
         <div className="Factsheet content-element">
 
@@ -140,12 +123,13 @@ export default class Factsheet extends React.Component{
                 <div className="FundRow">
                     <div className="FundRowItemLeft CenterItem">
                         <h6>
-                            {(this.props.shareprice/EtherInWei*this.props.totalsupply/EtherInWei).toFixed(3)}
+                        <FactSheetItem shareprice={this.props.shareprice} accountingContractAddress={this.props.accountingContractAddress} aum={false} totalsupply={this.props.totalsupply}/>
                         </h6>
                     </div>
                     <div className="FundRowItemRight CenterItem">
                         <h6>
-                            {(this.props.shareprice/EtherInWei).toFixed(3)}
+                           <FactSheetItem shareprice={this.props.shareprice} accountingContractAddress={this.props.accountingContractAddress} aum={true} totalsupply={this.props.totalsupply}/>
+
                         </h6>
                     </div>
                 </div>

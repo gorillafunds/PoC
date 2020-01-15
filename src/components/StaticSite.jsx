@@ -2,7 +2,6 @@ import React from 'react';
 import StaticHeader from "./StaticHeader";
 import StaticMenu from "./StaticMenu";
 import Footer from "./Footer";
-import NewsBox from '../components/NewsBox';
 
 const StaticSite = (props) => {
     return (
@@ -10,7 +9,6 @@ const StaticSite = (props) => {
       <div className="ContainerLeft grid-element-side"/>
         <StaticHeader/>
         <StaticMenu title={props.title}/>
-        <NewsBox case="MetamaskAlert"/>
         <div className="Content ContentFundList ManagerStrategyPage"> 
               {props.children}
         </div>
@@ -23,4 +21,3 @@ const StaticSite = (props) => {
 
   export default StaticSite
   
-

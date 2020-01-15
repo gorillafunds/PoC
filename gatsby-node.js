@@ -1,6 +1,14 @@
 
 const path = require(`path`)
 
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
+  actions.setWebpackConfig({
+      node: {
+        fs: 'empty',
+      }
+  })
+}
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
   const fundTemplate = path.resolve(`src/templates/fundTemplate.js`);
@@ -10,7 +18,7 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(`
     query loadFundsQuery{
           melon {
-            funds(orderBy: name, skip: 1, where: {gav_gt: "1000000000000000", isShutdown: false, sharePrice_not: "1"}) {
+            funds(orderBy: name, skip: 1, where: {isShutdown: false, totalSupply_gt: "1000000000000", nav_gt: "1000000000000"}) {
               name
               id
               createdAt
@@ -68,7 +76,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         createPage({
             
-            path: `/manager-${manager.id}`,
+            path: `/manager${manager.id}`,
             component: fundManager,
             context: {
                id: `${id}`,
@@ -81,7 +89,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         createPage({
             
-            path: `/strategy-${manager.id}-${id}`,
+            path: `/strategy${manager.id}${id}`,
             component: fundStrategy,
             context: {
                 id: `${id}`,

@@ -8,6 +8,9 @@ const api_kovan = "https://api.thegraph.com/subgraphs/name/melonproject/melon-ko
 const local_wordpress = "managinggorillafundscom.local"
 const online_wordpress = "managinggorillafunds.firma-21.de"
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 module.exports = {
   siteMetadata: {
@@ -17,6 +20,7 @@ module.exports = {
     footer3: '/impressum',
     account: "0xwerwer",
   },
+  pathPrefix:'__GATSBY_IPFS_PATH_PREFIX__',
   plugins: [
     {
       resolve: "gatsby-source-graphql",
@@ -28,6 +32,7 @@ module.exports = {
       },
     },
     "gatsby-transformer-json",
+    'gatsby-plugin-ipfs',
     {
       resolve: `gatsby-source-filesystem`,
       options: {

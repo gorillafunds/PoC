@@ -8,20 +8,31 @@ import Fund from "./Fund";
 import DynamicMenu from "./DynamicMenu";
 import "../utils/typography";
 
+
+
 const Site = (props) => {
-    //console.log("Site:",{props})
+
+    console.log("Site:",{props})
     return (
         <div className="Container">
         <ContainerLeft previous={props.previous}/>
-        <Header investments={props.fund.investments}/>
+        <Header investments={props.fund.investments} accounting={props.fund.accounting.id}/>
         <DynamicMenu 
             fundAddress={props.id} 
             participationContractAddress={props.fund.participation.id} 
+            accountingContractAddress={props.fund.accounting.id}
             allowedAssets={props.fund.participation.allowedAssets} 
             investments={props.fund.investments}
             title="Explore the funds"/>
               <Content content={props.content}>
-                <Fund fund={props.fund} id={props.id} /> 
+                <Fund 
+                fund={props.fund} 
+                id={props.id} 
+                participationContractAddress={props.fund.participation.id} 
+                accountingContractAddress={props.fund.accounting.id}
+                holdingsHistory={props.fund.holdingsHistory}
+                assets = {props.assets}
+                /> 
               </Content>
         <Footer/>
         <div className="Spacer grid-element-center"/>

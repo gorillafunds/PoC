@@ -39,8 +39,19 @@ export default (props) => (
                           </h3> 
                       </Link>
                   </div>
-                <InvestForm investments={props.investments} fundAddress={props.fundAddress} participationContractAddress={props.participationContractAddress} allowedAssets={props.allowedAssets}/>
-                <RedeemForm investments={props.investments} fundAddress={props.fundAddress} participationContractAddress={props.participationContractAddress} allowedAssets={props.allowedAssets}/>
+                <InvestForm 
+                    investments={props.investments} 
+                    fundAddress={props.fundAddress} 
+                    participationContractAddress={props.participationContractAddress} 
+                    accountingContractAddress={props.accountingContractAddress}
+                    allowedAssets={props.allowedAssets}
+                    />
+                <RedeemForm 
+                    investments={props.investments} 
+                    fundAddress={props.fundAddress} 
+                    participationContractAddress={props.participationContractAddress} 
+                    allowedAssets={props.allowedAssets}
+                    />
               </div>
            
 )     

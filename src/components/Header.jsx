@@ -31,7 +31,7 @@ export default (props) => (
                             </h1>
                         </div>
                     </Link>
-                    <Shares investments={props.investments}/>
+                    <Shares investments={props.investments} accounting={props.accounting}/>
                 </div>
         )}
     />
