@@ -2,7 +2,7 @@ import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import { Link } from "gatsby";
 import gorilla from "../../media/gorilla.svg";
-import Shares from "./Shares";
+import FShares from "./FShares";
 
 export default (props) => (
     
@@ -31,7 +31,7 @@ export default (props) => (
                             </h1>
                         </div>
                     </Link>
-                    <Shares investments={props.investments} accounting={props.accounting}/>
+                    <FShares investments={props.investments} accounting={props.accounting}  fundAddress={props.fundAddress} />
                 </div>
         )}
     />

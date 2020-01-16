@@ -21,7 +21,7 @@ export default class FactSheetItem extends React.Component {
         const account = await getAccount().catch((err) => {console.log(err)});
         this.Accounting = new Accounting(this.env, this.props.accountingContractAddress);
         const calcResults = await this.Accounting.getCalculationResults().catch((err) => {console.log(err)});
-        console.log(calcResults);   
+        //console.log(calcResults);   
         try{
             this.setState({
                 accountAddress: account,

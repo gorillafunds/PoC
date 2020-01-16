@@ -8,7 +8,7 @@ let concenated_string = (string_list_array) => {
 
 let content = (data, props) => {
     
-    //console.log("Hier:",data);
+    //console.log("data:",data);
     //console.log("props",props);
 
     if (typeof data.allWordpressPost.edges === 'undefined' || data.allWordpressPost.edges.length === 0){

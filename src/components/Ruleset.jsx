@@ -3,9 +3,9 @@ import { Link } from "gatsby";
 
 let checkPolicies = (props, policy) => {
    const factor = 1E18;
-   console.log("Ruleset");
-   console.log("props",props);
-   console.log("policy",policy);
+   //console.log("Ruleset");
+   //console.log("props",props);
+   //console.log("policy",policy);
    if( props.policy.length === 0 ){
       return "--"; 
    } else {

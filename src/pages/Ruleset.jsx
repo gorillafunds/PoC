@@ -17,15 +17,15 @@ export default () => (
 
       render = {data => (
               <div className="RulesetPage"> 
-                     <StaticSite title="Ruleset">
-                         <div dangerouslySetInnerHTML={{__html: data.wordpressPage.content}}/>
+                    <StaticSite title="Ruleset">
+                      <div dangerouslySetInnerHTML={{__html: data.wordpressPage.content}}/>
                       <Link to="/">
                           <div className="BaseButton MoreButton" style={{float:'left', bottom:'10px', position: 'absolute'}}>
-                            <h6>
-                              Back
-                            </h6>
-                        </div>
-                        </Link>
+                              <h6>
+                                  Back
+                              </h6>
+                          </div>
+                      </Link>
                     </StaticSite>
               </div>
       )}

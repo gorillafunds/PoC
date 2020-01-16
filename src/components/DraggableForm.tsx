@@ -83,7 +83,6 @@ export default class DraggableForm extends React.Component {
         }
 
         const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
-        //const {deltaPosition, controlledPosition} = this.state;
         const {deltaPosition} = this.state;
   
             return (

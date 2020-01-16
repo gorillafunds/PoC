@@ -30,10 +30,10 @@ export async function getWeb3(){
   } else {
     /* Infura Fallback */
     try{
-      
+      //'https://mainnet.infura.io/v3/ec86b2b5c5644c29b07cf35d77d1bd78'
     //console.log(env);
     const provider = new Web3(new Web3.providers.HttpProvider(
-      'https://mainnet.infura.io/v3/ec86b2b5c5644c29b07cf35d77d1bd78'
+      'https://mainnet.melonport.com'
     ));
     web3 = new Web3(provider);
     env = new Environment(web3);

@@ -1,6 +1,5 @@
 import React from "react";
 import { getAccount, getWeb3 } from '../web3/melonweb3';
-//import Web3Address from '../components/Web3Address';
 import SlideBox from '../components/SlideBox';
 
 export default class NewsBox extends React.Component{

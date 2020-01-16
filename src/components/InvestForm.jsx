@@ -236,7 +236,8 @@ export default class Form extends React.Component{
         });
 
         if(this.checkInput(this.state.amount) && this.checkInput(this.state.shares) && this.checkWeb3(this.state.accountAddress)){
-            await this.makeTransaction().catch((err) => {console.log(err)});
+           // await this.makeTransaction().catch((err) => {console.log(err)});
+           alert("Deactivated at the moment");
         }
     }
 
@@ -269,7 +270,7 @@ export default class Form extends React.Component{
                 this.setState({buttonState:'Success'});
             });
           });
-          console.log('Receipt:', JSON.stringify(receipt, undefined, 4));
+          //console.log('Receipt:', JSON.stringify(receipt, undefined, 4));
           this.setState({buttonState:'Invest'});
     }
 

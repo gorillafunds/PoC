@@ -1,10 +1,10 @@
 import React from "react"
 import { getAccount, getWeb3 } from "../web3/melonweb3";
 import SharesBox from "./SharesBox";
-import { Accounting } from "@melonproject/melonjs";
+import { Accounting, Shares } from "@melonproject/melonjs";
 
 
-export default class Shares extends React.Component{
+export default class FShares extends React.Component{
 
     constructor(props){
         super(props);
@@ -18,13 +18,16 @@ export default class Shares extends React.Component{
     async componentDidMount(){
         
         this.env = await getWeb3();
-        this.Accounting = new Accounting(this.env, this.props.accounting);
+        //this.Accounting = new Accounting(this.env, this.props.accounting);
         const account = await getAccount().catch(console.log("getAccount()"));
+        //this.Shares = new Shares(this.props.fundAddress);
+        //console.log(Shares);
         this.setState({
                 accountAddress: account
         })
 
-        //const shares = await this.getSharesFromBlockchain().catch(console.log("getSharesFromBlockchain()"));
+        //const sharesA = await this.getSharesFromBlockchain().catch(console.log("getSharesFromBlockchain()"));
+        //console.log(sharesA);
         const shares = this.getSharesFromApi();
 
         this.setState({
@@ -43,12 +46,12 @@ export default class Shares extends React.Component{
     }
 
 
-    async getSharesFromBlockchain(){
+    /*async getSharesFromBlockchain(){
         if (this.state.shares){
-        const calcResults = await this.Accounting.getCalculationResults();
-        return calcResults.sharePrice;
+            const balance = await this.Shares.getBalanceOf(this.state.accountAddress);
+            return balance;
         }
-    }
+    }*/
 
     getSharesFromApi(){
         

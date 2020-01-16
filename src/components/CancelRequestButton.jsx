@@ -77,8 +77,4 @@ export default class CancelRequestButton extends React.Component{
         }
     }
 
- /*return(
-                <div>
-                    <StateButton state={this.state.buttonState}/>
-                </div>
-            )*/
+ 

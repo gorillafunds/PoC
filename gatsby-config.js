@@ -20,7 +20,7 @@ module.exports = {
     footer3: '/impressum',
     account: "0xwerwer",
   },
-  pathPrefix:'__GATSBY_IPFS_PATH_PREFIX__',
+  //pathPrefix:'__GATSBY_IPFS_PATH_PREFIX__',
   plugins: [
     {
       resolve: "gatsby-source-graphql",
@@ -32,7 +32,7 @@ module.exports = {
       },
     },
     "gatsby-transformer-json",
-    'gatsby-plugin-ipfs',
+    //"gatsby-plugin-ipfs",
     {
       resolve: `gatsby-source-filesystem`,
       options: {

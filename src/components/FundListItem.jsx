@@ -8,7 +8,7 @@ export default (props) => (
                 <h6>Contract Address: {props.id}</h6>
             </div>
             <div className="Placeholder FundListItemDiagramm" style={{display: `inline-block`, float: `right`}}>
-             <img src={IOSStats} alt="iostats_image" style={{imageRendering:`auto` }}/>
+                <img src={IOSStats} alt="iostats_image" style={{imageRendering:`auto` }}/>
             </div>
         </div>
   );
