@@ -42,7 +42,7 @@
     "react-draggable": "^4.1.0",
     "react-slidedown": "^2.4.5",
     "react-typography": "^0.16.19",
-    "scrypt": "^6.0.3",
+    "js-scrypt": "0.2.0",
     "typescript": "^3.6.3",
     "typography": "^0.16.19",
     "typography-theme-bootstrap": "^0.16.19",
