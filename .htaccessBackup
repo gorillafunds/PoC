@@ -1,0 +1,51 @@
+#######################################################################
+#     Diese .htaccess wurde vom STRATO-Webservermanager erstellt      #
+#######################################################################
+
+
+
+
+AuthUserFile /mnt/rid/82/92/51438292/htdocs/.htuser
+
+AuthName "Gesicherter Bereich"
+AuthType Basic
+
+
+
+
+<FilesMatch ^((Organigramm\.php)|(LehrerListeAnzeigen\.php)|(LehrerEintragen\.php)|(LehrerAnzeigen\.php)|(AenderungenBestaetigen\.php)|(LehrerListeAnzeigenAlles\.php))*$>
+AddDefaultCharset utf-8
+require user LehrerSchiff
+</FilesMatch>
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+

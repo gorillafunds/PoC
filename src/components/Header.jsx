@@ -31,7 +31,13 @@ export default (props) => (
                             </h1>
                         </div>
                     </Link>
-                    <FShares investments={props.investments} accounting={props.accounting}  fundAddress={props.fundAddress} />
+                    <FShares 
+                        investments={props.investments} 
+                        fundAddress={props.fundAddress} 
+                        participationContractAddress={props.participationContractAddress}
+                        share={props.share}
+                    />
+                    {console.log("header:",props)}
                 </div>
         )}
     />

@@ -16,7 +16,12 @@ const Site = (props) => {
     return (
         <div className="Container">
         <ContainerLeft previous={props.previous}/>
-        <Header investments={props.fund.investments} accounting={props.fund.accounting.id}  fundAddress={props.id} />
+        <Header 
+          investments={props.fund.investments} 
+          fundAddress={props.id} 
+          participationContractAddress={props.fund.participation.id} 
+          share={props.fund.share.id}
+        />
         <DynamicMenu 
             fundAddress={props.id} 
             participationContractAddress={props.fund.participation.id} 
@@ -31,7 +36,7 @@ const Site = (props) => {
                 participationContractAddress={props.fund.participation.id} 
                 accountingContractAddress={props.fund.accounting.id}
                 holdingsHistory={props.fund.holdingsHistory}
-                assets = {props.assets}
+                assets={props.assets}
                 /> 
               </Content>
         <Footer/>

@@ -236,8 +236,38 @@ export default class Form extends React.Component{
         });
 
         if(this.checkInput(this.state.amount) && this.checkInput(this.state.shares) && this.checkWeb3(this.state.accountAddress)){
-           // await this.makeTransaction().catch((err) => {console.log(err)});
-           alert("Deactivated at the moment");
+            await this.makeTransaction().catch(async (err) => {
+                console.log(err);
+                this.setState({buttonState: 'Error'});
+                await this.sleep(2000);
+                this.setState({buttonState: 'Invest'});
+            });
+            //alert("Deactivated at the moment");
+        }
+    }
+
+    sleep(milliseconds) {
+        return new Promise(resolve => setTimeout(resolve, milliseconds));
+     }
+
+    checkHash(hash){
+        console.log(hash);
+        this.setState({buttonState: "Transaction pending"})
+     }
+
+     styleButton(){
+        if(this.state.buttonState === "Success"){
+            return  "btn SuccessButton";
+        } else if (this.state.buttonState === "Confirm with Metamask"){
+            return "btn ConfirmButton";
+        } else if (this.state.buttonState === "Approved"){
+            return "btn ConfirmButton";
+        } else if (this.state.buttonState === "Transaction pending"){
+            return "btn PendingButton";
+        } else if (this.state.buttonState === "Error"){
+            return "btn ErrorButton";
+        } else {
+            return "btn";
         }
     }
 
@@ -262,23 +292,27 @@ export default class Form extends React.Component{
         const RequestInvestmentTransaction = this.FundParticipation.requestInvestment(this.state.accountAddress, this.requestedShares, this.investmentAmount, this.state.investmentAsset);
         const TransactionReceipt = await RequestInvestmentTransaction.prepare();
         const TransactionResult = RequestInvestmentTransaction.send(TransactionReceipt);
-
-        const receipt = await new Promise((resolve) => {
-            TransactionResult.once('transactionHash', hash => console.log('Transaction Hash:', hash));
-            TransactionResult.once('receipt', receipt => {
-                resolve(receipt)
-                this.setState({buttonState:'Success'});
+        this.setState({buttonState: 'Confirm with Metamask'});            
+        const receipt = await new Promise((resolve, reject) => {
+            TransactionResult.on('transactionHash', hash => this.checkHash(hash)); 
+            TransactionResult.on('receipt', async receipt => {
+            resolve(receipt);
+            this.setState({buttonState: 'Success'});
+            await this.sleep(3000);
+            this.setState({buttonState: 'Invest'});
             });
-          });
-          //console.log('Receipt:', JSON.stringify(receipt, undefined, 4));
-          this.setState({buttonState:'Invest'});
+            TransactionResult.on('error', err => reject(err));
+        });
+        this.setState({buttonState: 'Success'});
+        await this.sleep(3000);
+        this.setState({buttonState: 'Invest'});
+        console.log('Receipt:', JSON.stringify(receipt, undefined, 4));
     }
 
     async prepareTransaction(){
         
         //const investmentAmount = toBigNumber(this.investmentAmount);
         console.log("investmentAmount:", this.investmentAmount);
-
         // Logging
         console.log("prepareTransaction()");
         console.table({
@@ -296,10 +330,15 @@ export default class Form extends React.Component{
             console.table({"account:" : this.state.accountAddress, "participationContract" : this.props.participationContractAddress, "investmentAmount:" : this.investmentAmount});
             const ApprovalTransaction = this.Token.approve(this.state.accountAddress, this.props.participationContractAddress, this.investmentAmount);
             const TransactionReceipt = await ApprovalTransaction.prepare();
-            const TransactionResult = await ApprovalTransaction.send(TransactionReceipt);
-            const receipt = await new Promise((resolve) => {
-                TransactionResult.once('transactionHash', hash => console.log('Transaction Hash:', hash));
-                TransactionResult.once('receipt', receipt => resolve(receipt));
+            const TransactionResult = ApprovalTransaction.send(TransactionReceipt);
+            this.setState({buttonState: 'Confirm with Metamask'});            
+            const receipt = await new Promise((resolve, reject) => {
+                TransactionResult.on('transactionHash', hash => this.checkHash(hash)); 
+                TransactionResult.on('receipt', receipt => {
+                    resolve(receipt);
+                    this.setState({buttonState: 'Approved'});
+                    });
+                    TransactionResult.on('error', err => reject(err));
               });
               console.log('Receipt:', JSON.stringify(receipt, undefined, 4));
         }
@@ -341,7 +380,7 @@ export default class Form extends React.Component{
                          value = {this.state.amount}
                          />
                         <br/>
-                        <button type="button" className="btn" onClick={() => this.submitInvestForm(this.props)}>{this.state.buttonState}</button>
+                        <button type="button" className={this.styleButton()} onClick={() => this.submitInvestForm(this.props)}>{this.state.buttonState}</button>
                         <button type="button" className="btn cancel" onClick={() => this.closeInvestForm()}>Close</button>
                     </form>
                 </div>

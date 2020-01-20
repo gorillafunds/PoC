@@ -1,7 +1,6 @@
 import React from "react";
 import {getAccount, getWeb3} from "../web3/melonweb3";
 import { Participation } from "@melonproject/melonjs/contracts/fund/participation/Participation";
-import StateButton from "./StateButton";
 
 export default class CancelRequestButton extends React.Component{
 
@@ -9,7 +8,7 @@ export default class CancelRequestButton extends React.Component{
         super(props);
         this.state = {
             ready: false,
-            buttonState: "init",
+            buttonState: "Cancel Request",
         }
     }
 
@@ -30,51 +29,67 @@ export default class CancelRequestButton extends React.Component{
           }
     }
 
-    async cancelRequest(){
-        const CancelRequestTransaction = this.FundParticipation.cancelRequest(this.state.accountAddress);
-        console.log(CancelRequestTransaction);
-        console.log("Account", this.state.accountAddress);
-        const TransactionReceipt = await CancelRequestTransaction.prepare();
-        const TransactionResult = await CancelRequestTransaction.send(TransactionReceipt);
-        if(TransactionResult === undefined){
-            this.setState({buttonState:'pending'})
-        }
-        const receipt = await new Promise((resolve, reject) => {
-            TransactionResult.once('transactionHash', hash => console.log('Transaction Hash:', hash)); 
-            TransactionResult.once('receipt', receipt => {
-                resolve(receipt);
-                this.setState({buttonState:'mined'});
-            });
-          });
+    sleep(milliseconds) {
+        return new Promise(resolve => setTimeout(resolve, milliseconds));
+     }
 
-        console.log('Receipt:', JSON.stringify(receipt, undefined, 4));
+    checkHash(hash){
+        console.log(hash);
+        this.setState({buttonState: "Transaction pending"});
+     }
+
+     styleButton(){
+        if(this.state.buttonState === "Success"){
+            return  "BaseButton CancelRequestButton Success";
+        } else if (this.state.buttonState === "Cancel Request"){
+            return "BaseButton CancelRequestButton";
+        } else if (this.state.buttonState === "Confirm with Metamask"){
+            return "BaseButton CancelRequestButton";
+        } else if (this.state.buttonState === "Transaction pending"){
+            return "BaseButton CancelRequestButton Pending";
+        } else if (this.state.buttonState === "Error"){
+            return "BaseButton CancelRequestButton Error";
+        } else {
+            return "BaseButton CancelRequestButton";
+        }
+    }
+
+    async cancelRequest(){
+        if(this.state.buttonState === 'Cancel Request'){
+            try{
+                const CancelRequestTransaction = this.FundParticipation.cancelRequest(this.state.accountAddress);
+                const TransactionReceipt = await CancelRequestTransaction.prepare();
+                const TransactionResult = CancelRequestTransaction.send(TransactionReceipt);
+                this.setState({buttonState: 'Confirm with Metamask'});            
+                const receipt = await new Promise((resolve, reject) => {
+                    TransactionResult.on('transactionHash', hash => this.checkHash(hash)); 
+                    TransactionResult.on('receipt', async receipt => {
+                        resolve(receipt);
+                        this.setState({buttonState: 'Success'});
+                    });
+                    TransactionResult.on('error', err => reject(err));
+                    
+                });
+                this.setState({buttonState: 'Success'});
+                console.log('Receipt:', JSON.stringify(receipt, undefined, 4));
+            } catch (err){
+                this.setState({buttonState: 'Error'});
+                console.log("Transaction failed", err);
+                await this.sleep(3000);
+                this.setState({buttonState: 'Execute Request'});
+            }
+        }
     }
 
     render(){
-        
-        if(this.state.buttonState === 'init'){
             return (
                 <div>
-                    <div className="BaseButton CancelRequestButton" onClick={() => this.cancelRequest()}>
-                        <h3>Cancel Request</h3>
+                    <div className={this.styleButton()} onClick={() => this.cancelRequest()}>
+                        <h3>{this.state.buttonState}</h3>
                     </div>
                 </div>
-        )} else if (this.state.buttonState === 'pending'){
-            return (
-                <div>
-                    <div className="BaseButton CancelRequestButton">
-                        <h3>mining...</h3>
-                    </div>
-                </div>
-            )} else if (this.state.buttonState === 'mined') {
-            return (
-                <div>
-                    <div className="BaseButton CancelRequestButton">
-                        <h3>Successfully Canceled</h3>  
-                    </div>
-                </div>
-            )}
+                )
+            }
         }
-    }
 
  

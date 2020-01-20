@@ -21,7 +21,7 @@ export default class FundStructure extends React.Component{
       //console.log("props:", this.props);
       this.env = await getWeb3();
       //console.log(this.props.holdingsHistory);
-      await this.getDataArray(this.props.holdingsHistory);
+      this.getDataArray(this.props.holdingsHistory);
       this.setState({
         ready: true,
         valueArray: this.valueArray
@@ -29,9 +29,9 @@ export default class FundStructure extends React.Component{
         //console.log(this.state.valueArray);
   }
 
-  async getDataArray(value_array){
-
-    let timestamp = value_array[0].timestamp;
+  getDataArray(value_array){
+    let timestamp = 946741110;
+    timestamp = value_array[0].timestamp;
     value_array = value_array.filter((element) => {
         if ( element.timestamp === timestamp){
           return true;
@@ -39,6 +39,7 @@ export default class FundStructure extends React.Component{
           return false;
         }
     });
+  
     //console.log(value_array);
 
     value_array.map((element, index) => {

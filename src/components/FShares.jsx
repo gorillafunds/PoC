@@ -1,7 +1,8 @@
 import React from "react"
 import { getAccount, getWeb3 } from "../web3/melonweb3";
 import SharesBox from "./SharesBox";
-import { Accounting, Shares } from "@melonproject/melonjs";
+import { Participation, Shares } from "@melonproject/melonjs";
+import { toBigNumber } from '@melonproject/melonjs/utils/toBigNumber';
 
 
 export default class FShares extends React.Component{
@@ -17,24 +18,21 @@ export default class FShares extends React.Component{
 
     async componentDidMount(){
         
-        this.env = await getWeb3();
-        //this.Accounting = new Accounting(this.env, this.props.accounting);
+        this.env = await getWeb3().catch((err) => {console.log(err)});
         const account = await getAccount().catch(console.log("getAccount()"));
-        //this.Shares = new Shares(this.props.fundAddress);
-        //console.log(Shares);
         this.setState({
-                accountAddress: account
-        })
-
-        //const sharesA = await this.getSharesFromBlockchain().catch(console.log("getSharesFromBlockchain()"));
-        //console.log(sharesA);
-        const shares = this.getSharesFromApi();
-
+            ready: true,
+            accountAddress: account,
+        });
+        const shares = await this.getSharesFromApi();
         this.setState({
             ready: true,
             shares: shares
-        })
+        });
+        this.getSharesFromBlockchain();
+        console.log("shares:", this.props.share);
         
+       
         try{
             window.ethereum.on('accountsChanged', async()=>{
                 this.setState({
@@ -46,14 +44,17 @@ export default class FShares extends React.Component{
     }
 
 
-    /*async getSharesFromBlockchain(){
-        if (this.state.shares){
-            const balance = await this.Shares.getBalanceOf(this.state.accountAddress);
-            return balance;
-        }
-    }*/
+    async getSharesFromBlockchain(){
+        this.Participation = new Participation(this.env, this.props.participationContractAddress);
+        this.Shares = new Shares(this.env, this.props.share);
+        const ownedShares = await this.Shares.getBalanceOf(this.state.accountAddress).catch((err) => {console.log(err)});    
+        const ownedSharesDec = ownedShares.dividedBy(toBigNumber(1E18));
+        this.setState({
+            shares: ownedSharesDec.toString()
+        })
+    }
 
-    getSharesFromApi(){
+    async getSharesFromApi(){
         
         const account = this.state.accountAddress;
         const owner = this.props.investments.filter((element) => {

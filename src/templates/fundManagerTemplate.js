@@ -55,10 +55,11 @@ async componentDidMount(){
     //console.log("fundManagerTemplate.js:",props)
     return (
         <div className="WordpressSite">
-        <StaticSite title={this.props.pageContext.manager_id}
-        id={this.props.pageContext.id} 
-        manager_id={this.props.pageContext.manager_id}
-        >
+          <StaticSite 
+            title={this.props.pageContext.manager_id}
+            id={this.props.pageContext.id} 
+            manager_id={this.props.pageContext.manager_id}
+          >
           <h6>Fund-Manager</h6>
           <h6>Manager-Address:{this.props.pageContext.manager_id}</h6>
           <div dangerouslySetInnerHTML={this.content(this.props)}/>

@@ -47,25 +47,42 @@ export default class Form extends React.Component{
         return new Promise(resolve => setTimeout(resolve, milliseconds));
      }
 
+     checkHash(hash){
+        console.log(hash);
+        this.setState({buttonState: "Transaction pending"})
+     }
+
     async submitRedeemForm(){
-        
         console.log("state:",this.state);
         if(this.checkInput(this.state.shares)){
+            try{
             const shares = toBigNumber(this.state.shares*1e18);
             const RedeemTransaction = this.FundParticipation.redeemQuantity(this.state.accountAddress, shares);
             const TransactionReceipt = await RedeemTransaction.prepare();
             const TransactionResult = RedeemTransaction.send(TransactionReceipt);
-            this.setState({buttonState: 'Confirm with Metamask'});
+            this.setState({buttonState: 'Confirm with Metamask'});            
             const receipt = await new Promise((resolve, reject) => {
-                TransactionResult.once('transactionHash', hash => console.log('Transaction Hash:', hash)); 
-                TransactionResult.once('receipt', receipt =>  resolve(receipt));
+                TransactionResult.on('transactionHash', hash => this.checkHash(hash)); 
+                TransactionResult.on('receipt', async receipt => {
+                    resolve(receipt);
+                    this.setState({buttonState: 'Success'});
+                    await this.sleep(3000);
+                    this.setState({buttonState: 'Redeem'});
+                });
+                TransactionResult.on('error', err => reject(err));
               });
             //receipt.catch(this.setState({buttonState: 'Error'}));
-            //console.log('Receipt:', JSON.stringify(receipt, undefined, 4));
+            this.setState({buttonState: 'Success'});
+            await this.sleep(3000);
+            this.setState({buttonState: 'Redeem'});
+            console.log('Receipt:', JSON.stringify(receipt, undefined, 4));
+            } catch(err){
+                this.setState({buttonState: 'Error'});
+                console.log("Transaction failed:", err);
+                await this.sleep(2000);
+                this.setState({buttonState: 'Redeem'});
+            }
         }
-        this.setState({buttonState: 'Success'});
-        await this.sleep(2000);
-        this.setState({buttonState:'Redeem'});
     }
 
     checkInput(shares){
@@ -83,7 +100,11 @@ export default class Form extends React.Component{
         if(this.state.buttonState === "Success"){
             return  "btn SuccessButton";
         } else if (this.state.buttonState === "Confirm with Metamask"){
-            return "MiningButton"
+            return "btn ConfirmButton"
+        } else if (this.state.buttonState === "Transaction pending"){
+            return "btn PendingButton"
+        } else if (this.state.buttonState === "Error"){
+            return "btn ErrorButton"
         } else {
             return "btn";
         }

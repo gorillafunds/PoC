@@ -37,99 +37,102 @@ export const query = graphql`
   query MyFundHoldingsQuery ($id: ID!) {
     melon{
       fund(id: $id) {
-      name
-      createdAt
-      sharePrice
-      totalSupply
-      gav
-      calculationsHistory (first: 100){
+        name
+        createdAt
+        sharePrice
+        totalSupply
+        gav
+        calculationsHistory (first: 100){
+            sharePrice
+            timestamp
+            }
+        c1: calculationsHistory (first: 100){
           sharePrice
           timestamp
           }
-      c1: calculationsHistory (first: 100){
-        sharePrice
-        timestamp
-        }
-      c2: calculationsHistory (skip: 100){
-        sharePrice
-        timestamp
-        }
-      c3: calculationsHistory (skip: 200){
-        sharePrice
-        timestamp
-        }
-      c4:  calculationsHistory (skip: 300){
-        sharePrice
-        timestamp
-        }
-      c5: calculationsHistory (skip: 400){
-        sharePrice
-        timestamp
-        }
-      accounting {
-        id
-        ownedAssets {
+        c2: calculationsHistory (skip: 100){
+          sharePrice
+          timestamp
+          }
+        c3: calculationsHistory (skip: 200){
+          sharePrice
+          timestamp
+          }
+        c4:  calculationsHistory (skip: 300){
+          sharePrice
+          timestamp
+          }
+        c5: calculationsHistory (skip: 400){
+          sharePrice
+          timestamp
+          }
+        accounting {
           id
-          name
-          lastPrice
-          symbol
-          decimals
-          fundHoldingsHistory (orderDirection: desc, orderBy: timestamp, first:1){
-            amount
-            timestamp
+          ownedAssets {
+            id
+            name
+            lastPrice
+            symbol
+            decimals
+            fundHoldingsHistory (orderDirection: desc, orderBy: timestamp, first:1){
+              amount
+              timestamp
+            }
           }
         }
-      }
-      holdingsHistory(orderBy: timestamp, orderDirection: desc, first: 12) {
-        amount
-        asset {
-          id
-          name
-          symbol
-          decimals
-        }
-        assetGav
-        timestamp
-      }
-      feeManager {
-        managementFee {
-          managementFeeRate
-        }
-        performanceFee {
-          performanceFeeRate
-        }
-      }
-      manager {
-        id
-      }
-      policyManager {
-        policies {
-          maxConcentration
-          maxPositions
-          position
-          priceTolerance
-          identifier
-        }
-      }
-      participation {
-        id
-        allowedAssets {
-          id
-          symbol
-        }
-      }
-      investments{
-        owner{
-          id
+        holdingsHistory(orderBy: timestamp, orderDirection: desc, first: 12) {
+          amount
+          asset {
+            id
+            name
+            symbol
+            decimals
           }
-        shares
-        sharePrice
+          assetGav
+          timestamp
+        }
+        feeManager {
+          managementFee {
+            managementFeeRate
+          }
+          performanceFee {
+            performanceFeeRate
+          }
+        }
+        manager {
+          id
+        }
+        share {
+          id
+        }
+        policyManager {
+          policies {
+            maxConcentration
+            maxPositions
+            position
+            priceTolerance
+            identifier
+          }
+        }
+        participation {
+          id
+          allowedAssets {
+            id
+            symbol
+          }
+        }
+        investments{
+          owner{
+            id
+          }
+          shares
+          sharePrice
+        }
       }
+      assets {
+          id
+          symbol
+        }
+      } 
     }
-    assets {
-        id
-        symbol
-      }
-    } 
-}
-`;
+  `;

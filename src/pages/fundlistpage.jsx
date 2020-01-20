@@ -9,7 +9,7 @@ import { Link } from "gatsby";
 
 export const GATSBY_QUERY = graphql`{
     melon {
-      funds(orderBy: name, skip: 1, where: {gav_gt: "1000000000000000", isShutdown: false, sharePrice_not: "1"}) {
+      funds(orderBy: name, skip: 1, where: {gav_gt: "1000000000000000", isShutdown: false, sharePrice_not: "1000000000000000"}) {
        name
        id
       }

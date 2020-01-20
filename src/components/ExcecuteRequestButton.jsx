@@ -1,7 +1,6 @@
 import React from "react";
 import {getAccount, getWeb3} from "../web3/melonweb3";
 import { Participation } from "@melonproject/melonjs/contracts/fund/participation/Participation";
-import StateButton from "./StateButton";
 
 
 export default class ExecuteRequestButton extends React.Component{
@@ -11,7 +10,7 @@ export default class ExecuteRequestButton extends React.Component{
         
         this.state = {
             ready: false,
-            buttonState: "init",
+            buttonState: "Execute Request",
         }
         
     }
@@ -33,53 +32,64 @@ export default class ExecuteRequestButton extends React.Component{
           }
     }
 
-    async executeRequest(){
-        if(this.state.buttonState === 'init'){
-        const ExcecuteRequestTransaction = this.FundParticipation.executeRequestFor(this.state.accountAddress, this.state.accountAddress);
-        console.log(ExcecuteRequestTransaction);
-        console.log("Account", this.state.accountAddress);
-        const TransactionReceipt = await ExcecuteRequestTransaction.prepare();
-        const TransactionResult = await ExcecuteRequestTransaction.send(TransactionReceipt);
+    sleep(milliseconds) {
+        return new Promise(resolve => setTimeout(resolve, milliseconds));
+     }
 
-        /*const receipt = await new Promise((resolve, reject) => {
-            TransactionResult.once('transactionHash', hash => console.log('Transaction Hash:', hash));
-            TransactionResult.once('receipt', receipt => resolve(receipt));
-          });
-          console.log('Receipt:', JSON.stringify(receipt, undefined, 4));*/
+    checkHash(hash){
+        console.log(hash);
+        this.setState({buttonState: "Transaction pending"});
+     }
+
+     styleButton(){
+        if(this.state.buttonState === "Success"){
+            return  "BaseButton ExecuteRequestButton Success";
+        } else if (this.state.buttonState === "Execute Request"){
+            return "BaseButton ExecuteRequestButton";
+        } else if (this.state.buttonState === "Confirm with Metamask"){
+            return "BaseButton ExecuteRequestButton";
+        } else if (this.state.buttonState === "Transaction pending"){
+            return "BaseButton ExecuteRequestButton Pending";
+        } else if (this.state.buttonState === "Error"){
+            return "BaseButton ExecuteRequestButton Error";
+        } else {
+            return "BaseButton ExecuteRequestButton";
+        }
+    }
+
+    async executeRequest(){
+        if(this.state.buttonState === 'Execute Request'){
+            try{
+                const ExcecuteRequestTransaction = this.FundParticipation.executeRequestFor(this.state.accountAddress, this.state.accountAddress);
+                const TransactionReceipt = await ExcecuteRequestTransaction.prepare();
+                const TransactionResult = ExcecuteRequestTransaction.send(TransactionReceipt);
+                this.setState({buttonState: 'Confirm with Metamask'});            
+                const receipt = await new Promise((resolve, reject) => {
+                    TransactionResult.on('transactionHash', async hash => this.checkHash(hash)); 
+                    TransactionResult.on('receipt', async receipt => {
+                        resolve(receipt);
+                        this.setState({buttonState: 'Success'});
+                    });
+                    TransactionResult.on('error', err => reject(err));
+                });
+                this.setState({buttonState: 'Success'});
+                console.log('Receipt:', JSON.stringify(receipt, undefined, 4));
+            } catch (err){
+                this.setState({buttonState: 'Error'});
+                console.log("Transaction failed", err);
+                await this.sleep(3000);
+                this.setState({buttonState: 'Execute Request'});
+            }
         }
     }
 
     render(){
-
-            if(this.state.buttonState === 'init'){
-                return (
-                    <div>
-                        <div className="BaseButton ExecuteRequestButton" onClick={() => this.executeRequest()}>
-                            <h3>Execute Request</h3>
-                        </div>
-                    </div>
-            )} else if (this.state.buttonState === 'pending'){
-                return (
-                        <div>
-                            <div className="BaseButton ExecuteRequestButton">
-                                <h3>mining...</h3>
-                            </div>
-                        </div>
-            )} else if (this.state.buttonState === 'mined') {
-                    return (
-                        <div>
-                            <div className="BaseButton ExecuteRequestButton">
-                                <h3>Successfully Canceled</h3>  
-                            </div>
-                        </div>
-                    )}
-             
-            
+        return(
+            <div>
+                <div className={this.styleButton()} onClick={() => this.executeRequest()}>
+                    <h3>{this.state.buttonState}</h3>
+                </div>
+            </div>
+            )
         }
     }
-
-/*
-          <div>
-                    <StateButton state={this.state.buttonState} onClick={() => this.cancelRequest()}/>
-                </div> 
-        */
