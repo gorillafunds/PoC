@@ -236,13 +236,14 @@ export default class Form extends React.Component{
         });
 
         if(this.checkInput(this.state.amount) && this.checkInput(this.state.shares) && this.checkWeb3(this.state.accountAddress)){
-            await this.makeTransaction().catch(async (err) => {
+            /*await this.makeTransaction().catch(async (err) => {
                 console.log(err);
                 this.setState({buttonState: 'Error'});
                 await this.sleep(2000);
                 this.setState({buttonState: 'Invest'});
             });
-            //alert("Deactivated at the moment");
+            */
+            alert("Deactivated at the moment");
         }
     }
 
