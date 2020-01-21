@@ -5,7 +5,6 @@ exports.components = {
   "component---src-templates-fund-template-js": () => import("../src/templates/fundTemplate.js" /* webpackChunkName: "component---src-templates-fund-template-js" */),
   "component---src-templates-fund-manager-template-js": () => import("../src/templates/fundManagerTemplate.js" /* webpackChunkName: "component---src-templates-fund-manager-template-js" */),
   "component---src-templates-fund-strategy-template-js": () => import("../src/templates/fundStrategyTemplate.js" /* webpackChunkName: "component---src-templates-fund-strategy-template-js" */),
-  "component---cache-dev-404-page-js": () => import("dev-404-page.js" /* webpackChunkName: "component---cache-dev-404-page-js" */),
   "component---src-pages-about-jsx": () => import("../src/pages/about.jsx" /* webpackChunkName: "component---src-pages-about-jsx" */),
   "component---src-pages-contact-jsx": () => import("../src/pages/contact.jsx" /* webpackChunkName: "component---src-pages-contact-jsx" */),
   "component---src-pages-fundlistpage-jsx": () => import("../src/pages/fundlistpage.jsx" /* webpackChunkName: "component---src-pages-fundlistpage-jsx" */),

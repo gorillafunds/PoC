@@ -5,12 +5,13 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "build": "yarn && gatsby build",
+    "build": "yarn && yarn correctscrypt && gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "yarn run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
+    "correctscrypt": "sed -i -e 's/.\\/build\\/Release\\/scrypt/\\scrypt/' node_modules/scrypt/index.js"
   },
   "dependencies": {
     "@melonproject/melonjs": "^0.0.70",

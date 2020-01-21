@@ -57,9 +57,7 @@ export default class Form extends React.Component{
         if(this.checkInput(this.state.shares)){
             try{
             const shares = toBigNumber(this.state.shares).multipliedBy(toBigNumber(1e18));
-            console.log(shares.toString());
             const RedeemTransaction = this.FundParticipation.redeemQuantity(this.state.accountAddress, shares);
-            console.log(RedeemTransaction);
             const TransactionReceipt = await RedeemTransaction.prepare();
             const TransactionResult = RedeemTransaction.send(TransactionReceipt);
             this.setState({buttonState: 'Confirm with Metamask'});            
