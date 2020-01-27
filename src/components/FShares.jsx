@@ -47,11 +47,14 @@ export default class FShares extends React.Component{
     async getSharesFromBlockchain(){
         this.Participation = new Participation(this.env, this.props.participationContractAddress);
         this.Shares = new Shares(this.env, this.props.share);
-        const ownedShares = await this.Shares.getBalanceOf(this.state.accountAddress).catch((err) => {console.log(err)});    
+        const ownedShares = await this.Shares.getBalanceOf(this.state.accountAddress).catch((err) => {console.log(err)});   
+        try{ 
         const ownedSharesDec = ownedShares.dividedBy(toBigNumber(1E18));
         this.setState({
             shares: ownedSharesDec.toString()
-        })
+        })} catch (error){
+            console.log("getSharesFromBlockchain:", error);
+        }
     }
 
     async getSharesFromApi(){

@@ -1,7 +1,11 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import { Link } from "gatsby";
-import melonImage from "../../media/melonklein.png";
+import melonImage from "../../media/MelonIconWhiteTransparent.png";
+import twitter from "../../media/logo-twitterTransparent.png";
+import medium from "../../media/MediumTransparent.png";
+import github from "../../media/logo-githubTransparent.png";
+
 
 export default () => (
     <StaticQuery
@@ -23,10 +27,19 @@ export default () => (
                 <div className="Footer grid-element-center">
                     <ul style={{margin:`0px`, float: `left`}}>
                         <li style={{margin:`0px`, display: `inline-block`, float: `left`}}>
-                            <img src={melonImage} alt="melon_logo" style={{imageRendering:`auto` }}/>
+                            <a href="https://twitter.com/GorillaFunds"><img src={twitter} alt="Follow @GorillaFunds" style={{marginLeft: '10px', marginTop: '10px',maxHeigth: '20px', maxWidth:'20px' ,imageRendering:`auto` }}></img></a>
+                        </li>
+                        <li style={{margin:`0px`, display: `inline-block`, float: `left`}}>
+                            <a href="https://medium.com/@jakobcoltsievers21"><img src={medium} alt="Follow on Medium" style={{marginLeft: '10px', marginTop: '10px', maxWidth:'20px',imageRendering:`auto` }}></img></a>
+                        </li>
+                        <li style={{margin:`0px`, display: `inline-block`, float: `left`}}>
+                            <a href="https://github.com/gorillafund"><img src={github} alt="Follow on Github" style={{marginLeft: '10px', marginTop: '10px',maxHeigth: '20px', maxWidth:'20px',imageRendering:`auto` }}></img></a>
+                        </li>
+                        <li style={{margin:`0px`, display: `inline-block`, float: `left`}}>
+                            <a href="https://melonprotocol.com"><img src={melonImage} alt="melon_logo" style={{marginLeft: '10px', marginTop: '10px',maxHeigth: '20px', maxWidth:'20px' ,imageRendering:`auto` }}/></a>
                         </li>
                         <li style={{margin:`10px`, display: `inline-block`, float: `left`}}> 
-                            Powered by Melonprotocol 
+                            Powered by Melon Protocol 
                         </li>
                     </ul>
 
