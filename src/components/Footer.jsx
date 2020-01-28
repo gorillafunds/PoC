@@ -33,7 +33,7 @@ export default () => (
                             <a href="https://medium.com/@jakobcoltsievers21"><img src={medium} alt="Follow on Medium" style={{marginLeft: '10px', marginTop: '10px', maxWidth:'20px',imageRendering:`auto` }}></img></a>
                         </li>
                         <li style={{margin:`0px`, display: `inline-block`, float: `left`}}>
-                            <a href="https://github.com/gorillafund"><img src={github} alt="Follow on Github" style={{marginLeft: '10px', marginTop: '10px',maxHeigth: '20px', maxWidth:'20px',imageRendering:`auto` }}></img></a>
+                            <a href="https://github.com/gorillafunds"><img src={github} alt="Follow on Github" style={{marginLeft: '10px', marginTop: '10px',maxHeigth: '20px', maxWidth:'20px',imageRendering:`auto` }}></img></a>
                         </li>
                         <li style={{margin:`0px`, display: `inline-block`, float: `left`}}>
                             <a href="https://melonprotocol.com"><img src={melonImage} alt="melon_logo" style={{marginLeft: '10px', marginTop: '10px',maxHeigth: '20px', maxWidth:'20px' ,imageRendering:`auto` }}/></a>
