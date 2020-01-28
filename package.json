@@ -5,13 +5,14 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "build": "yarn && yarn correctscrypt && gatsby build",
+    "build": "yarn && yarn correctscrypt && yarn max-space && gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "yarn run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
-    "correctscrypt": "sed -i -e 's/.\\/build\\/Release\\/scrypt/\\scrypt/' node_modules/scrypt/index.js"
+    "correctscrypt": "sed -i -e 's/.\\/build\\/Release\\/scrypt/\\scrypt/' node_modules/scrypt/index.js",
+    "max-space": "export NODE_OPTIONS=\"--max-old-space-size=4096\""
   },
   "dependencies": {
     "@melonproject/melonjs": "^0.0.70",
