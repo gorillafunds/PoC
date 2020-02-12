@@ -4,6 +4,8 @@ import Web3Address from "./Web3Address";
 import InvestForm from "./InvestForm";
 import RedeemForm from "./RedeemForm";
 import Request from "./Request";
+import FShares from "./FShares";
+
 
 function investAction(){
     openInvestmentForm();
@@ -32,13 +34,12 @@ export default (props) => (
                   <div className="RequestBox">
                       <Request participationContractAddress={props.participationContractAddress}/>
                   </div>
-                  <div className="ExploreTheFundsLink">
-                      <Link to="/fundlistpage" style={{ color: `whitesmoke`,padding: `none`, backgroundImage: `none`, float: `right` }}>
-                          <h3 syle={{float: `left`}}>
-                              {props.title}
-                          </h3> 
-                      </Link>
-                  </div>
+                  <FShares 
+                        investments={props.investments} 
+                        fundAddress={props.fundAddress} 
+                        participationContractAddress={props.participationContractAddress}
+                        share={props.share}
+                    />
                 <InvestForm 
                     investments={props.investments} 
                     fundAddress={props.fundAddress} 
@@ -56,4 +57,11 @@ export default (props) => (
            
 )     
 
-
+/*
+<div className="ExploreTheFundsLink">
+<Link to="/fundlistpage" style={{ color: `whitesmoke`,padding: `none`, backgroundImage: `none`, float: `right` }}>
+    <h3 syle={{float: `left`}}>
+        {props.title}
+    </h3> 
+</Link>
+</div>*/

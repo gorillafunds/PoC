@@ -69,9 +69,35 @@ h3,h4,h5,h6{
     text-align: center;
     color: rgba(255,255,255,0.9);
     display: grid;
-    grid-template-columns: 1fr 4fr 3fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     align-content: center;
 }
+
+.Link1{
+    grid-column: 1 / 2;
+    color: whitesmoke;
+    font-size: 1.6em;
+ 
+}
+
+.Link2{
+    grid-column: 2 / 3;
+    color: whitesmoke;
+    font-size: 1.6em;
+}
+
+.Link4{
+    grid-column: 4 / 5;
+    color: whitesmoke;
+    font-size: 1.6em;
+}
+
+.Link5{
+    grid-column: 5 / 6;
+    color: whitesmoke;
+    font-size: 1.6em;
+}
+
 
 /* Header-Grid-Definition for Static Sites */
 
@@ -92,6 +118,21 @@ h3,h4,h5,h6{
     grid-row: 1;
     width: 100px;
     height: 100px;
+    padding: 5%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    object-fit: contain;
+    align-content: center;
+    image-rendering: scale-down;
+}
+
+.LogoImageSmall{
+    grid-column: 3 / 4;
+    grid-row: 1;
+    width: 50px;
+    height: 50px;
     padding: 5%;
     margin: auto;
     display: flex;
@@ -123,22 +164,20 @@ h3,h4,h5,h6{
 
 .Shares{
     grid-row: 1;
-    grid-column: 3 / 4;
+    grid-column: 4 / 5;
     display: flex;
     justify-content: flex-end;
     align-content: center;
 }
 
 .SharesBox{
-   
     color: black;
     border-radius: 4px;
     min-height: 4vh;
     width: 20vh;
-    padding: auto;
+    padding: 0;
     overflow: hidden;
     margin: auto;
-    margin-right: 10px;
     background-color:#f5fafffb;
     border-color:white;
     border-radius: 0.3vh;
@@ -148,10 +187,10 @@ h3,h4,h5,h6{
 }
 
 .SharesLable{
-    padding-top: 0.5vh;
+    height: 4vh;
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
 }
 
 /* Row - Second element */
@@ -173,17 +212,22 @@ h3,h4,h5,h6{
 
 .StaticMenu{
     grid-template-columns: 1fr 1fr;
+    display: grid;
 }
 
 /* Parts of Static Menu */
 
 .StaticMenuTitle{
+    padding-left: 10px;
     grid-column: 1 / 2;
     padding: 0px;
+    font-size: 2em;
 }
 
 .ExploreTheFundsLinkStatic{
     padding: 0px;
+    grid-column: 2 / 3;
+    font-size: 2em;
 }
 
 /*  Dynamic Menu */
@@ -199,8 +243,7 @@ h3,h4,h5,h6{
     padding: 0;
     margin: auto;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: flex-start;
 }
 
 .InvestRedeemButtons{
@@ -748,7 +791,7 @@ h3,h4,h5,h6{
 /* Linkstyles */
 
 a{
-    color: rgb(72, 53, 90);
+    color: white;
     text-decoration: none;
 }
 
@@ -758,12 +801,12 @@ a:active {
 }
 
 a:visited {
-    color: rgb(98, 71, 124);
+    color: whitesmoke;
     text-decoration: none;
 }
 
 a:hover {
-    color: rgb(98, 71, 124);
+    color:whitesmoke;
     text-decoration: none;
 }
 

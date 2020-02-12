@@ -83,7 +83,7 @@ export default class Web3Address extends React.Component{
 
         return(
         <div className="Web3Address">
-            <a href={"https://etherscan.io/address/" + this.state.accountAddress} style={{color: 'whitesmoke'}}>
+            <a href={"https://etherscan.io/address/" + this.state.accountAddress} style={{color: 'whitesmoke', float: 'left'}}>
                 <h5>{this.state.accountAddress}</h5>
             </a>
         </div>

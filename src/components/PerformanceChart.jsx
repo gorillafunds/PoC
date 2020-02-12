@@ -76,13 +76,13 @@ export default class PerformanceChart extends React.Component{
     data_array(value_array){
         const startvalue = Number(value_array[0]["sharePrice"]);
         //console.log("Startvalue:",startvalue)
-        value_array.map((element, index) => {
+        value_array.forEach((element, index) => {
              let date = new Date(element["timestamp"]*1000);
              element["x"] = date.toLocaleDateString();
              element["index"] = index;
              //element["x"] = date.getDay()+"."+date.getMonth()
         });
-        value_array.map((element) => {
+        value_array.forEach((element) => {
             element["y"] = Number(element["sharePrice"])/startvalue*100-100;
         });
         //console.log(value_array);

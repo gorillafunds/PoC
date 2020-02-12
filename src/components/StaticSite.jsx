@@ -2,10 +2,12 @@ import React from 'react';
 import StaticHeader from "./StaticHeader";
 import StaticMenu from "./StaticMenu";
 import Footer from "./Footer";
+import staticsite from "./staticsite.module.css";
+import "../styles/global.css";
 
 const StaticSite = (props) => {
     return (
-    <div className="Container">
+    <div className={staticsite.Container}>
       <div className="ContainerLeft grid-element-side"/>
         <StaticHeader/>
         <StaticMenu title={props.title}/>

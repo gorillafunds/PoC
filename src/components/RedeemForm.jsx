@@ -3,7 +3,7 @@ import {getAccount, getWeb3} from "../web3/melonweb3";
 import InputTextField from "./InputTextField";
 import { Participation } from "../../node_modules/@melonproject/melonjs/contracts/fund/participation/Participation";
 import { toBigNumber } from '@melonproject/melonjs/utils/toBigNumber';
-import { SelectionHelpers } from 'victory';
+//import { SelectionHelpers } from 'victory';
 
 export default class Form extends React.Component{
 
@@ -55,7 +55,8 @@ export default class Form extends React.Component{
     async submitRedeemForm(){
         console.log("state:",this.state);
         if(this.checkInput(this.state.shares)){
-            try{
+            alert("Deactivated at the moment");
+            /*try{
             const shares = toBigNumber(this.state.shares).multipliedBy(toBigNumber(1e18));
             const RedeemTransaction = this.FundParticipation.redeemQuantity(this.state.accountAddress, shares);
             const TransactionReceipt = await RedeemTransaction.prepare();
@@ -81,7 +82,7 @@ export default class Form extends React.Component{
                 console.log("Transaction failed:", err);
                 await this.sleep(2000);
                 this.setState({buttonState: 'Redeem'});
-            }
+            }*/
         }
     }
 

@@ -2,6 +2,7 @@ import React from "react"
 import StaticSite from "../components/StaticSite";
 import { StaticQuery, graphql } from 'gatsby';
 
+
 export default () => (
 
   <StaticQuery

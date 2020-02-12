@@ -2,7 +2,6 @@ import React from "react";
 import { graphql } from "gatsby";
 import Site from "../components/Site";
 
-
 export default class Page extends React.Component{
 
   constructor(props) {

@@ -15,11 +15,11 @@ export default () => (
         `}
 
       render = {data => (
-              <div className="WelcomePage"> 
+                 <div className="WelcomePage">
                      <StaticSiteSlideDown title="Welcome">
                          <div dangerouslySetInnerHTML={{__html: data.wordpressPage.content}}/>
                     </StaticSiteSlideDown>
-              </div>
+                  </div>
       )}
   />
 ) 

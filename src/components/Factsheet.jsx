@@ -9,17 +9,18 @@ export default class Factsheet extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            value: this.caclulatePerformance('alltime'),
+            value: this.calculatePerformance('alltime'),
         }
         this.handleClick = this.handleClick.bind(this);
     }
 
-    caculateValue(dateString){
-        //console.log("Vergleich", dateString);
-            const shareP = this.props.calculationshistory.filter(element => {    
-                return element.x === dateString;
-            });
-        //console.log("shareP:",shareP);
+    calculateValue(dateString){
+        console.log("Vergleich", dateString);
+        console.log(this.props.calculationshistory);
+        const shareP = this.props.calculationshistory.filter(element => {    
+            return element.x === dateString;
+        });
+        console.log("shareP:",shareP);
         if(shareP.length !== 0){
             return (((toBigNumber(this.props.shareprice).dividedBy(toBigNumber(shareP[0].sharePrice)) - 1)*100-1).toFixed(1) + "%");
         } else {
@@ -27,7 +28,7 @@ export default class Factsheet extends React.Component{
         }
     }
 
-    caclulatePerformance(time){
+    calculatePerformance(time){
 
         //console.log(this.props);
         let today = new Date();
@@ -50,13 +51,13 @@ export default class Factsheet extends React.Component{
             case 'alltime':
                 return ((this.props.shareprice/this.props.calculationshistory[0].sharePrice - 1)*100).toFixed(1)+"%";
             case 'year':
-                return this.caculateValue(dayYear);
+                return this.calculateValue(dayYear);
             case 'ytd':
-                return this.caculateValue(dayYTD);
+                return this.calculateValue(dayYTD);
             case 'month':
-                return this.caculateValue(dayMonth);
+                return this.calculateValue(dayMonth);
             case 'week':
-                return this.caculateValue(dayWeek);
+                return this.calculateValue(dayWeek);
             default: 
                 return ((toBigNumber(this.props.shareprice).dividedBy(toBigNumber(this.props.calculationshistory[0].sharePrice)) - 1)*100).toFixed(1)+"%"; 
         }
@@ -66,23 +67,23 @@ export default class Factsheet extends React.Component{
     
         switch(time){
             case 'alltime':
-                this.setState({value: this.caclulatePerformance(time)});
-                return  this.caclulatePerformance(time); 
+                this.setState({value: this.calculatePerformance(time)});
+                return  this.calculatePerformance(time); 
             case 'year':
-                this.setState({value: this.caclulatePerformance(time)});
-                return  this.caclulatePerformance(time); 
+                this.setState({value: this.calculatePerformance(time)});
+                return  this.calculatePerformance(time); 
             case 'ytd':
-                this.setState({value: this.caclulatePerformance(time)});
-                return  this.caclulatePerformance(time); 
+                this.setState({value: this.calculatePerformance(time)});
+                return  this.calculatePerformance(time); 
             case 'month':
-                this.setState({value: this.caclulatePerformance(time)});
-                return  this.caclulatePerformance(time); 
+                this.setState({value: this.calculatePerformance(time)});
+                return  this.calculatePerformance(time); 
             case 'week':
-                this.setState({value: this.caclulatePerformance(time)});
-                return  this.caclulatePerformance(time); 
+                this.setState({value: this.calculatePerformance(time)});
+                return  this.calculatePerformance(time); 
             default: 
-                this.setState({value: this.caclulatePerformance(time)});
-                return  this.caclulatePerformance(time); 
+                this.setState({value: this.calculatePerformance(time)});
+                return  this.calculatePerformance(time); 
         } 
     }
 

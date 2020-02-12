@@ -1,6 +1,6 @@
 import React from 'react';
 import StaticHeader from "./StaticHeader";
-import StaticMenu from "./StaticMenu";
+import StaticMenuWelcomePage from "./StaticMenuWelcomePage";
 import Footer from "./Footer";
 import NewsBox from './NewsBox';
 
@@ -9,7 +9,7 @@ const StaticSiteSlideDown = (props) => {
     <div className="Container">
       <div className="ContainerLeft grid-element-side"/>
         <StaticHeader/>
-        <StaticMenu title={props.title}/>
+        <StaticMenuWelcomePage title={props.title}/>
         <NewsBox case="MetamaskAlert"/>
         <div className="Content ContentFundList ManagerStrategyPage"> 
               {props.children}

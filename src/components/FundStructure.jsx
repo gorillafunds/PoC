@@ -42,7 +42,7 @@ export default class FundStructure extends React.Component{
   
     //console.log(value_array);
 
-    value_array.map((element, index) => {
+    value_array.forEach((element, index) => {
         //console.log("Element", element, "index", index);
         let amount = element.amount/element.asset.decimals;
         let value = element.assetGav/1e18;
@@ -51,6 +51,7 @@ export default class FundStructure extends React.Component{
         }
     });
   }
+  
   
   
   render(){

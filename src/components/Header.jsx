@@ -2,7 +2,7 @@ import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import { Link } from "gatsby";
 import gorilla from "../../media/gorilla.svg";
-import FShares from "./FShares";
+//import FShares from "./FShares";
 
 export default (props) => (
     
@@ -21,24 +21,29 @@ export default (props) => (
         
         render = { data => (
                 <div className="Header">
-                    <Link to="/" style={{margin: `auto`, padding: `0px`}}> 
-                        <img className="LogoImage" src={gorilla} alt="logo"></img>
+                     <Link className="Link1" to="/about" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
+                        About
                     </Link>
-                    <Link to="/"  style={{margin: `0px`, padding: `0px`}}> 
-                        <div className="Title">
-                            <h1 style={{color:"rgba(255,255,255,0.9)"}}>
-                                {data.site.siteMetadata.title}
-                            </h1>
-                        </div>
+                    <Link className="Link2" to="/contact" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
+                        Contact
                     </Link>
-                    <FShares 
-                        investments={props.investments} 
-                        fundAddress={props.fundAddress} 
-                        participationContractAddress={props.participationContractAddress}
-                        share={props.share}
-                    />
-                    {console.log("header:",props)}
+                    <Link to="/" style={{margin: `auto`, padding: `auto`}}> 
+                        <img className="LogoImageSmall" src={gorilla} alt="logo"></img>
+                    </Link>
+                    <Link className="Link4" to="/impressum" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
+                       Terms of Use
+                    </Link>
+                    <Link className="Link5" to="/" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
+                        Tools
+                    </Link>
                 </div>
         )}
     />
 ); 
+/*
+<FShares 
+investments={props.investments} 
+fundAddress={props.fundAddress} 
+participationContractAddress={props.participationContractAddress}
+share={props.share}
+/>*/
