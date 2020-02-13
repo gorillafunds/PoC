@@ -21,15 +21,13 @@ export default (props) => (
         render={data => (
           < div className="Menu StaticMenu">
               <Web3Address/>
-              <div className="ExploreTheFundsLinkStatic">
-                    <h5>
-                        <Link to="/fundlistpage" style={{ color: `rgba(255,255,255,0.9)`, textShadow: `none`, backgroundImage: `none`, float: `right` }}>
-                            <h2 syle={{fontSize: `2em`}}>
-                                Fund Explorer
-                            </h2>
-                        </Link>
-                    </h5>
-              </div>
+              <Link to="/fundlistpage">
+                <div className="BaseButton FundExplorerButton" style={{width: '15vh'}}>
+                    <h3>
+                    Fund Explorer
+                    </h3>
+                </div>
+              </Link>
             </div>
         )}
     />
