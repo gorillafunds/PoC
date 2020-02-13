@@ -245,7 +245,7 @@ h3,h4,h5,h6{
 /*Static Menu*/
 
 .StaticMenu{
-    background-color: rgba(200,255,255,0.4);
+    background-color:  rgba(220,255,255,0.1);
     grid-template-columns: 1fr 1fr;
     padding: 1vh;
     display: grid;
@@ -270,7 +270,7 @@ h3,h4,h5,h6{
 
 .DynamicMenu{ 
     /*background-image: linear-gradient( to bottom,rgba(212,220,242,0.4), rgba(250, 222, 166, 0.8) );*/
-    background-color: rgba(200,255,255,0.4);
+    background-color: rgba(220,255,255,0.1);
     grid-template-columns: 2fr 2fr 1fr 1fr;
     grid-template-rows: 1fr;
 }
