@@ -956,6 +956,31 @@ h3,h4,h5,h6{
     border-radius: 0.1vh;
 }
 
+.Loading{
+    animation-name: pulseFundListItem;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+    animation-direction: alternate;
+    -webkit-animation-name: pulse; 
+    -webkit-animation-duration: 2s; 
+    -webkit-animation-count: infinite;
+    -webkit-animation-direction: alternate;
+}
+
+/* FundListItem animations*/
+
+@keyframes pulseFundListItem {
+    from {
+        opacity: 1;
+        background-color: #f5faffcb;
+    }
+  
+    to {
+        opacity: 0.8;
+        background-color: #a4c9eecb;
+    }
+  }
+
 .FundListItem:hover{
     background-color: #d4e6f8eb;
     padding: 1%;

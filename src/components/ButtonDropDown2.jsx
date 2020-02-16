@@ -34,9 +34,9 @@ export default class ButtonDropDown2 extends React.Component{
                     onMouseEnter={this.showMenu}
                     onMouseLeave={this.closeMenu}
                     >
-                     <Link to="/about" style={{margin: `auto`, padding: `auto`, color: `white`}}>
+                     <div style={{margin: `auto`, padding: `auto`, color: `white`}}>
                         {this.props.title}
-                    </Link>
+                    </div>
             {
                 this.state.showMenu
                     ?
