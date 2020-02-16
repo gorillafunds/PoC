@@ -39,9 +39,31 @@ export default () => (
                             <a href="https://melonprotocol.com"><img src={melonImage} alt="melon_logo" style={{marginLeft: '10px', marginTop: '10px',maxHeigth: '30px', maxWidth:'30px' ,imageRendering:`auto` }}/></a>
                         </li>
                         <li style={{margin:`10px`,marginTop: '15px', display: `inline-block`, float: `left`}}> 
-                            Powered by Melon Protocol 
+                        <h6>Powered by Melon Protocol</h6>
                         </li>
                     </ul>
+                    <ul style={{margin:`0px`, float: `right`}}>    
+                        <li style={{ margin:`10px`, marginTop: '5px', display: `inline-block`}}>
+                            <Link to={data.site.siteMetadata.footer1} style={{  textShadow: `none`, backgroundImage: `none` }}>
+                            <div className="FooterLinkItems"> 
+                                <h6>Partner</h6>
+                            </div>
+                            </Link>
+                        </li>
+                        <li style={{margin:`10px`, marginTop: '5px', display: `inline-block`}}>
+                            <Link to={data.site.siteMetadata.footer2} style={{ textShadow: `none`, backgroundImage: `none` }}>
+                            <div className="FooterLinkItems">
+                                <h6>FAQ</h6>
+                            </div></Link>
+                        </li>
+                        <li style={{margin:`10px`, marginTop: '5px', display: `inline-block`}}>
+                            <Link to={data.site.siteMetadata.footer3} style={{ textShadow: `none`, backgroundImage: `none` }}>
+                                <div className="FooterLinkItems">
+                                <h6>Terms of Use</h6>
+                                </div>
+                            </Link>
+                        </li>
+                        </ul>
 
                    
                 </div>

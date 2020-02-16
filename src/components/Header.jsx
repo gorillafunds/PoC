@@ -2,6 +2,9 @@ import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import { Link } from "gatsby";
 import gorilla from "../../media/gorilla.svg";
+import ButtonDropDown from "./ButtonDropDown";
+import ButtonDropDown2 from "./ButtonDropDown2";
+
 //import FShares from "./FShares";
 
 export default (props) => (
@@ -21,21 +24,25 @@ export default (props) => (
         
         render = { data => (
                 <div className="Header">
-                     <Link className="Link1" to="/about" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
-                        About
-                    </Link>
-                    <Link className="Link2" to="/contact" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
-                        Contact
-                    </Link>
-                    <Link to="/" style={{margin: `auto`, padding: `auto`}}> 
-                        <img className="LogoImageSmall" src={gorilla} alt="logo"></img>
-                    </Link>
-                    <Link className="Link4" to="/impressum" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
-                       Terms of Use
-                    </Link>
-                    <Link className="Link5" to="/" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
-                        Tools
-                    </Link>
+                        <div className="Link1" style={{margin: `auto`, padding: `auto`, color: `white`}}>
+                            <ButtonDropDown title="About" item1="Powered by Melon" link1="/melon" item2="Litepaper" link2="/litepaper" item3="Team" link3="/team"/> 
+                        </div>
+                        <Link to="/blog" className="Link2" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
+                            Blog
+                        </Link>
+                   
+                        <Link to="/" style={{margin: `auto`, padding: `auto`}}> 
+                            <img className="LogoImageSmall" src={gorilla} alt="logo"></img>
+                        </Link>
+                  
+                        <Link to="/connect" className="Link4" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
+                            Connect
+                        </Link>
+                    
+                        <div className="Link5" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
+                            <ButtonDropDown2 title="Tools" item1="Fund Explorer" link1="/fundexplorer" item2="Frontend Fund Builder" link2="/frontendbuilder"/> 
+                        </div>
+                    
                 </div>
         )}
     />

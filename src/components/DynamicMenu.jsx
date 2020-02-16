@@ -26,7 +26,7 @@ function openRedeemForm(){
 export default (props) => (
     
             <div className="Menu DynamicMenu">
-                <Web3Address/>
+                <Web3Address style={{zIndex:'3'}}/>
                   <div className="InvestRedeemButtons">
                       <div className="BaseButton InvestButton" onClick={investAction}><h3>Invest</h3></div>
                       <div className="BaseButton RedeemButton" onClick={redeemAction}><h3>Redeem</h3></div>

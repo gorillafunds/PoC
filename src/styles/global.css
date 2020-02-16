@@ -13,6 +13,7 @@ html {
 
 h3,h4,h5,h6{
     margin: 2px; 
+    z-index:1;
 }
 
 /* Columns: ContainerLeft | Content | ContainerRight*/
@@ -22,8 +23,8 @@ h3,h4,h5,h6{
     height: 100vh;
     width: 100vw;
     display: grid;
-    grid-template-columns: 1fr 6fr 1fr;
-    grid-template-rows: 3fr 1fr auto 12fr 1fr 1fr;
+    grid-template-columns: 1fr 8fr 1fr;
+    grid-template-rows: 1.5fr 1fr auto 14fr 1fr 1fr;
 }
 
 /* Seitenelemente */
@@ -66,15 +67,88 @@ h3,h4,h5,h6{
 /* Header-Grid-Definition for Dynamic Sites */
 
 .Header{
-    text-align: center;
     color: rgba(255,255,255,0.9);
+    text-align: center;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     align-content: center;
+    overflow: visible;
+    z-index: 1;
+}
+
+.MenuForDropDown1{
+    grid-column: 1 / 2;
+}
+
+.DropDownMenu{
+    background-image: linear-gradient( to bottom,rgba(48, 53, 94, 0.7) ,rgba(27,31,66, 0.7 ));
+    /*background-color: rgba(27,31,66, 0.7);*/
+    padding: 1vh;
+    height: 21vh;
+    width: 25vh;
+    color: rgba(255,255,255,0.9);
+    border-radius: 0.8vh;
+    border: 0.2px solid rgba(255,255,255,0.5);
+    display: grid;
+    grid-gap: 10px;
+    overflow: visible;
+    grid-template-rows: 1fr 1fr 1fr;
+    position: absolute;
+    z-index:inherit 300;
+    box-shadow:0px 0px 2px 2px rgba(255,255,255,0.4);
+}
+
+.DropDownMenu2{
+    background-image: linear-gradient( to bottom,rgba(48, 53, 94, 0.7) ,rgba(27,31,66, 0.7 ));
+    padding: 1vh;
+    height: 14vh;
+    width: 25vh;
+    color: rgba(255,255,255,0.9);
+    border-radius: 0.8vh;
+    border: 0.2px solid rgba(255,255,255,0.5);
+    display: grid;
+    grid-gap: 10px;
+    overflow: visible;
+    grid-template-rows: 1fr 1fr;
+    position: absolute;
+    z-index:inherit 300;
+    box-shadow:0px 0px 2px 2px rgba(255,255,255,0.4);
+}
+
+.MenuItem{
+    position: absolute;
+    border-radius: 0.8vh;
+    /*border: 0.5px solid rgba(255,255,255,0.5);*/
+    background-color: rgba(27,31,66, 0.8);
+    grid-column: 1 / 1;
+    padding: 0;
+    margin: 0;
+    width: 23vh;
+    height: 6vh;
+    z-index: 201;
+    display: flex;
+    padding-top: 1.5vh;
+    align-content: center;
+    justify-content: center;
+    z-index:3;
+    box-shadow: 0px 0px 2px 2px rgba(255,255,255,0.2);
+}
+
+.MenuLink{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.MenuItem:hover{
+    background-color: rgb(38, 44, 94);
+    box-shadow: 0px 0px 4px 4px rgba(255,255,255,0.4);
 }
 
 .Link1{
-    grid-column: 1 / 2;
+    padding: 0;
+    margin: 0;
+    z-index: 202;
     color: whitesmoke;
     font-size: 1.4em;
     font-weight: bold;
@@ -82,11 +156,12 @@ h3,h4,h5,h6{
 }
 
 .Link1:hover{
+    z-index: 202;
     color: rgb(255, 255, 255);
-    font-size: 1.5em;
 }
 
 .Link2{
+    z-index: 202;
     grid-column: 2 / 3;
     color: whitesmoke;
     font-size: 1.4em;
@@ -95,11 +170,12 @@ h3,h4,h5,h6{
 }
 
 .Link2:hover{
+    z-index: 202;
     color: rgb(255, 255, 255);
-    font-size: 1.5em;
 }
 
 .Link4{
+    z-index: 202;
     grid-column: 4 / 5;
     color: whitesmoke;
     font-size: 1.4em;
@@ -108,11 +184,12 @@ h3,h4,h5,h6{
 }
 
 .Link4:hover{
+    z-index: 202;
     color: rgb(255, 255, 255);
-    font-size: 1.5em;
 }
 
 .Link5{
+    z-index: 202;
     grid-column: 5 / 6;
     color: whitesmoke;
     font-size: 1.4em;
@@ -121,8 +198,8 @@ h3,h4,h5,h6{
 }
 
 .Link5:hover{
+    z-index: 202;
     color: rgb(255, 255, 255);
-    font-size: 1.5em;
 }
 
 /* Header-Grid-Definition for Static Sites */
@@ -135,6 +212,7 @@ h3,h4,h5,h6{
     grid-template-columns: 1fr;
     grid-template-rows: 1fr .3fr;
     align-content: center;
+    overflow: visible;
 }
 
 /* Gorilla Logo */
@@ -168,11 +246,6 @@ h3,h4,h5,h6{
     align-content: center;
     image-rendering: scale-down;
    /* -webkit-box-reflect: right 1px -webkit-linear-gradient(top, rgba(0,0,0,0) 25%,rgba(255,255,255,1) 100%);*/
-}
-
-.LogoImageSmall:hover{
-    width: 65px;
-    height: 65px;
 }
 
 /* Title for Dynamic Pages */
@@ -240,6 +313,8 @@ h3,h4,h5,h6{
     border: 0.5px solid rgba(255,255,255,0.5);
     display: grid;
     grid-gap: 10px;
+    overflow: visible;
+    z-index: 0;
 }
 
 /*Static Menu*/
@@ -248,6 +323,7 @@ h3,h4,h5,h6{
     background-color:  rgba(220,255,255,0.1);
     grid-template-columns: 1fr 1fr;
     padding: 1vh;
+    z-index:0;
     display: grid;
 }
 
@@ -257,12 +333,47 @@ h3,h4,h5,h6{
     padding-left: 10px;
     grid-column: 1 / 2;
     padding: 0px;
-    font-size: 2em;
+    font-size: 3em;
+    font-weight: bolder;
 }
 
 .ExploreTheFundsLinkStatic{
     padding: 0px;
     grid-column: 2 / 3;
+    font-size: 2em;
+}
+
+/*Welcome Page*/
+
+/* Parts of Static Menu */
+
+.StaticMenuWelcomePage{
+    background-color:  rgba(220,255,255,0.1);
+    grid-template-columns: 1fr 3fr 1fr;
+    padding: 1vh;
+    z-index: 0;
+    display: grid;
+}
+
+.ConnectWithWeb3{
+    padding: 0px;
+    grid-column: 1 / 2;
+    z-index: 0;
+}
+
+.WelcomePageTitle{
+    padding: 0px;
+    margin: 0;
+    grid-column: 2 / 3;
+    font-size: 2em;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.FundExplorer{
+    padding: 0px;
+    grid-column: 3 / 4;
     font-size: 2em;
 }
 
@@ -273,6 +384,7 @@ h3,h4,h5,h6{
     background-color: rgba(220,255,255,0.1);
     grid-template-columns: 2fr 2fr 1fr 1fr;
     grid-template-rows: 1fr;
+    z-index: 0;
 }
 
 .Web3Address {
@@ -280,6 +392,7 @@ h3,h4,h5,h6{
     grid-row: 1 / 2;
     padding: 0;
     padding-top: 10;
+    z-index:0;
     /*margin;*/
     display: flex;
     align-items: center;
@@ -820,6 +933,7 @@ h3,h4,h5,h6{
 .FooterLinkItems:hover{
     background-color: rgba(228, 195, 163, 0.3); 
     padding-right: 2vh;
+    cursor: pointer;
 }
 
 /* Row - Fifth element */
@@ -854,8 +968,12 @@ h3,h4,h5,h6{
 
 .WelcomePage{
     color: rgb(66, 66, 59);
+}
+
+.WelcomePageContent{
     font-size: large;
 }
+
 /* Linkstyles */
 
 a{
@@ -895,7 +1013,7 @@ a:hover {
     border: 3px solid rgba(247, 244, 244, 0.315);
     box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.5);
     border-radius: 5px;
-    z-index: 100;
+    z-index: 10;
   }
   
   /* Styles form container */
@@ -1344,6 +1462,7 @@ a:hover {
     
     .DynamicMenu{
         grid-template-columns: 1fr;
+        z-index:2;
     }
     
     /* Web3-Address*/

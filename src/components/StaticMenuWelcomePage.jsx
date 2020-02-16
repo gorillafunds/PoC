@@ -19,15 +19,22 @@ export default (props) => (
         }
         
         render={data => (
-          < div className="Menu StaticMenu">
-              <Web3Address/>
-              <Link to="/fundlistpage">
-                <div className="BaseButton FundExplorerButton" style={{width: '15vh'}}>
-                    <h3>
-                    Fund Explorer
-                    </h3>
-                </div>
-              </Link>
+          < div className="Menu StaticMenuWelcomePage">
+              <div className="ConnectWithWeb3">
+                    <Web3Address/>
+              </div>
+              <div className="WelcomePageTitle">
+                  <h3>Gorilla Funds - Invest with Gorilla Tactics</h3>
+              </div>        
+              <div className="FundExplorer">
+                <Link to="/fundlistpage">
+                    <div className="BaseButton FundExplorerButton" style={{width: '15vh'}}>
+                        <h3>
+                            Funds
+                        </h3>
+                    </div>
+                </Link>
+              </div>
             </div>
         )}
     />

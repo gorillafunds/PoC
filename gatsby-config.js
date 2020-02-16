@@ -15,9 +15,9 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: 'Gorilla Funds - Invest with Gorilla-Tactics',
-    footer1: '/about',
-    footer2: '/contact',
-    footer3: '/impressum',
+    footer1: '/partner',
+    footer2: '/faq',
+    footer3: '/termsofuse',
     account: "0xwerwer",
   },
   //pathPrefix:'__GATSBY_IPFS_PATH_PREFIX__',
