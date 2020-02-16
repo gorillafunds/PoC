@@ -30,7 +30,7 @@ export default () => (
                             <a href="https://twitter.com/GorillaFunds"><img src={twitter} alt="Follow @GorillaFunds" style={{marginLeft: '10px', marginTop: '10px',maxHeigth: '30px', maxWidth:'30px',imageRendering:`auto` }}></img></a>
                         </li>
                         <li style={{margin:`0px`, display: `inline-block`, float: `left`}}>
-                            <a href="https://medium.com/@jakobcoltsievers21"><img src={medium} alt="Follow on Medium" style={{marginLeft: '10px', marginTop: '10px', maxHeight:'30px', maxWidth:'30px',imageRendering:`auto` }}></img></a>
+                            <a href="https://medium.com/@gorillafunds"><img src={medium} alt="Follow on Medium" style={{marginLeft: '10px', marginTop: '10px', maxHeight:'30px', maxWidth:'30px',imageRendering:`auto` }}></img></a>
                         </li>
                         <li style={{margin:`0px`, display: `inline-block`, float: `left`}}>
                             <a href="https://github.com/gorillafund"><img src={github} alt="Follow on Github" style={{marginLeft: '10px', marginTop: '10px',maxHeigth: '30px', maxWidth:'30px',imageRendering:`auto` }}></img></a>

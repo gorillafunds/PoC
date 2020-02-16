@@ -27,9 +27,9 @@ export default (props) => (
                         <div className="Link1" style={{margin: `auto`, padding: `auto`, color: `white`}}>
                             <ButtonDropDown title="About" item1="Powered by Melon" link1="/melon" item2="Litepaper" link2="/litepaper" item3="Team" link3="/team"/> 
                         </div>
-                        <Link to="/blog" className="Link2" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
+                        <a href="https://medium.com/@gorillafunds" className="Link2" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
                             Blog
-                        </Link>
+                        </a>
                    
                         <Link to="/" style={{margin: `auto`, padding: `auto`}}> 
                             <img className="LogoImageSmall" src={gorilla} alt="logo"></img>
