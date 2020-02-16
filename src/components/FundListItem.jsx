@@ -8,15 +8,19 @@ export default class FundListItem extends React.Component{
         super(props);
        
         this.state = {
-            className: "FundListItem"
+            className: "FundListItem",
+            message: ""
         }
+        this.startAnimation = this.startAnimation.bind(this);
     }
 
-    startAnimation(){
+    startAnimation(event){
+        //event.preventDefault();
         console.log("loading");
         try{
             this.setState({
-                className: "FundListItem Loading"
+                className: "FundListItem Loading",
+                message: "Loading. We are fetching all necassary data"
             })
         } catch {
             console.log("Test");
@@ -30,6 +34,8 @@ export default class FundListItem extends React.Component{
                     <div className="FundListItemName" style={{display:`inline-block`, float: `left`}}>
                         <h5>{this.props.name}</h5> 
                         <h6>Contract Address: {this.props.id}</h6>
+                        <br/>
+                        <h6>{this.state.message}</h6>
                     </div>
                     <div className="Placeholder FundListItemDiagramm" style={{display: `inline-block`, float: `right`}}>
                         <img src={IOSStats} alt="iostats_image" style={{imageRendering:`auto` }}/>

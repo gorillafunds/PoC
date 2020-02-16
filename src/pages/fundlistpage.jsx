@@ -24,12 +24,13 @@ export default ({ data })  => {
         <FundList>
         {data.melon.funds.map(({name,id}) => (
             <div key={id}>
-              <Link to={`/${id}`}> 
+              <Link to={`/${id}`}>
                 <div className="FundList">
                   <FundListItem id={id} name={name}/>
                   <br/>
                 </div>
-              </Link>
+             </Link>
+
             </div>
             ))
         }

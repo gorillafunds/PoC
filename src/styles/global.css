@@ -957,11 +957,13 @@ h3,h4,h5,h6{
 }
 
 .Loading{
+    background-color: #f5faffcb;
+    opacity: 1;
     animation-name: pulseFundListItem;
     animation-iteration-count: infinite;
     animation-duration: 2s;
     animation-direction: alternate;
-    -webkit-animation-name: pulse; 
+    -webkit-animation-name: pulseFundListItem; 
     -webkit-animation-duration: 2s; 
     -webkit-animation-count: infinite;
     -webkit-animation-direction: alternate;
@@ -976,14 +978,15 @@ h3,h4,h5,h6{
     }
   
     to {
-        opacity: 0.8;
-        background-color: #a4c9eecb;
+        opacity: 0.5;
+        background-color: #71ebf0cb;
     }
   }
 
 .FundListItem:hover{
     background-color: #d4e6f8eb;
     padding: 1%;
+    cursor: pointer;
 }
 
 .WordpressPage{
