@@ -20,7 +20,7 @@ export default class FundListItem extends React.Component{
         try{
             this.setState({
                 className: "FundListItem Loading",
-                message: "Loading. We are fetching all necassary data"
+                message: "Loading. We are fetching all necessary data"
             })
         } catch {
             console.log("Test");

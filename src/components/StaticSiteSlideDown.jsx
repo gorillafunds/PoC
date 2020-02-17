@@ -3,10 +3,12 @@ import Header from "./Header";
 import StaticMenuWelcomePage from "./StaticMenuWelcomePage";
 import Footer from "./Footer";
 import NewsBox from './NewsBox';
+import staticsite from "./staticsite.module.css";
+import "../styles/global.css";
 
 const StaticSiteSlideDown = (props) => {
     return (
-    <div className="Container">
+    <div className={staticsite.Container}>
       <div className="ContainerLeft grid-element-side"/>
         <Header/>
         <StaticMenuWelcomePage title={props.title}/>

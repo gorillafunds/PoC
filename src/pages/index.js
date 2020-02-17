@@ -18,7 +18,7 @@ export default () => (
                  <div className="WelcomePage">
                      <StaticSiteSlideDown title="Welcome">
                        <div className="WelcomePageContent">
-                         <div dangerouslySetInnerHTML={{__html: data.wordpressPage.content}}/>
+                            <div dangerouslySetInnerHTML={{__html: data.wordpressPage.content}}/>
                         </div>
                     </StaticSiteSlideDown>
                   </div>

@@ -25,71 +25,25 @@ export default () => (
         
         render = {data => (
                 <div className="Footer grid-element-center">
-                    <ul style={{margin:`0px`, float: `left`}}>
-                        <li style={{margin:`0px`, display: `inline-block`, float: `left`}}>
-                            <a href="https://twitter.com/GorillaFunds"><img src={twitter} alt="Follow @GorillaFunds" style={{marginLeft: '10px', marginTop: '10px',maxHeigth: '30px', maxWidth:'30px',imageRendering:`auto` }}></img></a>
-                        </li>
-                        <li style={{margin:`0px`, display: `inline-block`, float: `left`}}>
-                            <a href="https://medium.com/@gorillafunds"><img src={medium} alt="Follow on Medium" style={{marginLeft: '10px', marginTop: '10px', maxHeight:'30px', maxWidth:'30px',imageRendering:`auto` }}></img></a>
-                        </li>
-                        <li style={{margin:`0px`, display: `inline-block`, float: `left`}}>
-                            <a href="https://github.com/gorillafunds"><img src={github} alt="Follow on Github" style={{marginLeft: '10px', marginTop: '10px',maxHeigth: '30px', maxWidth:'30px',imageRendering:`auto` }}></img></a>
-                        </li>
-                        <li style={{margin:`0px`, display: `inline-block`, float: `left`}}>
-                            <a href="https://melonprotocol.com"><img src={melonImage} alt="melon_logo" style={{marginLeft: '10px', marginTop: '10px',maxHeigth: '30px', maxWidth:'30px' ,imageRendering:`auto` }}/></a>
-                        </li>
-                        <li style={{margin:`10px`,marginTop: '15px', display: `inline-block`, float: `left`}}> 
-                        <h6>Powered by Melon Protocol</h6>
-                        </li>
-                    </ul>
-                    <ul style={{margin:`0px`, float: `right`}}>    
-                        <li style={{ margin:`10px`, marginTop: '5px', display: `inline-block`}}>
-                            <Link to={data.site.siteMetadata.footer1} style={{  textShadow: `none`, backgroundImage: `none` }}>
-                            <div className="FooterLinkItems"> 
-                                <h6>Partner</h6>
-                            </div>
-                            </Link>
-                        </li>
-                        <li style={{margin:`10px`, marginTop: '5px', display: `inline-block`}}>
-                            <Link to={data.site.siteMetadata.footer2} style={{ textShadow: `none`, backgroundImage: `none` }}>
-                            <div className="FooterLinkItems">
-                                <h6>FAQ</h6>
-                            </div></Link>
-                        </li>
-                        <li style={{margin:`10px`, marginTop: '5px', display: `inline-block`}}>
-                            <Link to={data.site.siteMetadata.footer3} style={{ textShadow: `none`, backgroundImage: `none` }}>
-                                <div className="FooterLinkItems">
-                                <h6>Terms of Use</h6>
-                                </div>
-                            </Link>
-                        </li>
-                        </ul>
-
-                   
+                    <div className="FooterLinkItemsLeft">
+                        <a className="imagesLeft" href="https://twitter.com/GorillaFunds"><img  src={twitter} alt="Follow @GorillaFunds" ></img></a>
+                        <a className="imagesLeft" href="https://medium.com/@gorillafunds"><img src={medium} alt="Follow on Medium" ></img></a>
+                        <a className="imagesLeft" href="https://github.com/gorillafunds"><img src={github} alt="Follow on Github" ></img></a>
+                        <a className="imagesLeft" href="https://melonprotocol.com"><img src={melonImage} alt="melon_logo"></img></a>
+                        <h6 className="melonLeft">Powered by Melon Protocol</h6>
+                    </div>
+                    <div className="FooterLinkItemsRight">
+                        <Link  className="FooterLinkItemRight" to={data.site.siteMetadata.footer1} >
+                            <h6>Partner</h6>
+                        </Link>
+                        <Link  className="FooterLinkItemRight" to={data.site.siteMetadata.footer2} >
+                            <h6>FAQ</h6>
+                        </Link>
+                        <Link className="FooterLinkItemRight" to={data.site.siteMetadata.footer3}>
+                            <h6>Terms of Use</h6>
+                        </Link>
+                    </div>
                 </div>
         )}
     />
 ); 
-/*
-<ul style={{margin:`0px`, float: `right`}}>    
-<li style={{margin:`0px`, display: `inline-block`}}>
-    <Link to={data.site.siteMetadata.footer1} style={{  textShadow: `none`, backgroundImage: `none` }}>
-    <div className="FooterLinkItems"> 
-        <h6>About</h6>
-    </div>
-    </Link>
-</li>
-<li style={{margin:`0px`, display: `inline-block`}}>
-    <Link to={data.site.siteMetadata.footer2} style={{ textShadow: `none`, backgroundImage: `none` }}>
-    <div className="FooterLinkItems">
-        <h6>Contact</h6>
-    </div></Link>
-</li>
-<li style={{margin:`0px`, display: `inline-block`}}>
-    <Link to={data.site.siteMetadata.footer3} style={{ textShadow: `none`, backgroundImage: `none` }}>
-        <div className="FooterLinkItems">
-        <h6>Impressum</h6>
-        </div>
-    </Link>
-</li>
-</ul>*/

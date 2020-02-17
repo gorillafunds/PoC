@@ -22,7 +22,7 @@ export default class ButtonDropDown extends React.Component{
       }
 
       closeMenu(event) {
-            event.preventDefault();
+            //event.preventDefault();
             this.setState({
                 showMenu: false 
             });  
@@ -45,28 +45,30 @@ export default class ButtonDropDown extends React.Component{
                         onMouseEnter={this.showMenu}
                         onMouseLeave={this.closeMenu}
                     >
-                        <div className="MenuItem" onClick={this.closeMenu} style={{gridRow: '1 / 2'}}>
                         <Link to={this.props.link1} style={{color: `white`}} >
-                            <div className="MenuLink">
-                                {this.props.item1} 
+                            <div className="MenuItem" onClick={this.closeMenu} style={{gridRow: '1 / 2'}}>
+                                <div className="MenuLink" style={{color: `white`,  padding:'0'}}>
+                                    {this.props.item1} 
+                                </div>
                             </div>
                         </Link>
-                        </div>
-                        <div className="MenuItem" onClick={this.closeMenu} style={{gridRow: '2 / 3'}}> 
-                            <Link to={this.props.link2} style={{color: `white`,  padding:'0'}}>
-                            <div className="MenuLink">
+                         
+                        <Link to={this.props.link2} style={{gridRow: '2 / 3'}}>
+                            <div className="MenuItem" onClick={this.closeMenu} >
+                                <div className="MenuLink" style={{color: `white`,  padding:'0'}}>
                                     {this.props.item2} 
                                 </div>
-                            </Link> 
-                        </div>
+                            </div>
+                        </Link> 
                         
-                        <div className="MenuItem" onClick={this.closeMenu} style={{gridRow: '3 / 4'}}>
-                            <Link to={this.props.link3} style={{color: `white`}}>
-                                <div className="MenuLink">
+
+                        <Link to={this.props.link3} style={{gridRow: '3 / 4'}}>
+                            <div className="MenuItem" onClick={this.closeMenu} >
+                                <div className="MenuLink" style={{color: `white`,  padding:'0'}}>
                                     {this.props.item3} 
                                 </div>
-                            </Link>  
-                        </div>
+                            </div>
+                        </Link>
                     </div>
                     :(
                         null

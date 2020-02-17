@@ -917,11 +917,50 @@ h3,h4,h5,h6{
     font-size: small;
     border-style: solid rgba(255,255,255,0.9);; 
     border-radius: 0.1vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
 }
 
 /* Link-Styling - Footer */
 
-.FooterLinkItems{
+.FooterLinkItemsLeft{
+    grid-column: 1 / 2;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.FooterLinkItemsLeft:hover{
+    cursor: pointer;
+}
+
+.imagesLeft{
+    image-rendering: auto;
+    max-width: 40px;
+    max-height: 40px;
+    padding: 0.3vh;
+}
+
+.melonLeft{
+    text-align: center;
+    padding-left: 0.2vh;
+}
+
+.FooterLinkItemsRight{
+    width: 8vw  auto; 
+    height: 3.5vh; 
+    background-color: rgba(27,31,66); 
+    padding: 1vh;
+    padding-right: 2vh;
+    color: whitesmoke;
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.FooterLinkItemRight{
     width: 8vw  auto; 
     height: 3.5vh; 
     background-color: rgba(27,31,66); 
@@ -930,7 +969,8 @@ h3,h4,h5,h6{
     color: whitesmoke;
 }
 
-.FooterLinkItems:hover{
+.FooterLinkItemRight:hover{
+    color: whitesmoke;
     background-color: rgba(228, 195, 163, 0.3); 
     padding-right: 2vh;
     cursor: pointer;
@@ -1041,7 +1081,7 @@ a:hover {
     border: 3px solid rgba(247, 244, 244, 0.315);
     box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.5);
     border-radius: 5px;
-    z-index: 10;
+    z-index: 4440;
   }
   
   /* Styles form container */
@@ -1052,6 +1092,7 @@ a:hover {
     background-color:  rgba(9, 1, 75, 0.9);
     height: 100%;
     margin: auto;
+    z-index: 4441;
   }
   
   select {
@@ -1079,6 +1120,7 @@ a:hover {
     border: none;
     border-radius: 3px;
     background: #f1f1f1;
+    z-index: 4442;
   }
   
   /* When the inputs get focus, do something */
@@ -1086,6 +1128,7 @@ a:hover {
   .form-container input[type=text]:focus, .form-container input[type=text]:focus {
     background-color: #ddd;
     outline: none;
+    z-index: 4443;
   }
   
   /* Set a style for the submit/login button */
@@ -1099,12 +1142,14 @@ a:hover {
     width: 100%;
     margin-bottom:5px;
     opacity: 0.8;
+    z-index: 4444;
   }
   
   /* Add a red background color to the cancel button */
 
   .form-container .cancel {
     background-color: red;
+    z-index: 4445;
   }
   
   /* Add some hover effects to buttons */
@@ -1317,8 +1362,8 @@ a:hover {
         height: 100vh;
         width: 100vw;
         display: grid;
-        grid-template-columns: 1fr 6fr 1fr;
-        grid-template-rows: 3fr 1fr auto 12fr 1fr 1fr;
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-rows: 3fr 1fr 1fr 12fr 0.5fr 0.2fr;
     }
 
     .Content{
@@ -1330,11 +1375,12 @@ a:hover {
     .Header{
         /*Style*/
         text-align: center;
+        text-size-adjust: auto;
         color: rgba(255,255,255,0.9);
         display: grid;
         grid-gap: 2px;
-        grid-template-columns: 1fr;
-        grid-template-rows: .8fr .5fr auto;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto;
     }
 
     .StaticHeader{
@@ -1343,8 +1389,8 @@ a:hover {
         color: rgba(255,255,255,0.9);
         display: grid;
         grid-gap: 2px;
-        grid-template-columns: 1fr;
-        grid-template-rows: .8fr .5fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto;
     }
     
     .LogoImage{
@@ -1357,19 +1403,9 @@ a:hover {
     }
     
     .Title{
-        grid-column: 1;
-        grid-row: 2;
+        grid-column: 2;
+        grid-row: auto;
         padding: 0;
-    }
-
-    .Shares{
-        grid-column: 1;
-        grid-row: 3;
-        padding: 0;
-    }
-
-    .SharesBox{
-        margin-bottom: 10px;
     }
     
 /* Beginn */
@@ -1392,7 +1428,7 @@ a:hover {
     
     .RequestInfo{
         background-color: #e6ae45fb;
-        min-height: 6vh;
+        min-height: 4vh;
         width: 30vh;
         padding: auto;
         cursor: default;
@@ -1422,6 +1458,16 @@ a:hover {
         margin-left: 10%;
         height: 4vh;
         min-height: 100%;
+    }
+
+    .Shares{
+        grid-column: 1 / 2;
+        grid-row: 4;
+        padding: 0;
+    }
+
+    .SharesBox{
+        margin-bottom: 2px;
     }
 
     .MoreButton{
@@ -1469,19 +1515,20 @@ a:hover {
 
     .StaticMenu{
         display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
         font-size: x-small;
     }
     
     .StaticMenuTitle{
         grid-row: 1 / 2;
         padding: 0px;
+        font-size: small;
         overflow: hidden;
     }
     
     .ExploreTheFundsLinkStatic{
-        grid-row: 2 / 3;
+        grid-row: auto;
     }
     
     /* Dynamic Site */
@@ -1490,7 +1537,7 @@ a:hover {
     
     .DynamicMenu{
         grid-template-columns: 1fr;
-        z-index:2;
+        z-index:0;
     }
     
     /* Web3-Address*/
@@ -1704,5 +1751,186 @@ a:hover {
         background-color:  rgba(250, 222, 166,0.6);
         grid: 3 / 4;
      }
+
+     .Footer{
+        grid-row: 5 / 6;
+        /*Style*/
+        background-color: rgba(27,31,66);
+        color: rgb(233, 230, 230);
+        text-align: center;
+        font-size: small;
+        border-style: solid rgba(255,255,255,0.9);; 
+        border-radius: 0.1vh;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
     
+    /* Link-Styling - Footer */
+    
+    .FooterLinkItemsLeft{
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    .FooterLinkItemsLeft:hover{
+        cursor: pointer;
+    }
+    
+    .imagesLeft{
+        image-rendering: auto;
+        max-width: 40px;
+        max-height: 40px;
+        padding: 0.3vh;
+    }
+    
+    .melonLeft{
+        text-align: center;
+        padding-left: 0.2vh;
+    }
+    
+    .FooterLinkItemsRight{
+        grid-row: auto;
+        grid-column: auto;
+        width: 8vw  auto; 
+        height: 3.5vh; 
+        background-color: rgba(27,31,66); 
+        padding: 1vh;
+        padding-right: 2vh;
+        color: whitesmoke;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    
+    .FooterLinkItemRight{
+        width: 8vw  auto; 
+        height: 3.5vh; 
+        background-color: rgba(27,31,66); 
+        padding: 1vh;
+        padding-right: 2vh;
+        color: whitesmoke;
+    }
+    
+    .FooterLinkItemRight:hover{
+        color: whitesmoke;
+        background-color: rgba(228, 195, 163, 0.3); 
+        padding-right: 2vh;
+        cursor: pointer;
+    }
+
+    .DropDownMenu{
+        background-image: linear-gradient( to bottom,rgba(48, 53, 94, 0.9) ,rgba(27,31,66, 0.9 ));
+        /*background-color: rgba(27,31,66, 0.7);*/
+        padding: 1vh;
+        height: 21vh;
+        width: 25vh;
+        color: rgba(255,255,255,0.9);
+        border-radius: 0.8vh;
+        border: 0.2px solid rgba(255,255,255,0.5);
+        display: grid;
+        grid-gap: 10px;
+        overflow: visible;
+        grid-template-rows: 1fr 1fr 1fr;
+        position: absolute;
+        z-index:inherit 300;
+        box-shadow:0px 0px 2px 2px rgba(255,255,255,0.4);
+    }
+    
+    .DropDownMenu2{
+        background-image: linear-gradient( to bottom,rgba(48, 53, 94, 0.9) ,rgba(27,31,66, 0.9 ));
+        padding: 1vh;
+        height: 14vh;
+        width: 25vh;
+        color: rgba(255,255,255,0.9);
+        border-radius: 0.8vh;
+        border: 0.2px solid rgba(255,255,255,0.5);
+        display: grid;
+        grid-gap: 10px;
+        overflow: visible;
+        grid-template-rows: 1fr 1fr;
+        position: absolute;
+        left: 40vw;
+        z-index:inherit 300;
+        box-shadow:0px 0px 2px 2px rgba(255,255,255,0.4);
+    }
+
+    .StaticMenuWelcomePage{
+        background-color:  rgba(220,255,255,0.1);
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.3fr 1fr 1fr;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    .ConnectWithWeb3{
+        padding: 0px;
+        grid-row: 1 / 3;
+        grid-column: 1 / 2;
+        z-index: 0;
+        overflow: hidden;
+        /*display: flex;
+        align-content: center;
+        justify-content: center;*/
+    }
+    
+    .WelcomePageTitle{
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        font-size: 1.2em;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+    
+    .FundExplorer {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+        padding: 0;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .react-slidedown.my-dropdown-slidedown {
+        background-color:  rgba(250, 222, 166,0.6);
+        padding: 10px;
+        grid: 3 / 4;
+        grid-column: 1 / 2;
+        transition-duration: 1.2s;
+        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1.1);
+        /*transition-timing-function: ease-in-out;*/
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+    .Menu {
+        grid-row: 2 / 3;
+        background-color: rgba(27,31,66, 0.8);
+        padding-top: 1vh;
+        padding-left: 1vh;
+        color: rgba(255,255,255,0.9);
+        border-radius: 0.1vh;
+        border: 0.5px solid rgba(255,255,255,0.5);
+        display: grid;
+        grid-gap: 10px;
+        overflow: visible;
+        z-index: 0;
+    }
+
+    .Web3Address {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        padding: 0;
+        z-index:0;
+        /*margin;*/
+        /*display: flex;
+        align-items: left;
+        justify-content: flex-start;*/
+    }
+   
 }
