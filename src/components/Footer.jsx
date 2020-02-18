@@ -26,19 +26,19 @@ export default () => (
         render = {data => (
                 <div className="Footer grid-element-center">
                     <div className="FooterLinkItemsLeft">
-                        <a className="imagesLeft" href="https://twitter.com/GorillaFunds"><img  src={twitter} alt="Follow @GorillaFunds" ></img></a>
-                        <a className="imagesLeft" href="https://medium.com/@gorillafunds"><img src={medium} alt="Follow on Medium" ></img></a>
-                        <a className="imagesLeft" href="https://github.com/gorillafunds"><img src={github} alt="Follow on Github" ></img></a>
-                        <a className="imagesLeft" href="https://melonprotocol.com"><img src={melonImage} alt="melon_logo"></img></a>
+                        <a className="imagesLeft" href="https://twitter.com/GorillaFunds"  target="_blank"><img  src={twitter} alt="Follow @GorillaFunds" ></img></a>
+                        <a className="imagesLeft" href="https://medium.com/@gorillafunds" target="_blank"><img src={medium} alt="Follow on Medium" ></img></a>
+                        <a className="imagesLeft" href="https://github.com/gorillafunds" target="_blank"><img src={github} alt="Follow on Github" ></img></a>
+                        <a className="imagesLeft" href="https://melonprotocol.com" target="_blank"><img src={melonImage} alt="melon_logo"></img></a>
                         <h6 className="melonLeft">Powered by Melon Protocol</h6>
                     </div>
                     <div className="FooterLinkItemsRight">
-                        <Link  className="FooterLinkItemRight" to={data.site.siteMetadata.footer1} >
+                        {/*<Link  className="FooterLinkItemRight" to={data.site.siteMetadata.footer1} >
                             <h6>Partner</h6>
                         </Link>
                         <Link  className="FooterLinkItemRight" to={data.site.siteMetadata.footer2} >
                             <h6>FAQ</h6>
-                        </Link>
+                        </Link>*/}
                         <Link className="FooterLinkItemRight" to={data.site.siteMetadata.footer3}>
                             <h6>Terms of Use</h6>
                         </Link>

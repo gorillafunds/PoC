@@ -12,7 +12,7 @@ const StaticSiteSlideDown = (props) => {
       <div className="ContainerLeft grid-element-side"/>
         <Header/>
         <StaticMenuWelcomePage title={props.title}/>
-        <NewsBox case="MetamaskAlert"/>
+       
         <div className="Content ContentFundList ManagerStrategyPage"> 
               {props.children}
         </div>
@@ -26,3 +26,4 @@ const StaticSiteSlideDown = (props) => {
   export default StaticSiteSlideDown
   
 
+/* <NewsBox case="MetamaskAlert"/>*/ 

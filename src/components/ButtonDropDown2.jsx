@@ -32,6 +32,7 @@ export default class ButtonDropDown2 extends React.Component{
         return (<div 
                     className="MenuForDropDown2" 
                     onMouseEnter={this.showMenu}
+                    onClick={this.showMenu}
                     onMouseLeave={this.closeMenu}
                     >
                      <div style={{margin: `auto`, padding: `auto`, color: `white`}}>

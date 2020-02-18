@@ -13,7 +13,6 @@ html {
 
 h3,h4,h5,h6{
     margin: 2px; 
-    z-index:1;
 }
 
 /* Columns: ContainerLeft | Content | ContainerRight*/
@@ -60,6 +59,7 @@ h3,h4,h5,h6{
 .grid-element-center{
     grid-gap: 10px;
     grid-column: 2 / 3;
+    z-index: 0;
 }
 
 /* Rows - First element*/
@@ -84,7 +84,7 @@ h3,h4,h5,h6{
     background-image: linear-gradient( to bottom,rgba(48, 53, 94, 0.7) ,rgba(27,31,66, 0.7 ));
     /*background-color: rgba(27,31,66, 0.7);*/
     padding: 1vh;
-    height: 21vh;
+    height: 29vh;
     width: 25vh;
     color: rgba(255,255,255,0.9);
     border-radius: 0.8vh;
@@ -92,7 +92,7 @@ h3,h4,h5,h6{
     display: grid;
     grid-gap: 10px;
     overflow: visible;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     position: absolute;
     z-index:inherit 300;
     box-shadow:0px 0px 2px 2px rgba(255,255,255,0.4);
@@ -101,7 +101,7 @@ h3,h4,h5,h6{
 .DropDownMenu2{
     background-image: linear-gradient( to bottom,rgba(48, 53, 94, 0.7) ,rgba(27,31,66, 0.7 ));
     padding: 1vh;
-    height: 14vh;
+    height: 15vh;
     width: 25vh;
     color: rgba(255,255,255,0.9);
     border-radius: 0.8vh;
@@ -125,12 +125,10 @@ h3,h4,h5,h6{
     margin: 0;
     width: 23vh;
     height: 6vh;
-    z-index: 201;
     display: flex;
     padding-top: 1.5vh;
     align-content: center;
     justify-content: center;
-    z-index:3;
     box-shadow: 0px 0px 2px 2px rgba(255,255,255,0.2);
 }
 
@@ -148,57 +146,49 @@ h3,h4,h5,h6{
 .Link1{
     padding: 0;
     margin: 0;
-    z-index: 202;
     color: whitesmoke;
     font-size: 1.4em;
     font-weight: bold;
-    -webkit-box-reflect: below 1px -webkit-linear-gradient(top, rgba(0,0,0,0) 25%,rgba(255,255,255,1) 100%);
+    /*-webkit-box-reflect: below 1px -webkit-linear-gradient(top, rgba(0,0,0,0) 25%,rgba(255,255,255,1) 100%);*/
 }
 
 .Link1:hover{
-    z-index: 202;
     color: rgb(255, 255, 255);
 }
 
 .Link2{
-    z-index: 202;
     grid-column: 2 / 3;
     color: whitesmoke;
     font-size: 1.4em;
     font-weight: bold;
-    -webkit-box-reflect: below 1px -webkit-linear-gradient(top, rgba(0,0,0,0) 25%,rgba(255,255,255,1) 100%);
+    /*-webkit-box-reflect: below 1px -webkit-linear-gradient(top, rgba(0,0,0,0) 25%,rgba(255,255,255,1) 100%);*/
 }
 
 .Link2:hover{
-    z-index: 202;
     color: rgb(255, 255, 255);
 }
 
 .Link4{
-    z-index: 202;
     grid-column: 4 / 5;
     color: whitesmoke;
     font-size: 1.4em;
     font-weight: bold;
-    -webkit-box-reflect: below 1px -webkit-linear-gradient(top, rgba(0,0,0,0) 25%,rgba(255,255,255,1) 100%);
+    /*-webkit-box-reflect: below 1px -webkit-linear-gradient(top, rgba(0,0,0,0) 25%,rgba(255,255,255,1) 100%);*/
 }
 
 .Link4:hover{
-    z-index: 202;
     color: rgb(255, 255, 255);
 }
 
 .Link5{
-    z-index: 202;
     grid-column: 5 / 6;
     color: whitesmoke;
     font-size: 1.4em;
     font-weight: bold;
-    -webkit-box-reflect: below 1px -webkit-linear-gradient(top, rgba(0,0,0,0) 25%,rgba(255,255,255,1) 100%);
+    /*-webkit-box-reflect: below 1px -webkit-linear-gradient(top, rgba(0,0,0,0) 25%,rgba(255,255,255,1) 100%);*/
 }
 
 .Link5:hover{
-    z-index: 202;
     color: rgb(255, 255, 255);
 }
 
@@ -314,7 +304,6 @@ h3,h4,h5,h6{
     display: grid;
     grid-gap: 10px;
     overflow: visible;
-    z-index: 0;
 }
 
 /*Static Menu*/
@@ -323,7 +312,6 @@ h3,h4,h5,h6{
     background-color:  rgba(220,255,255,0.1);
     grid-template-columns: 1fr 1fr;
     padding: 1vh;
-    z-index:0;
     display: grid;
 }
 
@@ -349,26 +337,27 @@ h3,h4,h5,h6{
 
 .StaticMenuWelcomePage{
     background-color:  rgba(220,255,255,0.1);
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: 1fr 1fr;
     padding: 1vh;
-    z-index: 0;
     display: grid;
 }
 
 .ConnectWithWeb3{
     padding: 0px;
-    grid-column: 1 / 2;
-    z-index: 0;
+    grid-column: 2 / 3;
+    display: flex;
+    align-content: center;
+    justify-content: flex-end;
 }
 
 .WelcomePageTitle{
     padding: 0px;
     margin: 0;
-    grid-column: 2 / 3;
-    font-size: 2em;
+    grid-column: 1 / 2;
+    font-size: large;
     display: flex;
     align-content: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .FundExplorer{
@@ -384,7 +373,6 @@ h3,h4,h5,h6{
     background-color: rgba(220,255,255,0.1);
     grid-template-columns: 2fr 2fr 1fr 1fr;
     grid-template-rows: 1fr;
-    z-index: 0;
 }
 
 .Web3Address {
@@ -392,7 +380,6 @@ h3,h4,h5,h6{
     grid-row: 1 / 2;
     padding: 0;
     padding-top: 10;
-    z-index:0;
     /*margin;*/
     display: flex;
     align-items: center;
@@ -540,6 +527,7 @@ h3,h4,h5,h6{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 0;
 }
 
 .ConnectButton:hover {
@@ -1073,6 +1061,7 @@ a:hover {
 }*/
 
 .form-popup {
+    z-index: 1;
     color: whitesmoke;
     display: none;
     position: fixed;
@@ -1081,7 +1070,6 @@ a:hover {
     border: 3px solid rgba(247, 244, 244, 0.315);
     box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.5);
     border-radius: 5px;
-    z-index: 4440;
   }
   
   /* Styles form container */
@@ -1092,7 +1080,6 @@ a:hover {
     background-color:  rgba(9, 1, 75, 0.9);
     height: 100%;
     margin: auto;
-    z-index: 4441;
   }
   
   select {
@@ -1120,7 +1107,6 @@ a:hover {
     border: none;
     border-radius: 3px;
     background: #f1f1f1;
-    z-index: 4442;
   }
   
   /* When the inputs get focus, do something */
@@ -1128,7 +1114,6 @@ a:hover {
   .form-container input[type=text]:focus, .form-container input[type=text]:focus {
     background-color: #ddd;
     outline: none;
-    z-index: 4443;
   }
   
   /* Set a style for the submit/login button */
@@ -1142,14 +1127,12 @@ a:hover {
     width: 100%;
     margin-bottom:5px;
     opacity: 0.8;
-    z-index: 4444;
   }
   
   /* Add a red background color to the cancel button */
 
   .form-container .cancel {
     background-color: red;
-    z-index: 4445;
   }
   
   /* Add some hover effects to buttons */
@@ -1537,7 +1520,6 @@ a:hover {
     
     .DynamicMenu{
         grid-template-columns: 1fr;
-        z-index:0;
     }
     
     /* Web3-Address*/
@@ -1826,7 +1808,7 @@ a:hover {
         background-image: linear-gradient( to bottom,rgba(48, 53, 94, 0.9) ,rgba(27,31,66, 0.9 ));
         /*background-color: rgba(27,31,66, 0.7);*/
         padding: 1vh;
-        height: 21vh;
+        height: 29vh;
         width: 25vh;
         color: rgba(255,255,255,0.9);
         border-radius: 0.8vh;
@@ -1834,16 +1816,16 @@ a:hover {
         display: grid;
         grid-gap: 10px;
         overflow: visible;
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
         position: absolute;
-        z-index:inherit 300;
+        z-index: 3;
         box-shadow:0px 0px 2px 2px rgba(255,255,255,0.4);
     }
     
     .DropDownMenu2{
         background-image: linear-gradient( to bottom,rgba(48, 53, 94, 0.9) ,rgba(27,31,66, 0.9 ));
         padding: 1vh;
-        height: 14vh;
+        height: 15vh;
         width: 25vh;
         color: rgba(255,255,255,0.9);
         border-radius: 0.8vh;
@@ -1854,7 +1836,7 @@ a:hover {
         grid-template-rows: 1fr 1fr;
         position: absolute;
         left: 40vw;
-        z-index:inherit 300;
+        z-index: 3;
         box-shadow:0px 0px 2px 2px rgba(255,255,255,0.4);
     }
 
@@ -1862,16 +1844,14 @@ a:hover {
         background-color:  rgba(220,255,255,0.1);
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 0.3fr 1fr 1fr;
-        z-index: 1;
+        grid-template-rows: 1fr 1fr;
         overflow: hidden;
     }
 
     .ConnectWithWeb3{
         padding: 0px;
-        grid-row: 1 / 3;
+        grid-row: 2 / 3;
         grid-column: 1 / 2;
-        z-index: 0;
         overflow: hidden;
         /*display: flex;
         align-content: center;
@@ -1880,7 +1860,7 @@ a:hover {
     
     .WelcomePageTitle{
         grid-column: 1 / 2;
-        grid-row: 2 / 3;
+        grid-row: 1 / 2;
         font-size: 1.2em;
         display: flex;
         align-content: center;
@@ -1919,14 +1899,12 @@ a:hover {
         display: grid;
         grid-gap: 10px;
         overflow: visible;
-        z-index: 0;
     }
 
     .Web3Address {
         grid-column: 1 / 2;
         grid-row: 1 / 2;
         padding: 0;
-        z-index:0;
         /*margin;*/
         /*display: flex;
         align-items: left;

@@ -32,6 +32,7 @@ export default class ButtonDropDown extends React.Component{
         return (<div 
                     className="MenuForDropDown" 
                     onMouseEnter={this.showMenu}
+                    onClick={this.showMenu}
                     onMouseLeave={this.closeMenu}
                     >
                      <div style={{margin: `auto`, padding: `auto`, color: `white`}}>
@@ -66,6 +67,14 @@ export default class ButtonDropDown extends React.Component{
                             <div className="MenuItem" onClick={this.closeMenu} >
                                 <div className="MenuLink" style={{color: `white`,  padding:'0'}}>
                                     {this.props.item3} 
+                                </div>
+                            </div>
+                        </Link>
+
+                        <Link to={this.props.link4} style={{gridRow: '4 / 5'}}>
+                            <div className="MenuItem" onClick={this.closeMenu} >
+                                <div className="MenuLink" style={{color: `white`,  padding:'0'}}>
+                                    {this.props.item4} 
                                 </div>
                             </div>
                         </Link>

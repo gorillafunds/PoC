@@ -25,9 +25,19 @@ export default (props) => (
         render = { data => (
                 <div className="Header">
                         <div className="Link1" style={{margin: `auto`, padding: `auto`, color: `white`}}>
-                            <ButtonDropDown title="About" item1="Powered by Melon" link1="/melon" item2="Litepaper" link2="/litepaper" item3="Team" link3="/team"/> 
+                            <ButtonDropDown 
+                            title="About" 
+                            item1="Powered by Melon" 
+                            link1="/melon" 
+                            item2="Litepaper" 
+                            link2="/litepaper" 
+                            item3="Team" 
+                            link3="/team" 
+                            item4="FAQ"
+                            link4="/faq"
+                            /> 
                         </div>
-                        <a href="https://medium.com/@gorillafunds" className="Link2" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
+                        <a href="https://medium.com/@gorillafunds" className="Link2" style={{margin: `auto`, padding: `auto`, color: `white`}}  target="_blank"> 
                             Blog
                         </a>
                    
@@ -35,12 +45,12 @@ export default (props) => (
                             <img className="LogoImageSmall" src={gorilla} alt="logo"></img>
                         </Link>
                   
-                        <Link to="/connect" className="Link4" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
-                            Connect
+                        <Link to="/contact" className="Link4" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
+                            Contact
                         </Link>
                     
                         <div className="Link5" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
-                            <ButtonDropDown2 title="Tools" item1="Fund Explorer" link1="/fundexplorer" item2="Frontend Fund Builder" link2="/frontendbuilder"/> 
+                            <ButtonDropDown2 title="Tools" item1="Fund Explorer" link1="/fundlistpage" item2="Frontend Fund Builder" link2="/frontendbuilder"/> 
                         </div>
                     
                 </div>
