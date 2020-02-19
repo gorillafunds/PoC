@@ -6,7 +6,7 @@
 const api_mainnet = "https://api.thegraph.com/subgraphs/name/melonproject/melon"
 const api_kovan = "https://api.thegraph.com/subgraphs/name/melonproject/melon-kovan"
 const local_wordpress = "managinggorillafundscom.local"
-const online_wordpress = "managinggorillafunds.firma-21.de"
+const online_wordpress = "manager.gorillafunds.org"
 
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
