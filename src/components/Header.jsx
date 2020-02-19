@@ -50,7 +50,7 @@ export default (props) => (
                         </Link>
                     
                         <div className="Link5" style={{margin: `auto`, padding: `auto`, color: `white`}}> 
-                            <ButtonDropDown2 title="Tools" item1="Fund Explorer" link1="/fundlistpage" item2="Frontend Fund Builder" link2="/frontendbuilder"/> 
+                            <ButtonDropDown2 title="Tools" item1="Fund Explorer" link1="/fundlistpage" item2="Frontend Builder" link2="/frontendbuilder"/> 
                         </div>
                     
                 </div>

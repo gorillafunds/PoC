@@ -311,6 +311,8 @@ h3,h4,h5,h6{
    justify-content: center;
    align-items: center;
 }
+
+
 /* Button-Definition for More-Button */
 
 .MoreButton{
@@ -1216,7 +1218,7 @@ a:hover {
 
    .StaticMenu{
        display: grid;
-       grid-template-columns: 1fr;
+       grid-template-columns: 1fr 1fr;
        grid-template-rows: 1fr 1fr;
        font-size: x-small;
    }
