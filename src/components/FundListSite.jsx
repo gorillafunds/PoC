@@ -23,4 +23,3 @@ const StaticSite = (props) => {
 
   export default StaticSite
   
-  {/*"Content ContentFundList ManagerStrategyPage"*/}

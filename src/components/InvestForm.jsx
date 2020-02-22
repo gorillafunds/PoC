@@ -276,7 +276,7 @@ export default class Form extends React.Component{
 
     async makeTransaction(){
         this.Token = new StandardToken(this.env, this.state.investmentAsset);
-        const investmentDecimals = this.state.tokenDecimals; //await this.Token.getDecimals();
+        const investmentDecimals = await this.Token.getDecimals();
         this.requestedShares = toBigNumber(this.state.shares).multipliedBy(toBigNumber(1E18));
         this.investmentAmount = (toBigNumber(this.state.amount).times(toBigNumber(10).exponentiatedBy(investmentDecimals))).toFixed(0);
         this.investmentAmount = toBigNumber(this.investmentAmount);

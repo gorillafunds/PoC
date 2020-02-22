@@ -14,7 +14,7 @@
     "correctscrypt": "sed -i -e 's/.\\/build\\/Release\\/scrypt/\\scrypt/' node_modules/scrypt/index.js"
   },
   "dependencies": {
-    "@melonproject/melonjs": "^0.0.70",
+    "@melonproject/melonjs": "^0.0.103",
     "@nivo/line": "^0.59.3",
     "@nivo/pie": "^0.59.1",
     "@types/web3": "^1.2.2",
@@ -38,6 +38,7 @@
     "graphql": "^14.5.7",
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.5",
+    "melonjs": "^7.1.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-draggable": "^4.1.0",

@@ -17,7 +17,7 @@ export default () => (
 
       render = {data => (
               <div className="RulesetPage"> 
-                    <StaticSite title="Ruleset">
+                    <StaticSite title="Ruleset" css="Content ContentFundList ManagerStrategyPage">
                       <div dangerouslySetInnerHTML={{__html: data.wordpressPage.content}}/>
                       <Link to="/">
                           <div className="BaseButton MoreButton" style={{float:'left', bottom:'10px', position: 'absolute'}}>

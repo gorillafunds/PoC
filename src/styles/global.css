@@ -405,6 +405,23 @@ h3,h4,h5,h6{
     cursor: pointer;
 }
 
+.FundExplorerButtonFrontPage {
+    margin: auto;
+    height: 8vh;
+    width: 26vh;
+    /*background-image: linear-gradient( to bottom,rgba(212,220,242,0.89), rgba(250, 222, 166, 0.8) );*/
+    background-image: linear-gradient( to bottom,rgba(212,220,242,0.89), rgba(36, 124, 131, 0.8));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.FundExplorerButtonFrontPage:hover{
+    background-color: #ddd;
+    cursor: pointer;
+}
+
 .InvestRedeemButtons {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
@@ -612,6 +629,18 @@ h3,h4,h5,h6{
 
 .ManagerStrategyPage{
     position: relative;
+    font-size: large;
+    padding: 6vh;
+}
+
+.FundListPage{
+    position: relative;
+    font-size: large;
+}
+
+.WelcomePage{
+    position: relative;
+    font-size: large;
 }
 
 .Fund{
@@ -1019,6 +1048,7 @@ h3,h4,h5,h6{
 
 .WordpressPage{
     color: rgb(66, 66, 59);
+    font-size: small;
     overflow: hidden;
 }
 
@@ -1028,6 +1058,12 @@ h3,h4,h5,h6{
 
 .WelcomePageContent{
     font-size: large;
+    font-weight: lighter;
+    padding: 15vh;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
 }
 
 /* Linkstyles */
@@ -1847,6 +1883,16 @@ a:hover {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr;
         overflow: hidden;
+    }
+
+    .WelcomePageContent{
+        font-size: large;
+        font-weight: lighter;
+        padding: 5vh;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-content: center;
     }
 
     .ConnectWithWeb3{

@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from 'gatsby';
 import StaticSite from "../components/StaticSite"
+import FundListSite from "../components/FundListSite";
 import FundListItem from "../components/FundListItem";
 import FundList from "../components/FundList";
 //import TransitionLink from "gatsby-plugin-transition-link";
@@ -20,7 +21,7 @@ export default ({ data })  => {
   //console.log(data)
   
   return(
-      <StaticSite title="Funds on the Melon-Network">
+      <FundListSite title="Funds on the Melon-Network" css="Content ContentFundList FundListPage">
         <FundList>
         {data.melon.funds.map(({name,id}) => (
             <div key={id}>
@@ -35,6 +36,6 @@ export default ({ data })  => {
             ))
         }
       </FundList>
-      </StaticSite>
+      </FundListSite>
   )};
   

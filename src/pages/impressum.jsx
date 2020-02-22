@@ -15,8 +15,8 @@ export default () => (
         `}
 
       render = {data => (
-              <div className="WordpressPage"> 
-                     <StaticSite title="Impressum">
+              <div className="WordpressPage" > 
+                     <StaticSite title="Impressum" css="Content ContentFundList ManagerStrategyPage">
                          <div dangerouslySetInnerHTML={{__html: data.wordpressPage.content}}/>
                     </StaticSite>
               </div>
