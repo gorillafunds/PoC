@@ -1066,6 +1066,33 @@ h3,h4,h5,h6{
     align-content: center;
 }
 
+.columns{
+    width: 70vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+}
+
+.column1{
+    grid-column: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+.column2{
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+.picture1, .picture2{
+    width: 30vw;
+    max-width: 150px;
+    image-rendering: scale-down;
+}
+
 /* Linkstyles */
 
 a{
@@ -1957,5 +1984,32 @@ a:hover {
         align-items: left;
         justify-content: flex-start;*/
     }
+
+    .columns{
+        width: 50vw;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 10px;
+    }
+    
+    .column1{
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        display: flex;
+        flex-direction: column;
+        align-content: flex-start;
+    }
+    
+    .column2{
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+    }
+    
+    .picture1, .picture2{
+        width: 50vw;
+        image-rendering: scale-down;
+    }
+    
    
 }
