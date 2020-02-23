@@ -40,7 +40,7 @@ async componentDidMount(){
 
     button = () => {
       if ( this.state.accountAddress === this.props.pageContext.manager_id ){
-        return {__html: "<a href='http://managinggorillafundscom.local/wp-login.php'>\
+        return {__html: "<a href='https://manager.gorillafunds.org/wp-login.php'>\
                               <h4>\
                                 Edit Page\
                               </h4>\
@@ -59,6 +59,7 @@ async componentDidMount(){
             title={this.props.pageContext.manager_id}
             id={this.props.pageContext.id} 
             manager_id={this.props.pageContext.manager_id}
+            css="Content ContentFundList ManagerStrategyPage"
           >
           <h6>Fund-Manager</h6>
           <h6>Manager-Address:{this.props.pageContext.manager_id}</h6>
