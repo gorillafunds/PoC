@@ -3,6 +3,7 @@
  *
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
+const api_mainnet_staging = "https://api.thegraph.com/subgraphs/name/melonproject/melon-staging"
 const api_mainnet = "https://api.thegraph.com/subgraphs/name/melonproject/melon"
 const api_kovan = "https://api.thegraph.com/subgraphs/name/melonproject/melon-kovan"
 const local_wordpress = "managinggorillafundscom.local"

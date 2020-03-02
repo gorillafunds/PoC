@@ -29,12 +29,12 @@ export default (props) => (
                             title="About" 
                             item1="Powered by Melon" 
                             link1="/melon" 
-                            item2="Litepaper" 
-                            link2="/litepaper" 
-                            item3="Team" 
-                            link3="/team" 
-                            item4="FAQ"
-                            link4="/faq"
+                            /*item2="Litepaper" 
+        link2="/litepaper" */
+                            item2="Team" 
+                            link2="/team" 
+                            item3="FAQ"
+                            link3="/faq"
                             /> 
                         </div>
                         <a href="https://medium.com/@gorillafunds" className="Link2" style={{margin: `auto`, padding: `auto`, color: `white`}}  target="_blank"> 

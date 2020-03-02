@@ -7,15 +7,12 @@ import Content from "./Content";
 import Fund from "./Fund";
 import DynamicMenu from "./DynamicMenu";
 import "../utils/typography";
-import site from "./site.module.css";
-import "../styles/global.css";
-
 
 const Site = (props) => {
 
     console.log("Site:",{props})
     return (
-        <div className={site.Container}>
+        <div className="Container">
         <ContainerLeft previous={props.previous}/>
         <Header 
           investments={props.fund.investments} 

@@ -31,14 +31,14 @@ export default class FundListItem extends React.Component{
         
         return(
                 <div className={this.state.className} onClick={this.startAnimation}>
-                    <div className="FundListItemName" style={{display:`inline-block`, float: `left`}}>
+                    <div className="FundListItemName" style={{display:`inline-block`, float: `left`, }}>
                         <h5>{this.props.name}</h5> 
                         <h6>Contract Address: {this.props.id}</h6>
                         <br/>
                         <h6>{this.state.message}</h6>
                     </div>
-                    <div className="Placeholder FundListItemDiagramm" style={{display: `inline-block`, float: `right`}}>
-                        <img src={IOSStats} alt="iostats_image" style={{imageRendering:`auto` }}/>
+                    <div className="Placeholder FundListItemDiagramm" style={{display: `inline-block`, float: `right`, marginBottom:`1vh`}}>
+                        <img src={IOSStats} alt="iostats_image" style={{imageRendering:`auto`}}/>
                     </div>
                 </div>
             )}

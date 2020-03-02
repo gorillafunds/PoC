@@ -84,7 +84,7 @@ h3,h4,h5,h6{
     background-image: linear-gradient( to bottom,rgba(48, 53, 94, 0.7) ,rgba(27,31,66, 0.7 ));
     /*background-color: rgba(27,31,66, 0.7);*/
     padding: 1vh;
-    height: 29vh;
+    height: 22vh;
     width: 25vh;
     color: rgba(255,255,255,0.9);
     border-radius: 0.8vh;
@@ -92,7 +92,7 @@ h3,h4,h5,h6{
     display: grid;
     grid-gap: 10px;
     overflow: visible;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     position: absolute;
     z-index:inherit 300;
     box-shadow:0px 0px 2px 2px rgba(255,255,255,0.4);
@@ -1408,8 +1408,8 @@ a:hover {
         height: 100vh;
         width: 100vw;
         display: grid;
-        grid-template-columns: 1fr auto 1fr;
-        grid-template-rows: 3fr 1fr 1fr 12fr 0.5fr 0.2fr;
+        grid-template-columns: 1fr 8fr 1fr;
+        grid-template-rows: 3fr 0.1 fr 1fr 12fr 0.2fr 0.1fr;
     }
 
     .Content{
@@ -1761,12 +1761,12 @@ a:hover {
         grid-column: 1fr;
         background-color: #f5faffcb;
         padding: 1%;
-        height: 16vh;
+        height: 20vh;
         border: 1px solid; 
         border-radius: 0.1vh;
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 2fr;
+        grid-template-rows: 1fr 3fr;
         overflow: hidden;
     }
 
@@ -1871,7 +1871,7 @@ a:hover {
         background-image: linear-gradient( to bottom,rgba(48, 53, 94, 0.9) ,rgba(27,31,66, 0.9 ));
         /*background-color: rgba(27,31,66, 0.7);*/
         padding: 1vh;
-        height: 29vh;
+        height: 22vh;
         width: 25vh;
         color: rgba(255,255,255,0.9);
         border-radius: 0.8vh;
@@ -1879,7 +1879,7 @@ a:hover {
         display: grid;
         grid-gap: 10px;
         overflow: visible;
-        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
         position: absolute;
         z-index: 3;
         box-shadow:0px 0px 2px 2px rgba(255,255,255,0.4);
@@ -2011,5 +2011,37 @@ a:hover {
         image-rendering: scale-down;
     }
     
-   
+    .Link1{
+        padding: 0;
+        margin: 0;
+        color: whitesmoke;
+        font-size: 1.2em;
+        font-weight: bold;
+        /*-webkit-box-reflect: below 1px -webkit-linear-gradient(top, rgba(0,0,0,0) 25%,rgba(255,255,255,1) 100%);*/
+    }
+    
+    
+    .Link2{
+        grid-column: 2 / 3;
+        color: whitesmoke;
+        font-size: 1.2em;
+        font-weight: bold;
+        /*-webkit-box-reflect: below 1px -webkit-linear-gradient(top, rgba(0,0,0,0) 25%,rgba(255,255,255,1) 100%);*/
+    }
+    
+    .Link4{
+        grid-column: 4 / 5;
+        color: whitesmoke;
+        font-size: 1.2em;
+        font-weight: bold;
+        /*-webkit-box-reflect: below 1px -webkit-linear-gradient(top, rgba(0,0,0,0) 25%,rgba(255,255,255,1) 100%);*/
+    }
+    
+    .Link5{
+        grid-column: 5 / 6;
+        color: whitesmoke;
+        font-size: 1.2em;
+        font-weight: bold;
+        /*-webkit-box-reflect: below 1px -webkit-linear-gradient(top, rgba(0,0,0,0) 25%,rgba(255,255,255,1) 100%);*/
+    }
 }

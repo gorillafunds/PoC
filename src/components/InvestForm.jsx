@@ -89,7 +89,7 @@ export default class Form extends React.Component{
             const target = event.target;
             const value = target.value;
             //this.Token = new StandardToken(this.env, value);
-            //const tokenDecimals = this.Token.getDecimals();
+            //let tokenDecimals = this.Token.getDecimals();
             //console.log(this.Token);
 
             console.log("value:", value);
@@ -241,8 +241,8 @@ export default class Form extends React.Component{
                 this.setState({buttonState: 'Error'});
                 await this.sleep(2000);
                 this.setState({buttonState: 'Invest'});
-            });
-            */
+            });*/
+            
             alert("Deactivated at the moment");
         }
     }
@@ -276,7 +276,7 @@ export default class Form extends React.Component{
 
     async makeTransaction(){
         this.Token = new StandardToken(this.env, this.state.investmentAsset);
-        const investmentDecimals = await this.Token.getDecimals();
+        const investmentDecimals = '18';//await this.Token.getDecimals();
         this.requestedShares = toBigNumber(this.state.shares).multipliedBy(toBigNumber(1E18));
         this.investmentAmount = (toBigNumber(this.state.amount).times(toBigNumber(10).exponentiatedBy(investmentDecimals))).toFixed(0);
         this.investmentAmount = toBigNumber(this.investmentAmount);

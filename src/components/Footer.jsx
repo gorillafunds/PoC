@@ -38,10 +38,10 @@ export default () => (
                         </Link>
                         <Link  className="FooterLinkItemRight" to={data.site.siteMetadata.footer2} >
                             <h6>FAQ</h6>
-                        </Link>*/}
+                        </Link>
                         <Link className="FooterLinkItemRight" to={data.site.siteMetadata.footer3}>
                             <h6>Terms of Use</h6>
-                        </Link>
+                        </Link>*/}
                     </div>
                 </div>
         )}

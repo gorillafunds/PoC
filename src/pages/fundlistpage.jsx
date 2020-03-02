@@ -25,7 +25,7 @@ export default ({ data })  => {
         <FundList>
         {data.melon.funds.map(({name,id}) => (
             <div key={id}>
-              <Link to={`/${id}`}>
+              <Link to={`/${id}`} style={{color:"rgba(9, 1, 75, 1)"}}>
                 <div className="FundList">
                   <FundListItem id={id} name={name}/>
                   <br/>
@@ -35,7 +35,7 @@ export default ({ data })  => {
             </div>
             ))
         }
-      </FundList>
+        </FundList>
       </FundListSite>
   )};
   
